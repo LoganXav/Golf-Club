@@ -5,7 +5,7 @@ export default function IndexPage() {
   return (
     <main className="font-roboto flex flex-col items-center">
       <StandardForm />
-      <div>hi</div>
+      <div className="py-2" />
 
       <ThemeToggle />
     </main>

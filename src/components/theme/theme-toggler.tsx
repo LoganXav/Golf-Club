@@ -34,10 +34,12 @@ const ThemeToggler = ({ theme, setTheme }: Props) => (
           className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-black"
           aria-hidden="true"
         />
-        <MoonIcon
-          className="absolute h-5 w-5 rotate-90 scale-100 transition-all dark:rotate-0 dark:scale-0 text-white"
-          aria-hidden="true"
-        />
+        {theme === "light" && (
+          <MoonIcon
+            className="absolute h-5 w-5 rotate-90 scale-100 transition-all dark:rotate-0 dark:scale-0 text-white"
+            aria-hidden="true"
+          />
+        )}
       </Button>
     </SwitchPrimitives.Thumb>
     {theme === "light" && (
