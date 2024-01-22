@@ -4,8 +4,8 @@ type Props = {}
 
 function StandardForm({}: Props) {
   return (
-    <div className="w-1/3 pt-24 mx-auto">
-      <Input />
+    <div className="w-full">
+      <Input placeholder="What is your username?" />
     </div>
   )
 }

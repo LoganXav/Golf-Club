@@ -4,11 +4,23 @@
 
 @layer base {
   :root {
-    --background: 30, 64%, 96%;
-    --foreground: 240 10% 3.9%;
+    --background: 0 0% 100%;
+    --foreground: 0, 0, 0%;
 
+    /* #8578E6; */
     --primary: 252, 53%, 65%;
+
+    /* #665DAC; */
+    --primary-foreground: 260, 28%, 46%;
+
+    /* #F8F4F0; */
     --secondary: 30, 64%, 96%;
+
+    /* #FCF9F5; */
+    --secondary-foreground: 30, 26%, 94%;
+
+    /* #FCF9F5; */
+    --tertiary: 30, 64%, 96%;
 
     --input: 0 0% 100%;
     --input-invert: 0, 0, 0%;
@@ -19,12 +31,24 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0, 0, 0%;
+    --foreground: 0 0% 100%;
 
-    --secondary: 30, 64%, 96%;
+    /* #8578E6; */
+    --primary: 252, 53%, 65%;
 
-    --input: 0 0% 0%;
+    /* #665DAC; */
+    --primary-foreground: 260, 28%, 46%;
+
+    /* #32313B; */
+    --secondary: 255, 4%, 18%;
+
+    /* #222126; */
+    --secondary-foreground: 270, 4%, 13%;
+
+    --tertiary: 30, 64%, 96%;
+
+    --input: 270, 4%, 13%;
     --input-invert: 0, 0, 100%;
   }
 }

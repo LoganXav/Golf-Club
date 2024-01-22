@@ -26,7 +26,7 @@ const ThemeToggler = ({ theme, setTheme }: Props) => (
     )}
     <SwitchPrimitives.Thumb
       className={cn(
-        "pointer-events-none h-8 w-8 rounded-full  shadow-lg ring-0  flex items-center justify-center transition-transform data-[state=checked]:translate-x-24 data-[state=unchecked]:translate-x-0  data-[state=checked]:bg-secondary data-[state=unchecked]:bg-black"
+        "pointer-events-none h-8 w-8 rounded-full  shadow-lg ring-0  flex items-center justify-center transition-transform data-[state=checked]:translate-x-24 data-[state=unchecked]:translate-x-0  data-[state=checked]:bg-tertiary data-[state=unchecked]:bg-black"
       )}
     >
       <Button variant="ghost" size="icon">
