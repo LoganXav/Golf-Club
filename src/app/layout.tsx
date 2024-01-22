@@ -4,10 +4,16 @@ import { siteConfig } from "@/config/site"
 import { fontMono, fontRoboto } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { ThemeProvider } from "@/components/providers"
 
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
+
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 }
 
 export default function RootLayout({
@@ -16,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen bg-background font-roboto antialiased",
@@ -24,8 +30,15 @@ export default function RootLayout({
           fontMono.variable
         )}
       >
-        {children}
-        <TailwindIndicator />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <TailwindIndicator />
+        </ThemeProvider>
       </body>
     </html>
   )

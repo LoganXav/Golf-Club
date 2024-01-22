@@ -4,11 +4,27 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 30, 64%, 96%;
     --foreground: 240 10% 3.9%;
+
+    --primary: 252, 53%, 65%;
+    --secondary: 30, 64%, 96%;
+
+    --input: 0 0% 100%;
+    --input-invert: 0, 0, 0%;
+
+    --ring: 30, 23%, 92%;
+
+    --radius: 1.125rem;
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
+
+    --secondary: 30, 64%, 96%;
+
+    --input: 0 0% 0%;
+    --input-invert: 0, 0, 100%;
   }
 }
