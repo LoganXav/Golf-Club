@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import "@/styles/globals.css"
 import { siteConfig } from "@/config/site"
-import { fontMono, fontRoboto, fontRoobert } from "@/lib/fonts"
+import { fontMono, fontRoboto, fontRoobert, fontReckless } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/providers"
@@ -28,7 +28,8 @@ export default function RootLayout({
           "min-h-screen bg-secondary font-roobert font-medium antialiased",
           fontRoboto.variable,
           fontMono.variable,
-          fontRoobert.variable
+          fontRoobert.variable,
+          fontReckless.variable
         )}
       >
         <ThemeProvider

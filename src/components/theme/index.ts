@@ -1,2 +1,2 @@
-export * from "./theme-toggle"
 export * from "./theme-toggler"
+export * from "./theme-toggle"

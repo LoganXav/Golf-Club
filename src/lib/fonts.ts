@@ -19,3 +19,8 @@ export const fontRoobert = localFont({
   src: "../assets/fonts/Roobert-Regular.ttf",
   variable: "--font-roobert",
 })
+
+export const fontReckless = localFont({
+  src: "../assets/fonts/RecklessNeue-Regular.ttf",
+  variable: "--font-reckless",
+})

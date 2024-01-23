@@ -31,12 +31,12 @@ const ThemeToggler = ({ theme, setTheme }: Props) => (
     >
       <Button variant="ghost" size="icon">
         <SunIcon
-          className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-black"
+          className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-black"
           aria-hidden="true"
         />
         {theme === "light" && (
           <MoonIcon
-            className="absolute h-5 w-5 rotate-90 scale-100 transition-all dark:rotate-0 dark:scale-0 text-white"
+            className="absolute h-4 w-4 rotate-90 scale-100 transition-all dark:rotate-0 dark:scale-0 text-white"
             aria-hidden="true"
           />
         )}

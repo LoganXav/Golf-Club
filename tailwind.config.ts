@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import { fontFamily } from "tailwindcss/defaultTheme"
 
 const config: Config = {
   content: [
@@ -23,8 +24,15 @@ const config: Config = {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: "hsl(var(--primary))",
-        secondary: "hsl(var(--secondary))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        tertiary: "hsl(var(--tertiary))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         input_invert: "hsl(var(--input-invert))",
@@ -34,6 +42,11 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+        roobert: ["var(--font-roobert)", ...fontFamily.sans],
+        reckless: ["var(--font-reckless)", ...fontFamily.sans],
       },
     },
   },
