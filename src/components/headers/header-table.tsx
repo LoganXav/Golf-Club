@@ -7,11 +7,13 @@ export function HeaderTable() {
   return (
     <>
       <Tabs defaultValue="gold" className="w-full">
-        <TabsList className="w-full relative flex flex-col items-center justify-center">
+        <TabsList className="w-full relative flex flex-col items-center justify-center border-none">
           <div className="w-[90%] mx-auto flex flex-col lg:flex-row items-center lg:justify-between space-y-4 -translate-y-5">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-start max-w-[50%] space-y-2 text-white">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-start lg:max-w-[50%] max-w-[60%] space-y-2 text-white">
               <div className="text-md">List</div>
-              <div className="text-4xl font-reckless">What will you build?</div>
+              <div className="text-3xl lg:text-4xl font-reckless">
+                What will you build?
+              </div>
               <div className="text-md">
                 Discover pre-built examples of Tines in action to accelerate
                 your story building.
