@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
+      - name: 🛠️Install dependencies
         run: npm install
 
       - name: Run lint
@@ -37,6 +37,6 @@ jobs:
         run: npm run format
 
       - name: Check commit messages
-        uses: wagoid/commitlint-github-action@v3
+        uses: kevintyj/prlint@v1
         with:
           configFile: commitlint.config.cjs
