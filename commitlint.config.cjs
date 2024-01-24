@@ -25,3 +25,21 @@ module.exports = {
     'subject-case': [1, 'always', 'sentence-case'], // Warn if subject case is incorrect
   },
 };
+
+/** Sample Commit Messages
+New Feature (feat):
+feat(component): add new feature XYZ
+
+Bug Fix (fix):
+fix(module): resolve issue with ABC
+
+Chore (chore):
+chore(project): update dependencies
+
+Documentation (docs):
+docs: update README with usage instructions
+
+Custom Commit Type (custom):
+custom(component): implement custom functionality 
+
+*/
