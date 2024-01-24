@@ -1,10 +1,11 @@
-import type { Metadata } from "next"
-import "@/styles/globals.css"
-import { siteConfig } from "@/config/site"
-import { fontMono, fontRoboto, fontRoobert, fontReckless } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/providers"
+import * as React from 'react';
+import type { Metadata } from 'next';
+import '@/styles/globals.css';
+import { siteConfig } from '@/config/site';
+import { fontMono, fontRoboto, fontRoobert, fontReckless } from '@/lib/fonts';
+import { cn } from '@/lib/utils';
+import { TailwindIndicator } from '@/components/tailwind-indicator';
+import { ThemeProvider } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -14,18 +15,18 @@ export const metadata: Metadata = {
   //   { media: "(prefers-color-scheme: light)", color: "white" },
   //   { media: "(prefers-color-scheme: dark)", color: "black" },
   // ],
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-secondary font-roobert font-medium antialiased",
+          'min-h-screen bg-secondary font-roobert font-medium antialiased',
           fontRoboto.variable,
           fontMono.variable,
           fontRoobert.variable,
@@ -43,5 +44,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

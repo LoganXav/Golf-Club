@@ -1,4 +1,5 @@
-type IconProps = React.HTMLAttributes<SVGElement>
+import * as React from 'react';
+type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
   box: (props: IconProps) => (
@@ -9,7 +10,7 @@ export const Icons = {
       fill="none"
       stroke-miterlimit="10"
       stroke-linejoin="round"
-      className="s117da5u"
+      {...props}
     >
       <path
         d="M89.0993 62.5839H56.3861L38.2295 78.6005H75.3795L89.0993 62.5839Z"
@@ -131,4 +132,4 @@ export const Icons = {
       ></path>
     </svg>
   ),
-}
+};

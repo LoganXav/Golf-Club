@@ -1,11 +1,9 @@
-import { Input } from "@/components/ui/input"
+import { Input } from '@/components/ui/input';
 
-type Props = {}
-
-export function StandardForm({}: Props) {
+export function StandardForm() {
   return (
     <div className="w-full">
       <Input placeholder="What is your username?" />
     </div>
-  )
+  );
 }

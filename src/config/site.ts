@@ -1,4 +1,4 @@
 export const siteConfig = {
-  name: "Golf Club App",
-  description: "",
-}
+  name: 'Golf Club App',
+  description: '',
+};

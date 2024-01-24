@@ -1,3 +1,3 @@
 export default function Directory() {
-  return <main>List of members</main>
+  return <main>List of members</main>;
 }

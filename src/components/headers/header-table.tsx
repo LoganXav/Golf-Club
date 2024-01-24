@@ -1,7 +1,7 @@
-"use client"
-import { StarFilledIcon } from "@radix-ui/react-icons"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./header-tabs"
-import { Icons } from "../icons"
+'use client';
+import { StarFilledIcon } from '@radix-ui/react-icons';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './header-tabs';
+import { Icons } from '../icons';
 
 export function HeaderTable() {
   return (
@@ -37,5 +37,5 @@ export function HeaderTable() {
         <TabsContent value="standard">Standard List</TabsContent>
       </Tabs>
     </>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import { StandardForm } from "@/components/forms"
-import { HeaderTable } from "@/components/headers"
-import { ThemeToggle } from "@/components/theme"
-import { Button } from "@/components/ui/button"
+import { StandardForm } from '@/components/forms';
+import { HeaderTable } from '@/components/headers';
+import { ThemeToggle } from '@/components/theme';
+import { Button } from '@/components/ui/button';
 
 export default function IndexPage() {
   return (
@@ -10,9 +10,9 @@ export default function IndexPage() {
 
       <ThemeToggle />
 
-      <Button className="w-full">Continue</Button>
+      <Button className="w-full">Proceed</Button>
 
       <HeaderTable />
     </main>
-  )
+  );
 }
