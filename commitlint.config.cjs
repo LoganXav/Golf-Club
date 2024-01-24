@@ -28,18 +28,18 @@ module.exports = {
 
 /** Sample Commit Messages
 New Feature (feat):
-feat(component): add new feature XYZ
+feat(component): Add new feature XYZ
 
 Bug Fix (fix):
-fix(module): resolve issue with ABC
+fix(module): Resolve issue with ABC
 
 Chore (chore):
-chore(project): update dependencies
+chore(project): Update dependencies
 
 Documentation (docs):
-docs: update README with usage instructions
+docs: Update README with usage instructions
 
 Custom Commit Type (custom):
-custom(component): implement custom functionality 
+custom(component): Implement custom functionality 
 
 */

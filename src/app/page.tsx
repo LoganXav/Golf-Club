@@ -10,7 +10,7 @@ export default function IndexPage() {
 
       <ThemeToggle />
 
-      <Button className="w-full">Proceed</Button>
+      <Button className="w-full">Submit</Button>
 
       <HeaderTable />
     </main>
