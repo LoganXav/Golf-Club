@@ -34,6 +34,7 @@ const config: Config = {
           foreground: 'hsl(var(--secondary-foreground))',
         },
         tertiary: 'hsl(var(--tertiary))',
+        destructive: 'hsla(var(--destructive))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         input_invert: 'hsl(var(--input-invert))',

@@ -22,7 +22,11 @@
     /* #FCF9F5; */
     --tertiary: 30, 64%, 96%;
 
+    /* #fda2cb */
+    --destructive: 330, 90%, 82%;
+
     --input: 0 0% 100%;
+
     --input-invert: 0, 0, 0%;
 
     --ring: 30, 23%, 92%;
@@ -46,7 +50,13 @@
     /* #222126; */
     --secondary-foreground: 270, 4%, 13%;
 
+    /* #FCF9F5; */
     --tertiary: 30, 64%, 96%;
+
+    /* #fda2cb */
+    --destructive: 330, 90%, 82%;
+
+    --ring: 30, 23%, 92%;
 
     --input: 270, 4%, 13%;
     --input-invert: 0, 0, 100%;

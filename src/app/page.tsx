@@ -1,5 +1,6 @@
 import { StandardForm } from '@/components/forms';
 import { HeaderTable } from '@/components/headers';
+import { Icons } from '@/components/icons';
 import { ThemeToggle } from '@/components/theme';
 import { Button } from '@/components/ui/button';
 
@@ -10,9 +11,12 @@ export default function IndexPage() {
 
       <ThemeToggle />
 
-      <Button className="w-full">Proceed</Button>
+      <div className="flex space-x-4">
+        <Button variant="destructive">Cancel</Button>
+        <Button className="">Next</Button>
+      </div>
 
-      <HeaderTable />
+      <HeaderTable icon={<Icons.box />} />
     </main>
   );
 }

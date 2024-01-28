@@ -1,9 +1,9 @@
 'use client';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './header-tabs';
-import { Icons } from '../icons';
+import React from 'react';
 
-export function HeaderTable() {
+export function HeaderTable({ icon }: any) {
   return (
     <>
       <Tabs defaultValue="gold" className="w-full">
@@ -21,7 +21,7 @@ export function HeaderTable() {
             </div>
             <div className="rounded-full bg-primary-foreground p-4">
               <div className="flex items-center justify-center w-10 h-10 lg:w-24 lg:h-24">
-                <Icons.box />
+                {icon}
               </div>
             </div>
           </div>
