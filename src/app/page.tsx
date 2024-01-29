@@ -3,6 +3,7 @@ import { HeaderTable } from '@/components/headers';
 import { Icons } from '@/components/icons';
 import { ThemeToggle } from '@/components/theme';
 import { Button } from '@/components/ui/button';
+import { Paper } from '@/components/ui/paper';
 
 export default function IndexPage() {
   return (
@@ -17,6 +18,17 @@ export default function IndexPage() {
       </div>
 
       <HeaderTable icon={<Icons.box />} />
+
+      <div className="w-full flex h-[300px] space-x-4">
+        <Paper variant="success" className="w-full text-success-foreground">
+          <div className="flex items-center gap-4 mx-auto mt-1">
+            <div className="w-[80px] h-[80px] rounded-full bg-secondary"></div>
+            <div className="w-[80px] h-[80px] rounded-full bg-secondary"></div>
+            <div className="w-[80px] h-[80px] rounded-full bg-secondary"></div>
+          </div>
+        </Paper>
+        <Paper variant="destructive" className="w-full"></Paper>
+      </div>
     </main>
   );
 }

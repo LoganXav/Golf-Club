@@ -22,8 +22,14 @@
     /* #FCF9F5; */
     --tertiary: 30, 64%, 96%;
 
-    /* #fda2cb */
-    --destructive: 330, 90%, 82%;
+    --destructive: 333, 60%, 65%, 0.2;
+    --destructive-foreground: 323, 34%, 44%;
+
+    --success: 152, 64%, 41%, 0.2;
+    --success-foreground: 150, 59%, 29%;
+
+    --info: 251, 68%, 71%, 0.2;
+    --info-foreground: 252, 31%, 54%;
 
     --input: 0 0% 100%;
 
@@ -53,8 +59,14 @@
     /* #FCF9F5; */
     --tertiary: 30, 64%, 96%;
 
-    /* #fda2cb */
-    --destructive: 330, 90%, 82%;
+    --destructive: 323, 34%, 44%, 0.2;
+    --destructive-foreground: 330, 89%, 79%;
+
+    --success: 150, 59%, 29%, 0.2;
+    --success-foreground: 150, 43%, 65%;
+
+    --info: 252, 32%, 54%, 0.2;
+    --info-foreground: 252, 72%, 79%;
 
     --ring: 30, 23%, 92%;
 
