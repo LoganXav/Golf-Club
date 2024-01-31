@@ -22,6 +22,10 @@ export function StandardInfo() {
       <Input type="number" className="" placeholder="What is your age?" />
       <Input type="number" className="" placeholder="What is your age?" />
       <Input type="number" className="" placeholder="What is your age?" />
+      <Input className="" placeholder="What is your username?" />
+      <Input type="number" className="" placeholder="What is your age?" />
+      <Input type="number" className="" placeholder="What is your age?" />
+      <Input type="number" className="" placeholder="What is your age?" />
       <div className="lg:col-span-2">
         <SelectField />
       </div>

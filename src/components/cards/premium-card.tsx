@@ -16,7 +16,7 @@ import Image from 'next/image';
 
 export function PremiumCard() {
   const data = {
-    title: 'Gold',
+    title: 'Premium',
     price: '$20',
     header: 'Explore the world of golf',
     content:
@@ -51,7 +51,7 @@ export function PremiumCard() {
           <div className="pt-20 relative">
             <span
               className={cn(
-                'h-6 w-24 rounded-t-sm absolute lg:top-20 bottom-0 text-white text-center',
+                'h-6 w-24 rounded-t-sm absolute bottom-0 text-white text-center',
                 'bg-destructive-foreground'
               )}
             >
