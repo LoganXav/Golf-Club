@@ -16,7 +16,7 @@ function FreeChoice() {
   };
 
   return (
-    <Link href={'/'}>
+    <Link href={'/register'}>
       <Paper
         variant={'success'}
         className="min-h-[300px] flex flex-col px-8 pt-8 text-start justify-start transform transition hover:scale-[.99] duration-200 ease-in-out w-full"

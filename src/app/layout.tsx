@@ -40,9 +40,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="container relative">
+          <main className="container mt-14 relative">
             {children}
-            <div className="flex w-full justify-between py-8 ">
+            <div className="flex w-full justify-between py-8">
               <div className="flex-1" />
               <ThemeToggle />
             </div>

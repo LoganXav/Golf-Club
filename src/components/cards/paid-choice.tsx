@@ -64,9 +64,13 @@ function PaidChoice() {
           </DialogDescription>
         </DialogHeader>
         <div className="w-full flex mx-auto items-center justify-center flex-wrap gap-4 ">
-          {[1, 2, 3].map((idx) => (
-            <Link key={idx} href={'/'}>
-              <Button variant="ghost" size="lg">
+          {[1, 2, 3, 4, 5].map((idx) => (
+            <Link key={idx} href={'/register'}>
+              <Button
+                className="border border-ring hover:border-primary"
+                variant="ghost"
+                size="lg"
+              >
                 0 - 3yrs
               </Button>
             </Link>

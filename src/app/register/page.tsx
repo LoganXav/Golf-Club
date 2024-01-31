@@ -9,7 +9,7 @@ export default function Register() {
         tabs={false}
         title="Golf Membership "
         category="Your one stop registration portal"
-        icon={<Icons.cart />}
+        icon={<Icons.box />}
         desc="Discover the world of joining a community filled with golf lovers, With services that suits your needs."
       />
       <StandardForm />
