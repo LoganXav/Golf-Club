@@ -1,17 +1,26 @@
 'use client';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './header-tabs';
-import React from 'react';
+import Image from 'next/image';
+import * as React from 'react';
 
 interface HeaderProps {
-  icon: React.JSX.Element;
+  icon?: React.JSX.Element;
   tabs?: boolean;
   title: string;
   category: string;
   desc: string;
+  src?: any;
 }
 
-export function Header({ icon, tabs, title, category, desc }: HeaderProps) {
+export function Header({
+  icon,
+  tabs,
+  title,
+  category,
+  desc,
+  src,
+}: HeaderProps) {
   return (
     <>
       <Tabs defaultValue="gold" className="w-full">
@@ -22,9 +31,13 @@ export function Header({ icon, tabs, title, category, desc }: HeaderProps) {
               <div className="text-4xl lg:text-5xl font-reckless">{title}</div>
               <div className="text-md">{desc}</div>
             </div>
-            <div className="rounded-full bg-primary-foreground p-4">
-              <div className="flex items-center justify-center w-10 h-10 lg:w-24 lg:h-24">
-                {icon}
+            <div className="rounded-full p-4">
+              <div className="flex items-center justify-center w-28 h-28 lg:w-48 lg:h-48">
+                {icon ? (
+                  icon
+                ) : (
+                  <Image src={src} width={400} height={400} alt="Header Icon" />
+                )}
               </div>
             </div>
           </div>

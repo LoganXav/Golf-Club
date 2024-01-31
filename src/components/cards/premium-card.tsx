@@ -12,8 +12,9 @@ import {
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 
-function PaidChoice() {
+export function PremiumCard() {
   const data = {
     title: 'Gold',
     price: '$20',
@@ -22,6 +23,7 @@ function PaidChoice() {
       'For this package you can register your details and get premium golf',
     icon: <Icons.box />,
     plan: 'Paid',
+    src: '/premium.svg',
   };
 
   return (
@@ -37,7 +39,12 @@ function PaidChoice() {
               {data.price}
             </CardDescription>
 
-            {data.icon}
+            <Image
+              src={data.src}
+              width={200}
+              height={200}
+              alt="Premium Card Icon"
+            />
           </div>
           <CardContent>{data.header}</CardContent>
           <CardContent>{data.content}</CardContent>
@@ -80,5 +87,3 @@ function PaidChoice() {
     </Dialog>
   );
 }
-
-export default PaidChoice;

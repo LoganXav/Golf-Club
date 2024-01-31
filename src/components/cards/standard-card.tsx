@@ -3,8 +3,9 @@ import { CardContent, CardDescription, CardTitle } from '../ui/card';
 import { Paper } from '../ui/paper';
 import { Icons } from '../icons';
 import Link from 'next/link';
+import Image from 'next/image';
 
-function FreeChoice() {
+export function StandardCard() {
   const data = {
     title: 'Standard',
     price: '$0',
@@ -12,6 +13,7 @@ function FreeChoice() {
     content:
       'For this package you can register your details and get standard golf',
     icon: <Icons.box />,
+    src: '/standard.svg',
     plan: 'Free',
   };
 
@@ -27,7 +29,12 @@ function FreeChoice() {
             {data.price}
           </CardDescription>
 
-          {data.icon}
+          <Image
+            src={data.src}
+            width={200}
+            height={200}
+            alt="Standard Card Icon"
+          />
         </div>
         <CardContent>{data.header}</CardContent>
         <CardContent>{data.content}</CardContent>
@@ -45,5 +52,3 @@ function FreeChoice() {
     </Link>
   );
 }
-
-export default FreeChoice;
