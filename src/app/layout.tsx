@@ -6,6 +6,7 @@ import { fontMono, fontRoboto, fontRoobert, fontReckless } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/providers';
+import { ThemeToggle } from '@/components/theme';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -39,7 +40,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main className="container relative">
+            {children}
+            <div className="flex w-full justify-between py-8 ">
+              <div className="flex-1" />
+              <ThemeToggle />
+            </div>
+          </main>
+
           <TailwindIndicator />
         </ThemeProvider>
       </body>

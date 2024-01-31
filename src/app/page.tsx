@@ -17,7 +17,7 @@ export default function IndexPage() {
         icon={<Icons.box />}
         desc="Discover pre-built examples of Tines in action to accelerate
                 your story building."
-      />
+      ></Header>
 
       <div className="w-full flex flex-col items-center md:flex-row gap-4">
         <Paper
