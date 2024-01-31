@@ -17,26 +17,28 @@ export function StandardInfo() {
   >(null);
 
   return (
-    <div className=" grid lg:grid-cols-2  gap-4  ">
-      <Input placeholder="What is your username?" />
-      <Input type="number" placeholder="What is your age?" />
-      <Input type="number" placeholder="What is your age?" />
-      <div className=" lg:col-span-2">
+    <div className="grid lg:grid-cols-2 gap-4  ">
+      <Input className="" placeholder="What is your username?" />
+      <Input type="number" className="" placeholder="What is your age?" />
+      <Input type="number" className="" placeholder="What is your age?" />
+      <Input type="number" className="" placeholder="What is your age?" />
+      <div className="lg:col-span-2">
         <SelectField />
       </div>
-
-      {categories?.length && (
-        <MultiSelect
-          placeholder="Select categories"
-          selected={selectedCategories}
-          setSelected={setSelectedCategories}
-          options={categories.map((c) => ({
-            label: toTitleCase(c),
-            value: c,
-          }))}
-        />
-      )}
-      <Textarea placeholder="Describe yourself" />
+      <div className="lg:col-span-2">
+        {categories?.length && (
+          <MultiSelect
+            placeholder="Select categories"
+            selected={selectedCategories}
+            setSelected={setSelectedCategories}
+            options={categories.map((c) => ({
+              label: toTitleCase(c),
+              value: c,
+            }))}
+          />
+        )}
+      </div>
+      <Textarea className="lg:col-span-2" placeholder="Describe yourself" />
     </div>
   );
 }

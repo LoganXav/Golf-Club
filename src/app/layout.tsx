@@ -40,7 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="container mt-14 relative">
+          <main className="container pt-14 relative">
             {children}
             <div className="flex w-full justify-between py-8">
               <div className="flex-1" />

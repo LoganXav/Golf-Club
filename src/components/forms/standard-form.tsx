@@ -8,10 +8,11 @@ export function StandardForm() {
     { content: <StandardInfo /> },
     { content: <StandardInfo /> },
     { content: <StandardInfo /> },
+    { content: <StandardInfo /> },
   ];
   return (
-    <div className="flex w-full gap-16 mt-16">
-      <div className="flex flex-col gap-4 flex-1">
+    <div className="flex flex-col lg:flex-row w-full gap-8">
+      <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 place-items-center">
         {steps.map((step, i) => (
           <div key={i}>
             <StepperButton completed={true} selected={true} step={1 + 1}>
@@ -20,7 +21,8 @@ export function StandardForm() {
           </div>
         ))}
       </div>
-      <div className="w-2/3">
+      <div className="flex-1" />
+      <div className="lg:w-2/3">
         {steps.slice(0, 1).map((step) => (
           <>{step.content}</>
         ))}

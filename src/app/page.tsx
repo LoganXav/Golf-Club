@@ -7,7 +7,7 @@ import PaidChoice from '@/components/cards/paid-choice';
 export default function IndexPage() {
   return (
     <>
-      <main className="flex flex-col items-center space-y-4 mx-auto">
+      <main className="flex flex-col items-center space-y-16 mx-auto">
         <Header
           tabs={false}
           title="Golf Membership "
