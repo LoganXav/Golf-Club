@@ -2,6 +2,32 @@ import * as React from 'react';
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
+  cart: (props: IconProps) => (
+    <svg
+      height="512px"
+      width="512px"
+      version="1.1"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 64 64"
+      xmlSpace="preserve"
+      fill={props.fillColor || '#000000'}
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <g>
+          <path d="M8,0C7.447,0,7,0.447,7,1s0.447,1,1,1h7v56c0,1.104,0.896,2,2,2s2-0.896,2-2V2h7c0.553,0,1-0.447,1-1s-0.447-1-1-1H8z"></path>
+          <path d="M58,11c-5.514,0-10,4.486-10,10s4.486,10,10,10s10-4.486,10-10S63.514,11,58,11z M58,29c-4.418,0-8-3.582-8-8s3.582-8,8-8 s8,3.582,8,8S62.418,29,58,29z"></path>
+        </g>
+      </g>
+    </svg>
+  ),
   spinner: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
