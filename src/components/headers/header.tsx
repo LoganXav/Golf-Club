@@ -1,12 +1,13 @@
 'use client';
-import { StarFilledIcon } from '@radix-ui/react-icons';
+import { ArrowLeftIcon, StarFilledIcon } from '@radix-ui/react-icons';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './header-tabs';
 import Image from 'next/image';
 import * as React from 'react';
+import Link from 'next/link';
 
 interface HeaderProps {
   icon?: React.JSX.Element;
-  tabs?: boolean;
+  tabs?: 'single' | 'double';
   title: string;
   category: string;
   desc: string;
@@ -41,17 +42,26 @@ export function Header({
               </div>
             </div>
           </div>
-          {tabs && (
+          {tabs === 'double' ? (
             <div className="absolute bottom-0 left-6 lg:pl-8 grid grid-cols-2">
               <TabsTrigger value="gold">
                 <StarFilledIcon className="mr-1 text-[gold]" /> Gold Members
               </TabsTrigger>
               <TabsTrigger value="standard">Standard Members</TabsTrigger>
             </div>
-          )}
+          ) : tabs === 'single' ? (
+            <Link
+              href={'/'}
+              className="absolute bottom-0 left-6 lg:pl-8 grid grid-cols-2"
+            >
+              <TabsTrigger value="">
+                <ArrowLeftIcon className="mr-1 text-foreground" /> Back
+              </TabsTrigger>
+            </Link>
+          ) : null}
         </TabsList>
 
-        {tabs && (
+        {tabs === 'double' && (
           <>
             <TabsContent value="gold">Gold List</TabsContent>
             <TabsContent value="standard">Standard List</TabsContent>

@@ -30,7 +30,7 @@ export function PremiumCard() {
     <Dialog>
       <DialogTrigger className="w-full">
         <Paper
-          className="min-h-[300px] flex flex-col px-8 pt-8 text-start justify-start transform transition hover:scale-[.99] duration-200 ease-in-out w-full"
+          className="min-h-[300px] flex flex-col px-8 pt-8 text-start justify-start transform transition hover:scale-[.99] duration-300 ease-linear w-full"
           variant="destructive"
         >
           <CardTitle>{data.title}</CardTitle>

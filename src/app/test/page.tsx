@@ -8,7 +8,7 @@ export default function IndexPage() {
   return (
     <main className="container px-4 flex flex-col items-center space-y-4 pt-24 mx-auto">
       <Header
-        tabs={true}
+        tabs="single"
         title="What will you build?"
         category="List"
         icon={<Icons.box />}

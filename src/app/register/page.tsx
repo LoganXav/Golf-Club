@@ -5,7 +5,7 @@ export default function Register() {
   return (
     <section className="space-y-16">
       <Header
-        tabs={false}
+        tabs="single"
         title="Golf Membership"
         category="Your one stop registration portal"
         src="/book.svg"

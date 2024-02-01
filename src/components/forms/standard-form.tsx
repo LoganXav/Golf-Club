@@ -11,11 +11,11 @@ export function StandardForm() {
     { content: <StandardInfo /> },
   ];
   return (
-    <div className="flex flex-col lg:flex-row w-full gap-8">
+    <div className="flex flex-col lg:flex-row w-full gap-8 lg:items-start">
       <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 place-items-center">
         {steps.map((step, i) => (
           <div key={i}>
-            <StepperButton completed={true} selected={true} step={1 + 1}>
+            <StepperButton completed={true} selected={true} step={i + 1}>
               Personal Information
             </StepperButton>
           </div>
