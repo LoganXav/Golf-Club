@@ -10,10 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../ui/dialog';
+} from '../../ui/dialog';
 import Link from 'next/link';
-import { Button } from '../ui/button';
-export function PremiumPayment() {
+import { Button } from '../../ui/button';
+
+export function PaymentInfo() {
   const premiumItems = [
     'Access to Free Parking',
     'Access to Special Events & Tournaments',
@@ -101,7 +102,7 @@ export function PremiumPayment() {
       </div>
       <Dialog>
         <DialogTrigger>
-          <Button className=" items-center  w-44 ">Proceed to Pay</Button>
+          {/* <Button className="items-center  w-44 ">Proceed to Pay</Button> */}
         </DialogTrigger>
         <Dialog />
         <DialogContent className="absolute">

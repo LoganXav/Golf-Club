@@ -80,7 +80,7 @@ export function MultiSelect({
       onKeyDown={handleKeyDown}
       className="overflow-visible bg-transparent"
     >
-      <div className="group rounded-md border border-ring px-3 h-[54px] text-foreground bg-input ring-offset-background focus-within:ring-2 focus-within:ring-primary hover:border-primary focus-within:ring-offset-2 flex items-center">
+      <div className="group rounded-md border border-ring px-3 min-h-[54px] py-3 text-foreground bg-input ring-offset-background focus-within:ring-2 focus-within:ring-primary hover:border-primary focus-within:ring-offset-2 flex items-center">
         <div className="flex flex-wrap gap-1 w-full">
           {selected?.map((option) => {
             return (
@@ -115,7 +115,7 @@ export function MultiSelect({
           <CommandPrimitive.Input
             ref={inputRef}
             placeholder={placeholder}
-            className="flex-1 bg-transparent px-1 py-0.5 outline-none placeholder:text-muted-foreground"
+            className="flex-1 bg-transparent px-1 outline-none placeholder:text-muted-foreground"
             value={query}
             onValueChange={setQuery}
             onBlur={() => setOpen(false)}

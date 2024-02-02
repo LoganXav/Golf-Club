@@ -4,19 +4,19 @@ import { Input } from '@/components/ui/input';
 
 import { Textarea } from '@/components/ui/textarea';
 import { SelectField } from '@/components/ui/select-field';
-import ImageUploader from '../upload/image-uploader';
+// import ImageUploader from '../../upload/image-uploader';
 import Image from 'next/image';
 
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../ui/dialog';
+} from '../../ui/dialog';
 
-export function Info() {
+export function PersonalInfo() {
   const Gender = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
@@ -32,10 +32,11 @@ export function Info() {
   //   setCapturedImage(imageSrc);
   //   // Handle captured image logic here
   // };
-  const handleFileUpload = (file: File) => {
-    // Handle the uploaded file here, for example, send it to your API
-    console.log('Uploaded File:', file);
-  };
+  // const handleFileUpload = (file: File) => {
+  //   // Handle the uploaded file here, for example, send it to your API
+  //   console.log('Uploaded File:', file);
+  // };
+
   return (
     <div>
       <h1 className="lg:text-1xl  text-xl font-semibold leading-none    ">
@@ -78,7 +79,7 @@ export function Info() {
               variant="ghost"
               size="lg"
             >
-              <ImageUploader onFileUpload={handleFileUpload} />
+              {/* <ImageUploader onFileUpload={handleFileUpload} /> */}
             </Button>
             <span>OR</span>
             <Button
@@ -135,11 +136,6 @@ export function Info() {
             className=" "
             placeholder="Tell us why you  would like to be a member?"
           ></Textarea>
-          <div className="pb-20  relative">
-            <span className="h-6 w-24 rounded-b-sm absolute lg:top-0 lg:right-10 right-10 text-white text-center bg-success-foreground">
-              Free
-            </span>
-          </div>
         </div>
       </div>
     </div>

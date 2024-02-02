@@ -24,8 +24,8 @@ export function History() {
   ];
 
   return (
-    <div className=" grid lg:grid-cols-2  gap-4   ">
-      <h1 className="lg:text-1xl  text-xl font-semibold leading-none    ">
+    <div className="grid lg:grid-cols-2  gap-4">
+      <h1 className="lg:text-1xl  text-xl font-semibold leading-none">
         History
       </h1>
       <span />
@@ -35,10 +35,10 @@ export function History() {
         placeholder=" Have you ever been affiliated with any golf club?"
       />
       <Input placeholder="Name of the golf club(if yes) " />
-      <div className="col-span-2">
+      <div className="lg:col-span-2">
         <SelectField options={durationOption} placeholder=" Duration" />
       </div>
-      <div className="col-span-2">
+      <div className="lg:col-span-2">
         <SelectField
           options={handicapOption}
           placeholder=" Choose your current handicap"
@@ -59,12 +59,8 @@ export function History() {
         />
       </div>
 
-      <div className="pb-20  relative">
+      <div className="">
         <Input placeholder="Relationship" />
-
-        <span className="h-6 w-24 rounded-b-sm absolute lg:top-14 lg:right-10 right-10 text-white text-center bg-success-foreground">
-          Free
-        </span>
       </div>
     </div>
   );
