@@ -80,14 +80,14 @@ export function MultiSelect({
       onKeyDown={handleKeyDown}
       className="overflow-visible bg-transparent"
     >
-      <div className="group rounded-md border border-ring px-3 min-h-[54px] py-3 text-foreground bg-input ring-offset-background focus-within:ring-2 focus-within:ring-primary hover:border-primary focus-within:ring-offset-2 flex items-center">
-        <div className="flex flex-wrap gap-1 w-full">
+      <div className="group flex min-h-[54px] items-center rounded-md border border-ring bg-input px-3 py-3 text-foreground ring-offset-background focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:border-primary">
+        <div className="flex w-full flex-wrap gap-1">
           {selected?.map((option) => {
             return (
               <Badge
                 key={option.value}
                 variant="secondary"
-                className="rounded hover:bg-secondary text-foreground"
+                className="rounded text-foreground hover:bg-secondary"
               >
                 {option.label}
                 <Button
@@ -115,7 +115,7 @@ export function MultiSelect({
           <CommandPrimitive.Input
             ref={inputRef}
             placeholder={placeholder}
-            className="flex-1 bg-transparent px-1 outline-none placeholder:text-muted-foreground"
+            className="placeholder:text-muted-foreground flex-1 bg-transparent px-1 outline-none"
             value={query}
             onValueChange={setQuery}
             onBlur={() => setOpen(false)}
@@ -125,13 +125,13 @@ export function MultiSelect({
       </div>
       <div className="relative z-50 mt-2">
         {open && filteredOptions.length > 0 ? (
-          <div className="absolute top-0 w-full rounded-md border bg-input text-popover-foreground shadow-md outline-none animate-in">
+          <div className="text-popover-foreground animate-in absolute top-0 w-full rounded-md border bg-input shadow-md outline-none">
             <CommandGroup className="h-full overflow-auto">
               {filteredOptions.map((option) => {
                 return (
                   <CommandItem
                     key={option.value}
-                    className="px-2 py-1.5 cursor-pointer hover:bg-secondary"
+                    className="cursor-pointer px-2 py-1.5 hover:bg-secondary"
                     onMouseDown={(e) => {
                       e.preventDefault();
                       e.stopPropagation();

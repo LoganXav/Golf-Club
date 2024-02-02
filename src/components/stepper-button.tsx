@@ -26,21 +26,21 @@ export default function StepperButton({
   return (
     <Button
       className={cn(
-        'border border-ring bg-input min-w-44 lg:min-w-56',
+        'min-w-44 border border-ring bg-input lg:min-w-56',
         className && className,
         selected ? 'border-primary' : 'text-gray-500',
         'flex justify-between whitespace-nowrap'
       )}
       onClick={() => stepper.go(i)}
     >
-      <div className="w-full flex justify-between text-foreground items-center px-4">
+      <div className="flex w-full items-center justify-between px-4 text-foreground">
         {children}
         <span
           className={cn(
-            'rounded-full w-6 h-6 p-1 flex items-center justify-center text-xs',
+            'flex h-6 w-6 items-center justify-center rounded-full p-1 text-xs',
             completed
               ? 'bg-success text-success-foreground'
-              : 'text-white bg-primary-foreground'
+              : 'bg-primary-foreground text-white'
             // selected
             //   ? 'text-white bg-primary'
             //   : 'text-white bg-primary-foreground'

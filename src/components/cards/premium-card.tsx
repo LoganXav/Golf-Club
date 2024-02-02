@@ -30,7 +30,7 @@ export function PremiumCard() {
     <Dialog>
       <DialogTrigger className="w-full">
         <Paper
-          className="min-h-[300px] flex flex-col px-8 pt-8 text-start justify-start transform transition hover:scale-[.99] duration-300 ease-linear w-full"
+          className="flex min-h-[300px] w-full transform flex-col justify-start px-8 pt-8 text-start transition duration-300 ease-linear hover:scale-[.99]"
           variant="destructive"
         >
           <CardTitle>{data.title}</CardTitle>
@@ -48,10 +48,10 @@ export function PremiumCard() {
           </div>
           <CardContent>{data.header}</CardContent>
           <CardContent>{data.content}</CardContent>
-          <div className="pt-20 relative">
+          <div className="relative pt-20">
             <span
               className={cn(
-                'h-6 w-24 rounded-t-sm absolute bottom-0 text-white text-center',
+                'absolute bottom-0 h-6 w-24 rounded-t-sm text-center text-white',
                 'bg-destructive-foreground'
               )}
             >
@@ -70,7 +70,7 @@ export function PremiumCard() {
             experience level.
           </DialogDescription>
         </DialogHeader>
-        <div className="w-full flex mx-auto items-center justify-center flex-wrap gap-4 ">
+        <div className="mx-auto flex w-full flex-wrap items-center justify-center gap-4 ">
           {[1, 2, 3, 4, 5].map((idx) => (
             <Link key={idx} href={'/register'}>
               <Button

@@ -50,7 +50,7 @@ export function PaymentInfo() {
   >(null);
   return (
     <div>
-      <div className=" grid lg:grid-cols-2  gap-4   ">
+      <div className=" grid gap-4  lg:grid-cols-2   ">
         <h1 className="lg:text-1xl  text-xl font-semibold leading-none    ">
           Perks & Payment
         </h1>
@@ -114,7 +114,7 @@ export function PaymentInfo() {
               Multiple options available to make payment seamless
             </DialogDescription>
           </DialogHeader>
-          <div className="w-full flex mx-auto items-center justify-center flex-wrap gap-4 ">
+          <div className="mx-auto flex w-full flex-wrap items-center justify-center gap-4 ">
             {[1, 2, 3].map((idx) => (
               <Link key={idx} href={'/register'}>
                 <Button

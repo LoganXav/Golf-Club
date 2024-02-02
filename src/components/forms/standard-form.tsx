@@ -22,8 +22,8 @@ export function StandardForm() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row w-full gap-8 lg:items-start">
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 place-items-center">
+      <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-start">
+        <div className="grid grid-cols-2 place-items-center gap-4 lg:grid-cols-1">
           {steps.map((step, i) => (
             <div key={i}>
               <StepperButton
@@ -42,7 +42,7 @@ export function StandardForm() {
         <div className="flex-1" />
         <div className="lg:w-3/4">
           {steps?.[stepper.step]?.content}
-          <div className="flex gap-4 justify-center mt-16">
+          <div className="mt-16 flex justify-center gap-4">
             <Button
               variant="destructive"
               disabled={isFirstStep && true}

@@ -24,7 +24,7 @@ export function History() {
   ];
 
   return (
-    <div className="grid lg:grid-cols-2  gap-4">
+    <div className="grid gap-4  lg:grid-cols-2">
       <h1 className="lg:text-1xl  text-xl font-semibold leading-none">
         History
       </h1>

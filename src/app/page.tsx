@@ -6,14 +6,14 @@ import { PremiumCard } from '@/components/cards';
 export default function IndexPage() {
   return (
     <>
-      <main className="flex flex-col items-center space-y-16 mx-auto">
+      <main className="mx-auto flex flex-col items-center space-y-16">
         <Header
           title="Golf Membership "
           category="Your one stop registration portal"
           src="/golf-course.svg"
           desc="Discover the world of joining a community filled with golf lovers, With services that suits your needs."
         />
-        <div className="w-full grid lg:grid-cols-2 gap-4">
+        <div className="grid w-full gap-4 lg:grid-cols-2">
           <PremiumCard />
           <StandardCard />
         </div>

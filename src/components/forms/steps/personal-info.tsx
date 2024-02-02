@@ -46,13 +46,13 @@ export function PersonalInfo() {
       <Dialog>
         <DialogTrigger className="">
           <div className="p-4   ">
-            <div className="w-[110px] h-[110px] rounded-full bg-white  ">
+            <div className="h-[110px] w-[110px] rounded-full bg-white  ">
               <Image
                 src="/avatar.svg"
                 width={70}
                 height={70}
                 alt="Avatar"
-                className="items-center ml-5 pt-5 "
+                className="ml-5 items-center pt-5 "
               />
               <div className="  relative   ">
                 <Image
@@ -60,7 +60,7 @@ export function PersonalInfo() {
                   width={30}
                   height={30}
                   alt="Avatar"
-                  className="items-center ml-5 pt-5 absolute  bottom-14 left-14    rounded-full  "
+                  className="absolute bottom-14 left-14 ml-5  items-center rounded-full    pt-5  "
                 ></Image>
               </div>
             </div>
@@ -73,7 +73,7 @@ export function PersonalInfo() {
               Multiple options available to make payment seamless
             </DialogDescription> */}
           </DialogHeader>
-          <div className="w-full flex mx-auto  flex-col items-center justify-center f gap-4 ">
+          <div className="f mx-auto flex  w-full flex-col items-center justify-center gap-4 ">
             <Button
               className="border border-ring hover:border-primary"
               variant="ghost"
@@ -93,7 +93,7 @@ export function PersonalInfo() {
         </DialogContent>
       </Dialog>
 
-      <div className=" grid lg:grid-cols-2  gap-4   ">
+      <div className=" grid gap-4  lg:grid-cols-2   ">
         {/* Image Upload */}
 
         {/* Webcam Capture */}

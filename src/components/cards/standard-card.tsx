@@ -21,7 +21,7 @@ export function StandardCard() {
     <Link href={'/register'}>
       <Paper
         variant={'success'}
-        className="min-h-[300px] flex flex-col px-8 pt-8 text-start justify-start transform transition hover:scale-[.99] duration-200 ease-out w-full"
+        className="flex min-h-[300px] w-full transform flex-col justify-start px-8 pt-8 text-start transition duration-200 ease-out hover:scale-[.99]"
       >
         <CardTitle>{data.title}</CardTitle>
         <div className="flex  justify-between">
@@ -38,10 +38,10 @@ export function StandardCard() {
         </div>
         <CardContent>{data.header}</CardContent>
         <CardContent>{data.content}</CardContent>
-        <div className="pt-20 relative">
+        <div className="relative pt-20">
           <span
             className={cn(
-              'h-6 w-24 rounded-t-sm absolute bottom-0 text-white text-center',
+              'absolute bottom-0 h-6 w-24 rounded-t-sm text-center text-white',
               'bg-success-foreground'
             )}
           >

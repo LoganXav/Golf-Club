@@ -6,7 +6,7 @@ import { Paper } from '@/components/ui/paper';
 
 export default function IndexPage() {
   return (
-    <main className="container px-4 flex flex-col items-center space-y-4 pt-24 mx-auto">
+    <main className="container mx-auto flex flex-col items-center space-y-4 px-4 pt-24">
       <Header
         tabs="single"
         title="What will you build?"
@@ -16,15 +16,15 @@ export default function IndexPage() {
                 your story building."
       ></Header>
 
-      <div className="w-full flex flex-col items-center md:flex-row gap-4">
+      <div className="flex w-full flex-col items-center gap-4 md:flex-row">
         <Paper
           variant="success"
           className="min-h-[300px] w-full text-success-foreground"
         >
-          <div className="flex items-center gap-4 mx-auto mt-1">
-            <div className="w-[80px] h-[80px] rounded-full bg-secondary"></div>
-            <div className="w-[80px] h-[80px] rounded-full bg-secondary"></div>
-            <div className="w-[80px] h-[80px] rounded-full bg-secondary"></div>
+          <div className="mx-auto mt-1 flex items-center gap-4">
+            <div className="h-[80px] w-[80px] rounded-full bg-secondary"></div>
+            <div className="h-[80px] w-[80px] rounded-full bg-secondary"></div>
+            <div className="h-[80px] w-[80px] rounded-full bg-secondary"></div>
           </div>
         </Paper>
         <Paper variant="destructive" className="min-h-[300px] w-full"></Paper>

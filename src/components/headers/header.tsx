@@ -25,15 +25,15 @@ export function Header({
   return (
     <>
       <Tabs defaultValue="gold" className="w-full">
-        <TabsList className="w-full relative flex flex-col items-center justify-center border-none">
-          <div className="w-[90%] mx-auto flex flex-col lg:flex-row items-center lg:justify-between space-y-4">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-start lg:max-w-[50%] max-w-[60%] space-y-4 text-white">
+        <TabsList className="relative flex w-full flex-col items-center justify-center border-none">
+          <div className="mx-auto flex w-[90%] flex-col items-center space-y-4 lg:flex-row lg:justify-between">
+            <div className="flex max-w-[60%] flex-col items-center space-y-4 text-center text-white lg:max-w-[50%] lg:items-start lg:text-start">
               <div className="text-md">{category}</div>
-              <div className="text-4xl lg:text-5xl font-reckless">{title}</div>
+              <div className="font-reckless text-4xl lg:text-5xl">{title}</div>
               <div className="text-md">{desc}</div>
             </div>
             <div className="rounded-full p-4">
-              <div className="flex items-center justify-center w-28 h-28 lg:w-48 lg:h-48">
+              <div className="flex h-28 w-28 items-center justify-center lg:h-48 lg:w-48">
                 {icon ? (
                   icon
                 ) : (
@@ -43,7 +43,7 @@ export function Header({
             </div>
           </div>
           {tabs === 'double' ? (
-            <div className="absolute bottom-0 left-6 lg:pl-8 grid grid-cols-2">
+            <div className="absolute bottom-0 left-6 grid grid-cols-2 lg:pl-8">
               <TabsTrigger value="gold">
                 <StarFilledIcon className="mr-1 text-[gold]" /> Gold Members
               </TabsTrigger>
@@ -52,7 +52,7 @@ export function Header({
           ) : tabs === 'single' ? (
             <Link
               href={'/'}
-              className="absolute bottom-0 left-6 lg:pl-8 grid grid-cols-2"
+              className="absolute bottom-0 left-6 grid grid-cols-2 lg:pl-8"
             >
               <TabsTrigger value="">
                 <ArrowLeftIcon className="mr-1 text-foreground" /> Back
