@@ -1,14 +1,18 @@
 'use client';
 import * as React from 'react';
-import { StandardInfo } from './standard-info';
+import { Info } from './info';
 import StepperButton from '../stepper-button';
+import { History } from './history';
+import { NextOfKin } from './next-of-kin';
+import { PremiumPayment } from './premium-payment';
 
 export function StandardForm() {
   const steps = [
-    { content: <StandardInfo /> },
-    { content: <StandardInfo /> },
-    { content: <StandardInfo /> },
-    { content: <StandardInfo /> },
+    { content: <Info /> },
+    { content: <PremiumPayment /> },
+    { content: <NextOfKin /> },
+    { content: <History /> },
+    { content: <Info /> },
   ];
   return (
     <div className="flex flex-col lg:flex-row w-full gap-8 lg:items-start">

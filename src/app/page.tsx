@@ -8,7 +8,6 @@ export default function IndexPage() {
     <>
       <main className="flex flex-col items-center space-y-16 mx-auto">
         <Header
-          tabs={false}
           title="Golf Membership "
           category="Your one stop registration portal"
           src="/golf-course.svg"
