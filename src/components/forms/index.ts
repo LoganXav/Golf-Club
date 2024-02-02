@@ -1,1 +1,1 @@
-export * from './standard-form';
+export * from './form';
