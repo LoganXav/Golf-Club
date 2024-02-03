@@ -15,12 +15,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../../ui/dialog';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FormDTO } from '@/lib/schema';
+import { Label } from '@/components/ui/label';
 
-export function PersonalInfo() {
+interface StepProps {
+  register: UseFormRegister<FormDTO>;
+  errors: FieldErrors<FormDTO>;
+}
+
+export function PersonalInfo({ register, errors }: StepProps) {
   const Gender = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
   ];
+
   // const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   // const [capturedImage, setCapturedImage] = useState<string>('');
   // const handleFileUpload = (file: File) => {
@@ -39,7 +48,7 @@ export function PersonalInfo() {
 
   return (
     <div>
-      <h1 className="lg:text-1xl  text-xl font-semibold leading-none    ">
+      <h1 className="text-xl font-semibold leading-none    ">
         Personal Information
       </h1>
 
@@ -120,8 +129,18 @@ export function PersonalInfo() {
       )} */}
         {/* <ImageUploader onFileUpload={handleFileUpload}></ImageUploader> */}
 
-        <Input placeholder="First Name" />
-        <Input placeholder="Last Name" />
+        <div>
+          <Input placeholder="First Name" {...register('firstName')} />
+          {errors.firstName?.message && (
+            <Label variant="error">{errors.firstName.message}</Label>
+          )}
+        </div>
+        <div>
+          <Input placeholder="Last Name" {...register('lastName')} />
+          {errors.lastName?.message && (
+            <Label variant="error">{errors.lastName.message}</Label>
+          )}
+        </div>
         <div>
           <SelectField options={Gender} placeholder=" Sex" />
         </div>

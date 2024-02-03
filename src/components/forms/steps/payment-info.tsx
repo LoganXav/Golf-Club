@@ -50,8 +50,8 @@ export function PaymentInfo() {
   >(null);
   return (
     <div>
-      <div className=" grid gap-4  lg:grid-cols-2   ">
-        <h1 className="lg:text-1xl  text-xl font-semibold leading-none    ">
+      <div className=" grid gap-4 lg:grid-cols-2   ">
+        <h1 className="text-xl font-semibold leading-none    ">
           Perks & Payment
         </h1>
         <span />
