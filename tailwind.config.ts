@@ -47,6 +47,7 @@ const config: Config = {
           foreground: 'hsla(var(--info-foreground))',
         },
         input: 'hsl(var(--input))',
+        muted: 'hsl(var(--muted))',
         ring: 'hsl(var(--ring))',
         input_invert: 'hsl(var(--input-invert))',
       },
