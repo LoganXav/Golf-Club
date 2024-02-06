@@ -1,7 +1,8 @@
+import { DatePicker } from '@/components/date-picker';
 import { StandardForm } from '@/components/forms';
 import { Header } from '@/components/headers';
 import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Paper } from '@/components/ui/paper';
 
 export default function IndexPage() {
@@ -31,9 +32,16 @@ export default function IndexPage() {
       </div>
       <StandardForm />
 
-      <div className="flex space-x-4">
-        <Button variant="destructive">Cancel</Button>
-        <Button className="">Next</Button>
+      <DatePicker placeholder="Choose your Date of Birth" dateOfBirth={true} />
+
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <label
+          htmlFor="terms"
+          className="leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+          Accept terms and conditions
+        </label>
       </div>
     </main>
   );

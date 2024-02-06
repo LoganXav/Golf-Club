@@ -46,7 +46,7 @@ export function PhotoUpload() {
     accept: {
       'image/*': ['.jpeg', '.png', '.gif'],
     },
-    maxSize: 1024 * 1000,
+    maxSize: 1024 * 3000,
     maxFiles: 1,
     onDrop,
   });
@@ -98,7 +98,7 @@ export function PhotoUpload() {
                   <p className="text-lg">Drop Photo Here</p>
                   <span>or</span>
                   <Button disabled>Add Photo</Button>
-                  <span>File Types: JPEG, PNG, GIF. Size limited to 4 MB</span>
+                  <span>File Types: JPEG, PNG, GIF. Size limited to 3 MB</span>
                 </div>
               ) : (
                 <div
@@ -114,7 +114,7 @@ export function PhotoUpload() {
                   <p className="text-lg">Drag & Drop a Photo Here</p>
                   <span>or</span>
                   <Button>Add Photo</Button>
-                  <span>File Types: JPEG, PNG, GIF. Size limited to 4 MB</span>
+                  <span>File Types: JPEG, PNG, GIF. Size limited to 3 MB</span>
                 </div>
               )}
             </div>
