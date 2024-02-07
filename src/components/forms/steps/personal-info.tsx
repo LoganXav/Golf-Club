@@ -9,6 +9,8 @@ import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { FormDTO } from '@/lib/schema';
 import { Label } from '@/components/ui/label';
 import { PhotoUpload } from '@/components/upload';
+import { DatePicker } from '@/components/date-picker';
+import { formData } from '@/config/site';
 
 interface StepProps {
   register: UseFormRegister<FormDTO>;
@@ -16,11 +18,6 @@ interface StepProps {
 }
 
 export function PersonalInfo({ register, errors }: StepProps) {
-  const Gender = [
-    { label: 'Male', value: 'male' },
-    { label: 'Female', value: 'female' },
-  ];
-
   return (
     <div className="grid gap-4 lg:grid-cols-2">
       <div className="lg:col-span-2">
@@ -38,17 +35,18 @@ export function PersonalInfo({ register, errors }: StepProps) {
           <Label variant="error">{errors.lastName.message}</Label>
         )}
       </div>
-      <div>
-        <SelectField options={Gender} placeholder=" Sex" />
-      </div>
-      <Input type="number" placeholder="Age" />
+
+      <Input type="number" placeholder="Phone Number" />
+      <Input placeholder="Email Address" type="email" />
+      <DatePicker placeholder="Date of Birth" dateOfBirth={true} />
+      <SelectField options={formData.genders} placeholder="Gender" />
       <Input placeholder="Occupation" />
-      <Input placeholder="Phone Number" />
-      <Input placeholder="Email Address" />
-      <Input placeholder="NIN" />
+      <Input placeholder="NIN" type="number" />
+      <Input type="number" placeholder="Zip Code" />
+      <SelectField labelOptions={formData.branch} placeholder="City" />
 
       <div className="flex flex-col lg:col-span-2">
-        <Textarea placeholder="Tell us why you  would like to be a member?"></Textarea>
+        <Textarea placeholder="Address"></Textarea>
       </div>
     </div>
   );

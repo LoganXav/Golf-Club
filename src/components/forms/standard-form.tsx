@@ -1,9 +1,8 @@
 'use client';
 import * as React from 'react';
 import { PersonalInfo } from './steps';
-// import { History } from './steps';
-import { NextOfKin } from './steps';
-import { PaymentInfo } from './steps';
+import { EmergencyContactInfo } from './steps';
+import { MembershipInfo } from './steps';
 import StepperButton from '../stepper-button';
 import useStepper from '@/hooks/use-stepper';
 import { Button } from '../ui/button';
@@ -37,13 +36,12 @@ export function StandardForm() {
 
   const steps = [
     {
-      label: 'Personal Info',
+      label: 'Personal Details',
       content: <PersonalInfo {...stepProps} />,
       fields: ['firstName', 'lastName'],
     },
-    { label: 'Payment Info', content: <PaymentInfo /> },
-    { label: 'NOK Info', content: <NextOfKin /> },
-    // { label: 'History Info', content: <History /> },
+    { label: 'Membership Details', content: <MembershipInfo /> },
+    { label: 'Emergency Contact', content: <EmergencyContactInfo /> },
   ];
   const isFirstStep = stepper.step === 0;
   const isLastStep = stepper.step === steps.length - 1;
@@ -70,13 +68,13 @@ export function StandardForm() {
   return (
     <>
       <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-start">
-        <div className="grid grid-cols-2 place-items-center gap-4 lg:grid-cols-1">
+        <div className="grid place-items-center gap-4">
           {steps.map((step, i) => (
             <div key={i}>
               <StepperButton
                 stepper={stepper}
                 // completed={true}
-                completed={step.label === 'NOK Info' && true}
+                completed={step.label === 'Personal Details' && true}
                 selected={stepper.step === i}
                 step={i + 1}
                 i={i}

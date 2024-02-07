@@ -13,32 +13,11 @@ import {
 } from '../../ui/dialog';
 import Link from 'next/link';
 import { Button } from '../../ui/button';
+import { formData } from '@/config/site';
+import { Input } from '@/components/ui/input';
 
-export function PaymentInfo() {
-  const premiumItems = [
-    'Access to Free Parking',
-    'Access to Special Events & Tournaments',
-    'Access to VIP Lounge',
-    'Unlimited access to bar and restaurant',
-  ];
-  const premiumServices = [
-    'Personalized Golf carts',
-    'Gold Plated Lockers',
-    '2 pairs of Golf wears monthly',
-    'Golf shoes spikes ',
-    'Umbrella',
-    'Golf Bags',
-  ];
-  const golfDays = [
-    'Weekdays 12-4pm',
-    'Fridays-Sundays 12-4pm',
-    'Fridays-Sundays 12-7pm',
-    'Sundays only 12-7pm',
-  ];
-  // CATEGORY FILTER
-  // links and unlinks the slected categories with a dot and creates a new query string with the selected categories to filter the products
-
-  const [selectedPremiumItems, setSelectedPremiumItems] = React.useState<
+export function MembershipInfo() {
+  const [selectedPreferences, setSelectedPreferences] = React.useState<
     Option[] | null
   >(null);
 
@@ -50,44 +29,44 @@ export function PaymentInfo() {
   >(null);
   return (
     <div>
-      <div className=" grid gap-4 lg:grid-cols-2   ">
-        <h1 className="text-xl font-semibold leading-none    ">
-          Perks & Payment
-        </h1>
-        <span />
-        <div className="col-span-2">
-          {premiumItems?.length && (
+      <div className="grid gap-4 lg:grid-cols-2">
+        <Input placeholder="Golf Handicap Index" type="number" />
+        <Input placeholder="Handicap" type="number" />
+
+        <div className="lg:col-span-2">
+          {formData.preferences?.length && (
             <MultiSelect
-              placeholder="Select at least of the items category"
-              selected={selectedPremiumItems}
-              setSelected={setSelectedPremiumItems}
-              options={premiumItems.map((c) => ({
+              placeholder="Select your course preferences"
+              selected={selectedPreferences}
+              setSelected={setSelectedPreferences}
+              options={formData.preferences.map((c) => ({
                 label: toTitleCase(c),
                 value: c,
               }))}
             />
           )}
         </div>
-        <div className="col-span-2 ">
-          {premiumServices?.length && (
+
+        <div className="lg:col-span-2">
+          {formData.premiumServices?.length && (
             <MultiSelect
               placeholder="Select at least 3 the services category"
               selected={selectedPremiumServices}
               setSelected={setSelectedPremiumServices}
-              options={premiumServices.map((c) => ({
+              options={formData.premiumServices.map((c) => ({
                 label: toTitleCase(c),
                 value: c,
               }))}
             />
           )}
         </div>
-        <div className="col-span-2 ">
-          {premiumServices?.length && (
+        <div className="lg:col-span-2">
+          {formData.premiumServices?.length && (
             <MultiSelect
               placeholder="Select or type preferred Play Day "
               selected={selectedGolfDays}
               setSelected={setSelectedGolfDays}
-              options={golfDays.map((c) => ({
+              options={formData.golfDays.map((c) => ({
                 label: toTitleCase(c),
                 value: c,
               }))}

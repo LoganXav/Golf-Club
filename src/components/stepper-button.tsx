@@ -26,14 +26,14 @@ export default function StepperButton({
   return (
     <Button
       className={cn(
-        'min-w-44 border border-ring bg-input lg:min-w-56',
+        'min-w-48 border border-ring bg-input lg:min-w-56',
         className && className,
         selected ? 'border-primary' : 'text-gray-500',
         'flex justify-between whitespace-nowrap'
       )}
       onClick={() => stepper.go(i)}
     >
-      <div className="flex w-full items-center justify-between px-4 text-foreground">
+      <div className="flex w-full items-center justify-between px-2 text-foreground">
         {children}
         <span
           className={cn(
