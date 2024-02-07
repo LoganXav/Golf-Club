@@ -53,21 +53,58 @@ export function PhotoUpload() {
 
   return (
     <div className="flex items-center gap-6">
-      <div className="relative flex h-20 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-dashed bg-input lg:h-32 lg:w-32">
-        {file.length && !rejected.length ? (
-          <Image
-            src={file[0]?.preview}
-            alt={file[0]?.name || 'Profile picture'}
-            fill={true}
-            style={{ objectFit: 'cover' }}
-            onLoad={() => {
-              URL.revokeObjectURL(file[0]?.preview);
-            }}
-          />
-        ) : (
-          <Icons.camera />
-        )}
-      </div>
+      <Dialog>
+        <DialogTrigger>
+          <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border border-dashed bg-input lg:h-32 lg:w-32">
+            {file.length && !rejected.length ? (
+              <Image
+                src={file[0]?.preview}
+                alt={file[0]?.name || 'Profile picture'}
+                fill={true}
+                style={{ objectFit: 'cover' }}
+                onLoad={() => {
+                  URL.revokeObjectURL(file[0]?.preview);
+                }}
+              />
+            ) : (
+              <Icons.camera />
+            )}
+          </div>
+        </DialogTrigger>
+        <DialogContent className="absolute">
+          <DialogTitle className="pb-8 font-reckless text-3xl">
+            Take a Photo
+          </DialogTitle>
+          {file.length && !rejected.length && (
+            <div
+              className={cn(
+                'mx-auto flex h-[13rem] w-full rounded-md border border-dashed'
+              )}
+            >
+              {/* <div className="overflow-hidden rounded-full border border-foreground">
+              <Icons.person />
+            </div>
+            <p className="text-lg">Drag & Drop a Photo Here</p>
+            <span>or</span>
+            <Button>Browse Files</Button>
+            <span>File Types: JPEG, PNG, GIF. Size limited to 3 MB</span>
+             */}
+              <Image
+                src={file[0]?.preview}
+                alt={file[0]?.name || 'Profile picture'}
+                fill={true}
+                style={{ objectFit: 'cover' }}
+                onLoad={() => {
+                  URL.revokeObjectURL(file[0]?.preview);
+                }}
+              />
+            </div>
+          )}
+          <div className="mt-4 flex justify-center">
+            <Button>Take Photo</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
       <div className="space-y-2">
         {file.length && !rejected.length ? (
           <p className="w-[15rem] truncate">
@@ -113,7 +150,7 @@ export function PhotoUpload() {
                   </div>
                   <p className="text-lg">Drag & Drop a Photo Here</p>
                   <span>or</span>
-                  <Button>Add Photo</Button>
+                  <Button>Browse Files</Button>
                   <span>File Types: JPEG, PNG, GIF. Size limited to 3 MB</span>
                 </div>
               )}
