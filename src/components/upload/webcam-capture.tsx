@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FileRejection } from 'react-dropzone';
 import { type AcceptedFile } from './photo-upload';
-import Image from 'next/image';
+// import Image from 'next/image';
 // import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { toast } from 'sonner';
@@ -22,7 +22,7 @@ interface CustomMediaStream extends MediaStream {
 export function WebcamCapture({
   file,
   setFile,
-  rejected,
+  //   rejected,
   webcamOpen,
   setWebcamOpen,
 }: PropTypes) {
