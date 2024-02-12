@@ -26,10 +26,10 @@ export default function StepperButton({
   return (
     <Button
       className={cn(
-        'min-w-48 border border-ring bg-input lg:min-w-56',
+        'flex min-w-48 justify-between whitespace-nowrap border border-ring bg-input lg:min-w-56',
         className && className,
-        selected ? 'border-primary' : 'text-gray-500',
-        'flex justify-between whitespace-nowrap'
+        selected && 'border-primary',
+        completed && 'border-success-foreground'
       )}
       onClick={() => stepper.go(i)}
     >

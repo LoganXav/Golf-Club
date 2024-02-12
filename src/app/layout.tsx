@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/providers';
 import { ThemeToggle } from '@/components/theme';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -45,6 +46,7 @@ export default function RootLayout({
             <div className="flex w-full justify-between py-8">
               <div className="flex-1" />
               <ThemeToggle />
+              <Toaster />
             </div>
           </main>
 

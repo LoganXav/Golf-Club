@@ -11,14 +11,16 @@ import {
 import { FileRejection, useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { WebcamCapture } from './webcam-capture';
 
-interface AcceptedFile extends File {
+export interface AcceptedFile extends File {
   preview: string;
 }
 
 export function PhotoUpload() {
   const [file, setFile] = React.useState<AcceptedFile[]>([]);
   const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [webcamOpen, setWebcamOpen] = React.useState(false);
   const [rejected, setRejected] = React.useState<FileRejection[]>([]);
 
   const onDrop = React.useCallback(
@@ -53,7 +55,8 @@ export function PhotoUpload() {
 
   return (
     <div className="flex items-center gap-6">
-      <Dialog>
+      <Dialog open={webcamOpen} onOpenChange={setWebcamOpen}>
+        {/* preview circle */}
         <DialogTrigger>
           <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border border-dashed bg-input lg:h-32 lg:w-32">
             {file.length && !rejected.length ? (
@@ -71,38 +74,19 @@ export function PhotoUpload() {
             )}
           </div>
         </DialogTrigger>
+        {/* preview circle */}
+
         <DialogContent className="absolute">
           <DialogTitle className="pb-8 font-reckless text-3xl">
             Take a Photo
           </DialogTitle>
-          {file.length && !rejected.length && (
-            <div
-              className={cn(
-                'mx-auto flex h-[13rem] w-full rounded-md border border-dashed'
-              )}
-            >
-              {/* <div className="overflow-hidden rounded-full border border-foreground">
-              <Icons.person />
-            </div>
-            <p className="text-lg">Drag & Drop a Photo Here</p>
-            <span>or</span>
-            <Button>Browse Files</Button>
-            <span>File Types: JPEG, PNG, GIF. Size limited to 3 MB</span>
-             */}
-              <Image
-                src={file[0]?.preview}
-                alt={file[0]?.name || 'Profile picture'}
-                fill={true}
-                style={{ objectFit: 'cover' }}
-                onLoad={() => {
-                  URL.revokeObjectURL(file[0]?.preview);
-                }}
-              />
-            </div>
-          )}
-          <div className="mt-4 flex justify-center">
-            <Button>Take Photo</Button>
-          </div>
+          <WebcamCapture
+            file={file}
+            rejected={rejected}
+            setFile={setFile}
+            webcamOpen={webcamOpen}
+            setWebcamOpen={setWebcamOpen}
+          />
         </DialogContent>
       </Dialog>
       <div className="space-y-2">
