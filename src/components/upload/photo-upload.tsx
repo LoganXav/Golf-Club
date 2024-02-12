@@ -80,13 +80,27 @@ export function PhotoUpload() {
           <DialogTitle className="pb-8 font-reckless text-3xl">
             Take a Photo
           </DialogTitle>
-          <WebcamCapture
-            file={file}
-            rejected={rejected}
-            setFile={setFile}
-            webcamOpen={webcamOpen}
-            setWebcamOpen={setWebcamOpen}
-          />
+          {file.length && !rejected.length ? (
+            <div className="mx-auto flex h-[13rem] w-full rounded-md border border-dashed">
+              <Image
+                src={file[0]?.preview}
+                alt={file[0]?.name || 'Profile picture'}
+                fill={true}
+                style={{ objectFit: 'cover' }}
+                onLoad={() => {
+                  URL.revokeObjectURL(file[0]?.preview);
+                }}
+              />
+            </div>
+          ) : (
+            <WebcamCapture
+              file={file}
+              rejected={rejected}
+              setFile={setFile}
+              webcamOpen={webcamOpen}
+              setWebcamOpen={setWebcamOpen}
+            />
+          )}
         </DialogContent>
       </Dialog>
       <div className="space-y-2">
