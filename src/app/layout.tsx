@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/providers';
 import { ThemeToggle } from '@/components/theme';
-import { Toaster } from 'sonner';
+import { Toaster } from '@/components/toast-layout';
 
 export const metadata: Metadata = {
   title: siteConfig.name,

@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { FileRejection } from 'react-dropzone';
 import { type AcceptedFile } from './photo-upload';
-// import Image from 'next/image';
-// import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { toast } from 'sonner';
 import { Icons } from '../icons';
 
 interface PropTypes {
-  file: AcceptedFile[];
   setFile: React.Dispatch<React.SetStateAction<AcceptedFile[]>>;
   rejected: FileRejection[];
   webcamOpen: boolean;
@@ -20,9 +17,7 @@ interface CustomMediaStream extends MediaStream {
 }
 
 export function WebcamCapture({
-  file,
   setFile,
-  //   rejected,
   webcamOpen,
   setWebcamOpen,
 }: PropTypes) {
@@ -37,12 +32,10 @@ export function WebcamCapture({
       try {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         stream = (await navigator.mediaDevices.getUserMedia({
-          video: { width: 800, height: 400 },
+          video: { width: 400, height: 400 },
         })) as CustomMediaStream;
 
         let video = videoRef.current;
-        console.log(stream, 'stream');
-        console.log(video, 'video');
 
         setLoading(false);
 
@@ -51,7 +44,7 @@ export function WebcamCapture({
           video.play();
         }
       } catch (error) {
-        toast('error');
+        toast.error('Trouble starting your camera');
         console.error(error);
         setWebcamOpen(false);
       }
@@ -87,37 +80,56 @@ export function WebcamCapture({
 
       const dataURL = canvas.toDataURL('image/jpeg');
       setScreenshot(dataURL);
+      videoRef.current?.pause();
     }
   };
   const captureSelected = () => {
-    setFile(() =>
-      Object.assign(file, {
+    if (screenshot) {
+      const newFile: AcceptedFile = {
+        name: 'Webcam Image',
         preview: screenshot,
-      })
-    );
-    console.log(file);
+      };
+      setFile((prevFiles) => [...prevFiles, newFile]);
+    }
     setWebcamOpen(false);
   };
 
   const retry = () => {
     setScreenshot(null);
+    videoRef.current?.play();
   };
 
   return (
     <>
-      <div className="flex min-h-[10rem] w-full items-center justify-center">
-        {isLoading ? (
-          <div className="h-8 w-8 animate-spin">
+      {isLoading ? (
+        <div className="flex min-h-[10rem] w-full items-center justify-center">
+          <span className="h-8 w-8 animate-spin">
             <Icons.spinner />
+          </span>
+        </div>
+      ) : (
+        <div className="mx-auto flex h-full max-h-[25rem] w-full flex-col items-center justify-center overflow-hidden rounded-md border border-dashed ">
+          <video
+            className="cover center h-auto w-full"
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+          />
+        </div>
+      )}
+
+      <div className="mt-8 flex items-center justify-center">
+        {screenshot ? (
+          <div className="flex items-center justify-center gap-4">
+            <Button onClick={captureSelected}>Use</Button>
+            <Button onClick={retry}>Retry</Button>
           </div>
         ) : (
-          <video ref={videoRef} autoPlay muted playsInline />
+          <Button disabled={isLoading} onClick={capture}>
+            Take Photo
+          </Button>
         )}
-      </div>
-
-      <div className="mt-4 flex justify-center">
-        <Button onClick={!screenshot ? capture : retry}>Take Photo</Button>
-        <Button onClick={captureSelected}>Use</Button>
       </div>
     </>
   );

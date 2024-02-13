@@ -13,7 +13,8 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { WebcamCapture } from './webcam-capture';
 
-export interface AcceptedFile extends File {
+export interface AcceptedFile {
+  name: string;
   preview: string;
 }
 
@@ -56,7 +57,6 @@ export function PhotoUpload() {
   return (
     <div className="flex items-center gap-6">
       <Dialog open={webcamOpen} onOpenChange={setWebcamOpen}>
-        {/* preview circle */}
         <DialogTrigger>
           <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border border-dashed bg-input lg:h-32 lg:w-32">
             {file.length && !rejected.length ? (
@@ -74,19 +74,19 @@ export function PhotoUpload() {
             )}
           </div>
         </DialogTrigger>
-        {/* preview circle */}
 
         <DialogContent className="absolute">
-          <DialogTitle className="pb-8 font-reckless text-3xl">
-            Take a Photo
+          <DialogTitle className="pb-8 font-reckless text-2xl">
+            {file.length && !rejected.length ? 'Preview' : 'Take a photo'}
           </DialogTitle>
           {file.length && !rejected.length ? (
-            <div className="mx-auto flex h-[13rem] w-full rounded-md border border-dashed">
+            <div className="mx-auto flex h-full max-h-[25rem] w-full flex-col items-center justify-center overflow-hidden rounded-md border border-dashed">
               <Image
                 src={file[0]?.preview}
                 alt={file[0]?.name || 'Profile picture'}
-                fill={true}
-                style={{ objectFit: 'cover' }}
+                height={200}
+                width={500}
+                className="cover center h-full w-full"
                 onLoad={() => {
                   URL.revokeObjectURL(file[0]?.preview);
                 }}
@@ -94,7 +94,6 @@ export function PhotoUpload() {
             </div>
           ) : (
             <WebcamCapture
-              file={file}
               rejected={rejected}
               setFile={setFile}
               webcamOpen={webcamOpen}
@@ -126,7 +125,7 @@ export function PhotoUpload() {
             <div {...getRootProps()}>
               <input {...getInputProps()} />
               {isDragActive ? (
-                <div className="mx-auto flex h-full  w-full flex-col items-center justify-center space-y-4 rounded-md border border-dashed bg-success px-4 py-16 text-center text-muted">
+                <div className="mx-auto flex h-full w-full flex-col items-center justify-center space-y-4 rounded-md border border-dashed bg-success px-4 py-16 text-center text-muted">
                   <div className="overflow-hidden rounded-full border border-foreground">
                     <Icons.person />
                   </div>
