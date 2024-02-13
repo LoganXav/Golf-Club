@@ -9,6 +9,7 @@ import { Button } from '../ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { type FormDTO, FormDataSchema, FieldName } from '@/lib/schema';
+import { addStandardMemberAction } from '@/app/_actions/member';
 
 export function StandardForm() {
   const stepper = useStepper();
@@ -24,8 +25,9 @@ export function StandardForm() {
     resolver: zodResolver(FormDataSchema),
   });
 
-  const processForm: SubmitHandler<FormDTO> = (data) => {
-    console.log('data', data);
+  const processForm: SubmitHandler<FormDTO> = async (data) => {
+    const response = await addStandardMemberAction(data);
+    console.log('response', response);
     reset();
   };
 
