@@ -35,18 +35,73 @@ export function PersonalInfo({ register, errors }: StepProps) {
           <Label variant="error">{errors.lastName.message}</Label>
         )}
       </div>
-
-      <Input type="number" placeholder="Phone Number" />
-      <Input placeholder="Email Address" type="email" />
-      <DatePicker placeholder="Date of Birth" dateOfBirth={true} />
-      <SelectField options={formData.genders} placeholder="Gender" />
-      <Input placeholder="Occupation" />
-      <Input placeholder="NIN" type="number" />
-      <Input type="number" placeholder="Zip Code" />
-      <SelectField labelOptions={formData.branch} placeholder="City" />
+      <div>
+        <Input
+          placeholder="Phone Number"
+          type="number"
+          {...register('phone')}
+        />
+        {errors.phone?.message && (
+          <Label variant="error">{errors.phone.message}</Label>
+        )}
+      </div>
+      <div>
+        <Input
+          placeholder="Email Address"
+          type="email"
+          {...register('email')}
+        />
+        {errors.email?.message && (
+          <Label variant="error">{errors.email.message}</Label>
+        )}
+      </div>
+      <div>
+        <DatePicker
+          placeholder="Date of Birth"
+          dateOfBirth={true}
+          {...register('dateOfBirth')}
+        />
+        {errors.dateOfBirth?.message && (
+          <Label variant="error">{errors.dateOfBirth.message}</Label>
+        )}
+      </div>
+      <div>
+        <SelectField options={formData.genders} placeholder="Gender" />
+        {errors.gender?.message && (
+          <Label variant="error">{errors.gender.message}</Label>
+        )}
+      </div>
+      <div>
+        <Input placeholder="Occupation" {...register('occupation')} />
+      </div>
+      <div>
+        <Input placeholder="NIN" type="number" {...register('nin')} />
+        {errors.nin?.message && (
+          <Label variant="error">{errors.nin.message}</Label>
+        )}
+      </div>
+      <div>
+        <Input type="error" placeholder="Zip Code" {...register('zip')} />
+        {errors.zip?.message && (
+          <Label variant="error">{errors.zip.message}</Label>
+        )}
+      </div>
+      <div>
+        <SelectField
+          labelOptions={formData.branch}
+          placeholder="City"
+          {...register('city')}
+        />
+        {errors.city?.message && (
+          <Label variant="error">{errors.city.message}</Label>
+        )}
+      </div>
 
       <div className="flex flex-col lg:col-span-2">
-        <Textarea placeholder="Address"></Textarea>
+        <Textarea placeholder="Address" {...register('address')}></Textarea>
+        {errors.address?.message && (
+          <Label variant="error">{errors.address.message}</Label>
+        )}
       </div>
     </div>
   );

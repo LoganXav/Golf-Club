@@ -40,10 +40,34 @@ export function StandardForm() {
     {
       label: 'Personal Details',
       content: <PersonalInfo {...stepProps} />,
-      fields: ['firstName', 'lastName'],
+      fields: [
+        'firstName',
+        'lastName',
+        'phone',
+        'email',
+        'dateOfBirth',
+        'gender',
+        'occupation',
+        'nin',
+        'zip',
+        'city',
+        'address',
+        'index',
+        'handicap',
+        'preferences',
+        'premiumServices',
+        'golfDays',
+        'contactName',
+        'relationship',
+        'contactNo',
+        'contactEmail',
+      ],
     },
-    { label: 'Membership Details', content: <MembershipInfo /> },
-    { label: 'Emergency Contact', content: <EmergencyContactInfo /> },
+    { label: 'Membership Details', content: <MembershipInfo {...stepProps} /> },
+    {
+      label: 'Emergency Contact',
+      content: <EmergencyContactInfo {...stepProps} />,
+    },
   ];
   const isFirstStep = stepper.step === 0;
   const isLastStep = stepper.step === steps.length - 1;
@@ -51,7 +75,7 @@ export function StandardForm() {
   const next = async () => {
     const fields = steps?.[stepper.step]?.fields;
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
-
+    console.log(output);
     if (!output) return;
 
     if (isLastStep) {
