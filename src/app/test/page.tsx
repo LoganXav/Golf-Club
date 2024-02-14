@@ -1,47 +1,67 @@
-import { DatePicker } from '@/components/date-picker';
-import { StandardForm } from '@/components/forms';
-import { Header } from '@/components/headers';
-import { Icons } from '@/components/icons';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Paper } from '@/components/ui/paper';
+import clsx from 'clsx';
 
 export default function IndexPage() {
   return (
     <main className="container mx-auto flex flex-col items-center space-y-4 px-4 pt-24">
-      <Header
-        tabs="single"
-        title="What will you build?"
-        category="List"
-        icon={<Icons.box />}
-        desc="Discover pre-built examples of Tines in action to accelerate
-                your story building."
-      ></Header>
+      <div className="max-w-3xl">
+        {[
+          {
+            title: 'Sign Up On Salary PayDay',
+            description:
+              "You'll need to complete a simple online registration with your bio-data and employer details.",
+          },
+          {
+            title: 'Check your eligibility',
+            description:
+              'Using your salary account financial statement, we prequalify you for 50% if your monthly salary',
+          },
+          {
+            title: 'Access up to 50% of your Pay',
+            description:
+              "Get paid when you need it, not just when it's payday. You can access up to 50% of what you've earned, up to 3 times every pay cycle. You can access up to 50% of what you've earned, up to 3 times every pay cycle. You can access up to 50% of what you've earned, up to 3 times every pay cycle. You can access up to 50% of what you've earned, up to 3 times every pay cycle. You can access up to 50% of what you've earned, up to 3 times every pay cycle. You can access up to 50% of what you've earned, up to 3 times every pay cycle.",
+          },
+        ].map(({ title, description }, index, items) => {
+          const isOdd = !!((index + 1) % 2);
 
-      <div className="flex w-full flex-col items-center gap-4 md:flex-row">
-        <Paper
-          variant="success"
-          className="min-h-[300px] w-full text-success-foreground"
-        >
-          <div className="mx-auto mt-1 flex items-center gap-4">
-            <div className="h-[80px] w-[80px] rounded-full bg-secondary"></div>
-            <div className="h-[80px] w-[80px] rounded-full bg-secondary"></div>
-            <div className="h-[80px] w-[80px] rounded-full bg-secondary"></div>
-          </div>
-        </Paper>
-        <Paper variant="destructive" className="min-h-[300px] w-full"></Paper>
-      </div>
-      <StandardForm />
+          const infoContent = (
+            <div key={index} className="w-full md:w-1/2 md:p-4">
+              <div className="text-mui-primary-main mb-4">{title}</div>
+              <div>{description}</div>
+            </div>
+          );
 
-      <DatePicker placeholder="Choose your Date of Birth" dateOfBirth={true} />
+          const imgContent = <div className="w-full md:w-1/2 md:p-4"></div>;
 
-      <div className="flex items-center space-x-2">
-        <Checkbox id="terms" />
-        <label
-          htmlFor="terms"
-          className="leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          Accept terms and conditions
-        </label>
+          return (
+            <div key={index}>
+              <div className="flex justify-center">
+                <div
+                  className={clsx(
+                    'translate-y-8 rounded-full px-4',
+                    isOdd
+                      ? 'bg-mui-primary-lighter text-mui-primary-main'
+                      : 'bg-mui-secondary-lightAlt text-mui-secondary-main'
+                  )}
+                >
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
+                    <div className="h-3 w-3 rounded-full border bg-slate-800"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="gap-4md:mb-0 relative flex flex-wrap items-center md:flex-nowrap md:gap-8">
+                <>
+                  {imgContent}
+                  {infoContent}
+                </>
+                {index !== items.length - 1 && (
+                  <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center">
+                    <div className="h-full w-[1px] translate-y-8 bg-gray-200" />
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </main>
   );

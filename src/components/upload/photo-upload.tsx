@@ -20,13 +20,14 @@ export interface AcceptedFile {
 
 export function PhotoUpload() {
   const [file, setFile] = React.useState<AcceptedFile[]>([]);
+  const [rejected, setRejected] = React.useState<FileRejection[]>([]);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [webcamOpen, setWebcamOpen] = React.useState(false);
-  const [rejected, setRejected] = React.useState<FileRejection[]>([]);
 
   const onDrop = React.useCallback(
     (acceptedFile: File[], rejectedFile: FileRejection[]) => {
       if (acceptedFile.length) {
+        // TODO: Possibly set a server action to upload the dropped image to cloudinary
         setFile(
           acceptedFile.map((file) =>
             Object.assign(file, {
@@ -34,6 +35,8 @@ export function PhotoUpload() {
             })
           )
         );
+        // TODO: convert the file format toBase64 to stop the breaking image preview
+        console.log(file, 'file');
         setDialogOpen(false);
         setRejected([]);
       }
@@ -42,7 +45,7 @@ export function PhotoUpload() {
         setRejected(rejectedFile);
       }
     },
-    []
+    [file]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
