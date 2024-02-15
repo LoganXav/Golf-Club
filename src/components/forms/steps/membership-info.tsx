@@ -15,8 +15,15 @@ import Link from 'next/link';
 import { Button } from '../../ui/button';
 import { formData } from '@/config/site';
 import { Input } from '@/components/ui/input';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FormDTO } from '@/lib/schema';
+import { Label } from '@/components/ui/label';
 
-export function MembershipInfo() {
+interface StepProps {
+  register: UseFormRegister<FormDTO>;
+  errors: FieldErrors<FormDTO>;
+}
+export function MembershipInfo({ register, errors }: StepProps) {
   const [selectedPreferences, setSelectedPreferences] = React.useState<
     Option[] | null
   >(null);
@@ -30,8 +37,26 @@ export function MembershipInfo() {
   return (
     <div>
       <div className="grid gap-4 lg:grid-cols-2">
-        <Input placeholder="Golf Handicap Index" type="number" />
-        <Input placeholder="Handicap" type="number" />
+        <div>
+          <Input
+            placeholder="Golf Handicap Index"
+            type="number"
+            {...register('index')}
+          />
+          {errors.index?.message && (
+            <Label variant="error">{errors.index.message}</Label>
+          )}
+        </div>
+        <div>
+          <Input
+            placeholder=" Handicap "
+            type="number"
+            {...register('index')}
+          />
+          {errors.handicap?.message && (
+            <Label variant="error">{errors.handicap.message}</Label>
+          )}
+        </div>
 
         <div className="lg:col-span-2">
           {formData.preferences?.length && (
