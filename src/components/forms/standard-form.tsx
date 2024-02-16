@@ -11,7 +11,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { type FormDTO, FormDataSchema, FieldName } from '@/lib/schema';
 import { addStandardMemberAction } from '@/app/_actions/member';
 import { Icons } from '../icons';
-import { Form } from '../ui/form';
 import { toast } from 'sonner';
 
 export function StandardForm() {
@@ -132,30 +131,28 @@ export function StandardForm() {
           ))}
         </div>
         <div className="flex-1" />
-        <Form {...form}>
-          <form className="lg:w-3/4">
-            {steps?.[stepper.step]?.content}
-            <div className="mt-16 flex justify-center gap-4">
-              <Button
-                type="button"
-                variant="destructive"
-                disabled={isFirstStep && true}
-                onClick={previous}
-              >
-                Previous
-              </Button>
-              <Button disabled={isPending} type="button" onClick={next}>
-                {isPending && (
-                  <Icons.spinner
-                    className="mr-2 h-4 w-4 animate-spin"
-                    aria-hidden="true"
-                  />
-                )}
-                {isLastStep ? 'Submit' : 'Next'}
-              </Button>
-            </div>
-          </form>
-        </Form>
+        <form className="lg:w-3/4">
+          {steps?.[stepper.step]?.content}
+          <div className="mt-16 flex justify-center gap-4">
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={isFirstStep && true}
+              onClick={previous}
+            >
+              Previous
+            </Button>
+            <Button disabled={isPending} type="button" onClick={next}>
+              {isPending && (
+                <Icons.spinner
+                  className="mr-2 h-4 w-4 animate-spin"
+                  aria-hidden="true"
+                />
+              )}
+              {isLastStep ? 'Submit' : 'Next'}
+            </Button>
+          </div>
+        </form>
       </div>
     </>
   );
