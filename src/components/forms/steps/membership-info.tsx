@@ -3,27 +3,16 @@ import * as React from 'react';
 import { MultiSelect } from '@/components/ui/multi-select';
 import { toTitleCase } from '@/lib/utils';
 import { Option } from '@/types';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '../../ui/dialog';
-import Link from 'next/link';
-import { Button } from '../../ui/button';
 import { formData } from '@/config/site';
 import { Input } from '@/components/ui/input';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FieldErrors } from 'react-hook-form';
 import { FormDTO } from '@/lib/schema';
 import { Label } from '@/components/ui/label';
 
 interface StepProps {
-  register: UseFormRegister<FormDTO>;
   errors: FieldErrors<FormDTO>;
 }
-export function MembershipInfo({ register, errors }: StepProps) {
+export function MembershipInfo({ errors }: StepProps) {
   const [selectedPreferences, setSelectedPreferences] = React.useState<
     Option[] | null
   >(null);
@@ -38,21 +27,13 @@ export function MembershipInfo({ register, errors }: StepProps) {
     <div>
       <div className="grid gap-4 lg:grid-cols-2">
         <div>
-          <Input
-            placeholder="Golf Handicap Index"
-            type="number"
-            {...register('index')}
-          />
+          <Input placeholder="Golf Handicap Index" type="number" />
           {errors.index?.message && (
             <Label variant="error">{errors.index.message}</Label>
           )}
         </div>
         <div>
-          <Input
-            placeholder=" Handicap "
-            type="number"
-            {...register('index')}
-          />
+          <Input placeholder="Handicap" type="number" />
           {errors.handicap?.message && (
             <Label variant="error">{errors.handicap.message}</Label>
           )}
@@ -70,6 +51,9 @@ export function MembershipInfo({ register, errors }: StepProps) {
               }))}
             />
           )}
+          {errors.preferences?.message && (
+            <Label variant="error">{errors.preferences.message}</Label>
+          )}
         </div>
 
         <div className="lg:col-span-2">
@@ -84,6 +68,9 @@ export function MembershipInfo({ register, errors }: StepProps) {
               }))}
             />
           )}
+          {errors.premiumServices?.message && (
+            <Label variant="error">{errors.premiumServices.message}</Label>
+          )}
         </div>
         <div className="lg:col-span-2">
           {formData.premiumServices?.length && (
@@ -97,42 +84,11 @@ export function MembershipInfo({ register, errors }: StepProps) {
               }))}
             />
           )}
+          {errors.golfDays?.message && (
+            <Label variant="error">{errors.golfDays.message}</Label>
+          )}
         </div>
-
-        {/* <div className="col-span-2">
-        <SelectField options={durationOption} placeholder=" Duration" />
-      </div> */}
-        <span />
       </div>
-      <Dialog>
-        <DialogTrigger>
-          {/* <Button className="items-center  w-44 ">Proceed to Pay</Button> */}
-        </DialogTrigger>
-        <Dialog />
-        <DialogContent className="absolute">
-          <DialogHeader>
-            <DialogTitle className="text-3xl">
-              Choose your mode of payment
-            </DialogTitle>
-            <DialogDescription>
-              Multiple options available to make payment seamless
-            </DialogDescription>
-          </DialogHeader>
-          <div className="mx-auto flex w-full flex-wrap items-center justify-center gap-4 ">
-            {[1, 2, 3].map((idx) => (
-              <Link key={idx} href={'/register'}>
-                <Button
-                  className="border border-ring hover:border-primary"
-                  variant="ghost"
-                  size="lg"
-                >
-                  Payment 1-3
-                </Button>
-              </Link>
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

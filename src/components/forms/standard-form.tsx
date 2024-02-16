@@ -10,29 +10,49 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { type FormDTO, FormDataSchema, FieldName } from '@/lib/schema';
 import { addStandardMemberAction } from '@/app/_actions/member';
+import { Icons } from '../icons';
+import { Form } from '../ui/form';
+import { toast } from 'sonner';
 
 export function StandardForm() {
   const stepper = useStepper();
+  const [isPending, startTransition] = React.useTransition();
 
-  const {
-    register,
-    handleSubmit,
-    // watch,
-    reset,
-    trigger,
-    formState: { errors },
-  } = useForm<FormDTO>({
+  const form = useForm<FormDTO>({
+    defaultValues: {
+      firstName: 'Ayomikun',
+      lastName: 'Balogun',
+      phoneNumber: 9052916792,
+      email: 'example@email.com',
+      dateOfBirth: new Date('2006-02-16'),
+      gender: 'Male',
+      occupation: 'Engineer',
+      nin: 26738491561,
+      zip: 33052,
+      province: 'Lagos Island',
+      address: '3353, International Village court',
+      // Other fields with default values
+    },
     resolver: zodResolver(FormDataSchema),
   });
 
-  const processForm: SubmitHandler<FormDTO> = async (data) => {
-    const response = await addStandardMemberAction(data);
-    console.log('response', response);
-    reset();
+  const control = form.control;
+  const trigger = form.trigger;
+  const errors = form.formState.errors;
+  const handleSubmit = form.handleSubmit;
+
+  const processForm: SubmitHandler<FormDTO> = (data) => {
+    startTransition(async () => {
+      console.log('data', data);
+      const response = await addStandardMemberAction(data);
+      response.type !== 'Error'
+        ? toast.success('Form submitted successfully')
+        : toast.error('Form submission failed');
+    });
   };
 
   const stepProps = {
-    register,
+    control,
     errors,
   };
 
@@ -43,30 +63,32 @@ export function StandardForm() {
       fields: [
         'firstName',
         'lastName',
-        'phone',
+        'phoneNumber',
         'email',
         'dateOfBirth',
         'gender',
         'occupation',
         'nin',
         'zip',
-        'city',
+        'province',
         'address',
+      ],
+    },
+    {
+      label: 'Membership Details',
+      content: <MembershipInfo {...stepProps} />,
+      fields: [
         'index',
         'handicap',
         'preferences',
         'premiumServices',
         'golfDays',
-        'contactName',
-        'relationship',
-        'contactNo',
-        'contactEmail',
       ],
     },
-    { label: 'Membership Details', content: <MembershipInfo {...stepProps} /> },
     {
       label: 'Emergency Contact',
       content: <EmergencyContactInfo {...stepProps} />,
+      fields: ['contactName', 'relationship', 'contactNo', 'contactEmail'],
     },
   ];
   const isFirstStep = stepper.step === 0;
@@ -75,7 +97,6 @@ export function StandardForm() {
   const next = async () => {
     const fields = steps?.[stepper.step]?.fields;
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
-    console.log(output);
     if (!output) return;
 
     if (isLastStep) {
@@ -111,22 +132,30 @@ export function StandardForm() {
           ))}
         </div>
         <div className="flex-1" />
-        <form onSubmit={handleSubmit(processForm)} className="lg:w-3/4">
-          {steps?.[stepper.step]?.content}
-          <div className="mt-16 flex justify-center gap-4">
-            <Button
-              type="button"
-              variant="destructive"
-              disabled={isFirstStep && true}
-              onClick={previous}
-            >
-              Previous
-            </Button>
-            <Button type="button" onClick={next}>
-              {isLastStep ? 'Submit' : 'Next'}
-            </Button>
-          </div>
-        </form>
+        <Form {...form}>
+          <form className="lg:w-3/4">
+            {steps?.[stepper.step]?.content}
+            <div className="mt-16 flex justify-center gap-4">
+              <Button
+                type="button"
+                variant="destructive"
+                disabled={isFirstStep && true}
+                onClick={previous}
+              >
+                Previous
+              </Button>
+              <Button disabled={isPending} type="button" onClick={next}>
+                {isPending && (
+                  <Icons.spinner
+                    className="mr-2 h-4 w-4 animate-spin"
+                    aria-hidden="true"
+                  />
+                )}
+                {isLastStep ? 'Submit' : 'Next'}
+              </Button>
+            </div>
+          </form>
+        </Form>
       </div>
     </>
   );

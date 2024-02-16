@@ -21,16 +21,20 @@ interface SelectFieldProps {
     name: string;
     value: string;
   }[];
-  placeholder: string;
+  placeholder?: string;
+  value: string;
+  onChange: () => void;
 }
 
 export function SelectField({
   labelOptions,
   options,
   placeholder,
+  value,
+  onChange,
 }: SelectFieldProps) {
   return (
-    <Select>
+    <Select onValueChange={onChange} defaultValue={value}>
       <SelectTrigger className="text-muted-foreground">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

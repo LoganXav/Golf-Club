@@ -14,12 +14,20 @@ import {
 } from '@/components/ui/popover';
 
 interface DatePickerProps {
-  placeholder: string;
+  value: any;
+  onChange: any;
+  placeholder?: string;
   dateOfBirth?: boolean;
 }
 
-export function DatePicker({ placeholder, dateOfBirth }: DatePickerProps) {
-  const [date, setDate] = React.useState<Date>();
+export function DatePicker({
+  placeholder = 'Pick a date',
+  dateOfBirth,
+  value,
+  onChange,
+  ...props
+}: DatePickerProps) {
+  // const [date, setDate] = React.useState<Date>();
 
   return (
     <Popover>
@@ -28,24 +36,28 @@ export function DatePicker({ placeholder, dateOfBirth }: DatePickerProps) {
           variant={'outline'}
           className={cn(
             'w-full justify-start border border-ring bg-input px-3 text-left font-normal text-foreground hover:border-primary',
-            !date && 'text-foreground'
+            !value && 'text-foreground'
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, 'PPP') : <span>{placeholder}</span>}
+          {value ? format(value, 'PPP') : <span>{placeholder}</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0" align="start">
         <Calendar
           mode="single"
-          selected={date}
-          onSelect={setDate}
-          initialFocus
+          selected={value}
+          defaultMonth={value}
+          onSelect={(date) => {
+            // Format the selected date here before passing it to onChange
+            const formattedDate = date && format(date, 'yyyy-MM-dd');
+            onChange(formattedDate);
+          }}
+          initialFocus={false}
           disabled={
-            dateOfBirth
-              ? (date) => date > new Date() || date < new Date('1900-01-01')
-              : false
+            dateOfBirth ? (date) => date > new Date('2006-02-16') : false
           }
+          {...props}
         />
       </PopoverContent>
     </Popover>
