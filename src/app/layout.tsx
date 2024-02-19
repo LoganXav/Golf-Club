@@ -8,6 +8,7 @@ import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/providers';
 import { ThemeToggle } from '@/components/theme';
 import { Toaster } from '@/components/toast-layout';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -44,7 +45,12 @@ export default function RootLayout({
           <main className="container relative pt-14">
             {children}
             <div className="flex w-full justify-between py-8">
-              <div className="flex-1" />
+              {/* <div className="flex-1" /> */}
+              <p className="    text-sm">
+                <Link href={'/terms'} className=" underline">
+                  Terms and Conditions
+                </Link>{' '}
+              </p>
               <ThemeToggle />
               <Toaster />
             </div>
