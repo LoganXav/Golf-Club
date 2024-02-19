@@ -25,12 +25,13 @@ export function StandardForm() {
       phoneNumber: '09052916792',
       email: 'example@email.com',
       dateOfBirth: new Date('2006-02-16'),
-      gender: 'Male',
+      gender: 'male',
       occupation: 'Engineer',
       nin: '26738491561',
       zip: 33052,
       province: 'Lagos Island',
       address: '3353, International Village court',
+
       // Membership Info
       index: 14,
       handicap: 34,
@@ -118,6 +119,10 @@ export function StandardForm() {
   const isFirstStep = stepper.step === 0;
   const isLastStep = stepper.step === steps.length - 1;
 
+  const [stepCompleted, setStepCompleted] = React.useState(
+    Array(steps.length).fill(false)
+  );
+
   const next = async () => {
     const fields = steps?.[stepper.step]?.fields;
 
@@ -128,6 +133,12 @@ export function StandardForm() {
       await handleSubmit(processForm)();
     } else {
       stepper.next();
+      const currentStepIndex = stepper.step;
+      setStepCompleted((prev) => {
+        const updatedSteps = [...prev];
+        updatedSteps[currentStepIndex] = true;
+        return updatedSteps;
+      });
     }
   };
 
@@ -146,7 +157,7 @@ export function StandardForm() {
               <StepperButton
                 stepper={stepper}
                 // completed={true}
-                completed={step.label === 'Personal Details' && true}
+                completed={stepCompleted[i]}
                 selected={stepper.step === i}
                 step={i + 1}
                 i={i}
