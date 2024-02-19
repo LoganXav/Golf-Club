@@ -1,6 +1,5 @@
 import { Header } from '@/components/headers';
 import { Card } from '@/components/ui/card';
-import { Paper } from '@/components/ui/paper';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 

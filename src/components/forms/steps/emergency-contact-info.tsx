@@ -50,7 +50,7 @@ export function EmergencyContactInfo({ errors, control }: StepProps) {
       </div>
       <div className="space-y-2">
         <Label>Email Address</Label>
-      <Controller
+        <Controller
           name="contactEmail"
           control={control}
           render={({ field }) => <Input {...field} />}
