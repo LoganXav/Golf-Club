@@ -4,34 +4,67 @@ export const FormDataSchema = z.object({
   // Personal Info Step
   firstName: z.string().min(1, { message: 'First name is required' }),
   lastName: z.string().min(1, { message: 'Last name is required' }),
-  phoneNumber: z.number(),
+  phoneNumber: z
+    .string()
+    .min(10, { message: 'Phone number must be at least 10 digits' })
+    .max(15, { message: 'Phone number cannot exceed 15 digits' }),
   email: z.string().email({ message: 'Invalid email address' }),
-  dateOfBirth: z.date(),
+  dateOfBirth: z
+    .date()
+    .max(new Date(Date.now() - 18 * 365.25 * 24 * 60 * 60 * 1000), {
+      message: 'You must be at least 18 years old.',
+    }),
   gender: z.string(),
   occupation: z.string(),
-  nin: z.number(),
-  zip: z.number(),
+  nin: z.string().length(11, { message: 'NIN must be 11 digits long' }),
+  zip: z.coerce.number(),
   province: z.string(),
   address: z.string().optional(),
 
-  // // Membership Details
-  index: z
+  // Membership Info
+  index: z.coerce
     .number()
-    .min(0)
-    .max(36, { message: 'Golf Handicap index must be less than 37' }),
-  handicap: z
+    .lt(37, { message: 'Handicap index must me less than 37' })
+    .optional(),
+  handicap: z.coerce
     .number()
-    .min(0)
-    .max(36, { message: 'Golf Handicap must be less than 37' }),
-  // // preferences: z.string().min(1, { message: 'Select at least 3' }).optional(),
-  // // premiumServices: z
-  // //   .string()
-  // //   .min(1, { message: 'Select at least 3' })
-  // //   .optional(),
-  // // golfDays: z.string().min(3, { message: 'Select at least 3' }).optional(),
+    .lt(37, { message: 'Handicap must me less than 37' })
+    .optional(),
+  preferences: z
+    .array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+      })
+    )
+    .optional(),
+  premiumServices: z
+    .array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+      })
+    )
+    .optional(),
+
+  golfDays: z
+    .array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+      })
+    )
+    .nonempty()
+    .min(3, { message: 'At least 3 golf days must be selected' }),
+
+  // Emergency Contact Info
+
   contactName: z.string().min(1, { message: 'Contact name is required' }),
   relationship: z.string().min(1, { message: 'Relationship type is required' }),
-  contactNo: z.number(),
+  contactNumber: z
+    .string()
+    .min(10, { message: 'Phone number must be at least 10 digits' })
+    .max(15, { message: 'Phone number cannot exceed 15 digits' }),
   contactEmail: z.string().email({ message: 'Email is required' }),
 });
 

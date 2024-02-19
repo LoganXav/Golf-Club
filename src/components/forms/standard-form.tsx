@@ -18,24 +18,43 @@ export function StandardForm() {
   const [isPending, startTransition] = React.useTransition();
 
   const form = useForm<FormDTO>({
+    // Personal Info
     defaultValues: {
       firstName: 'Ayomikun',
       lastName: 'Balogun',
-      phoneNumber: 9052916792,
+      phoneNumber: '09052916792',
       email: 'example@email.com',
       dateOfBirth: new Date('2006-02-16'),
       gender: 'Male',
       occupation: 'Engineer',
-      nin: 26738491561,
+      nin: '26738491561',
       zip: 33052,
       province: 'Lagos Island',
       address: '3353, International Village court',
-      // Other fields with default values
-      index: 20,
-      handicap: 12,
+      // Membership Info
+      index: 14,
+      handicap: 34,
+      premiumServices: [
+        { label: 'Access to Free Parking', value: 'Access to Free Parking' },
+        {
+          label: 'Access to Special Events & Tournaments',
+          value: 'Access to Special Events & Tournaments',
+        },
+        { label: 'Access to VIP Lounge', value: 'Access to VIP Lounge' },
+      ],
+      golfDays: [
+        { label: 'Weekdays 12-4pm', value: 'Weekdays 12-4pm' },
+        {
+          label: 'Fridays-Sundays 12-4pm',
+          value: 'Fridays-Sundays 12-4pm',
+        },
+        { label: 'Sundays only 12-7pm', value: 'Sundays only 12-7pm' },
+      ],
+
+      // Emergency Contact Info
       contactName: 'Segun',
-      relationship: 'Friendship',
-      contactNo: 9052916792,
+      relationship: 'Friend',
+      contactNumber: '09052916792',
       contactEmail: 'contact@example.com',
     },
     resolver: zodResolver(FormDataSchema),
@@ -101,6 +120,7 @@ export function StandardForm() {
 
   const next = async () => {
     const fields = steps?.[stepper.step]?.fields;
+
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
     if (!output) return;
 

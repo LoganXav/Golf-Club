@@ -11,7 +11,7 @@ import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
 
 interface MultiSelectProps {
   selected: Option[] | null;
-  setSelected: React.Dispatch<React.SetStateAction<Option[] | null>>;
+  setSelected: React.Dispatch<React.SetStateAction<Option[] | undefined>>;
   // eslint-disable-next-line no-unused-vars
   onChange?: (selected: Option[] | null) => void;
   placeholder?: string;
@@ -36,16 +36,18 @@ export function MultiSelect({
 
   const handleSelect = React.useCallback(
     (option: Option) => {
-      setSelected((prev) => [...(prev ?? []), option]);
+      const newSelected = [...(selected ?? []), option];
+      setSelected(newSelected);
     },
-    [setSelected]
+    [selected, setSelected]
   );
 
   const handleRemove = React.useCallback(
     (option: Option) => {
-      setSelected((prev) => prev?.filter((item) => item !== option) ?? []);
+      const newSelected = selected?.filter((item) => item !== option); // Filter out the option
+      setSelected(newSelected);
     },
-    [setSelected]
+    [selected, setSelected]
   );
 
   const handleKeyDown = React.useCallback(
@@ -53,7 +55,8 @@ export function MultiSelect({
       if (!inputRef.current) return;
 
       if (event.key === 'Backspace' || event.key === 'Delete') {
-        setSelected((prev) => prev?.slice(0, -1) ?? []);
+        const newSelected = selected?.slice(0, -1); // Remove last item
+        setSelected(newSelected);
       }
 
       // Blur input on escape
@@ -61,7 +64,7 @@ export function MultiSelect({
         inputRef.current.blur();
       }
     },
-    [setSelected]
+    [selected, setSelected]
   );
 
   // Memoize filtered options to avoid unnecessary re-renders
@@ -76,10 +79,7 @@ export function MultiSelect({
   }, [options, query, selected]);
 
   return (
-    <Command
-      onKeyDown={handleKeyDown}
-      className="overflow-visible bg-transparent"
-    >
+    <Command onKeyDown={handleKeyDown} className="h-min overflow-visible">
       <div className="group flex min-h-[54px] items-center rounded-md border border-ring bg-input px-3 py-3 text-foreground ring-offset-background focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:border-primary">
         <div className="flex w-full flex-wrap gap-1">
           {selected?.map((option) => {
