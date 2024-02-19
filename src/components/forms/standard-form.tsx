@@ -68,11 +68,15 @@ export function StandardForm() {
 
   const processForm: SubmitHandler<FormDTO> = (data) => {
     startTransition(async () => {
-      console.log('data', data);
+      console.info('@request', data);
       const response = await addStandardMemberAction(data);
-      response.type !== 'Error'
-        ? toast.success('Form submitted successfully')
-        : toast.error('Form submission failed');
+      if (response.type !== 'Error') {
+        toast.success('Form submitted successfully');
+        console.info('@response', response);
+      } else {
+        toast.error('Form submission failed');
+        console.error('error', response);
+      }
     });
   };
 
