@@ -5,14 +5,15 @@ import { toTitleCase } from '@/lib/utils';
 import { Option } from '@/types';
 import { formData } from '@/config/site';
 import { Input } from '@/components/ui/input';
-import { FieldErrors } from 'react-hook-form';
+import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { FormDTO } from '@/lib/schema';
 import { Label } from '@/components/ui/label';
 
 interface StepProps {
   errors: FieldErrors<FormDTO>;
+  control: Control;
 }
-export function MembershipInfo({ errors }: StepProps) {
+export function MembershipInfo({ errors, control }: StepProps) {
   const [selectedPreferences, setSelectedPreferences] = React.useState<
     Option[] | null
   >(null);
@@ -26,20 +27,36 @@ export function MembershipInfo({ errors }: StepProps) {
   return (
     <div>
       <div className="grid gap-4 lg:grid-cols-2">
-        <div>
-          <Input placeholder="Golf Handicap Index" type="number" />
+        <div className="space-y-2">
+          <Label>Golf Handicap Index</Label>
+          <Controller
+            name="index"
+            control={control}
+            render={({ field }) => (
+              <Input type="number" inputMode="numeric" {...field} />
+            )}
+          />
           {errors.index?.message && (
             <Label variant="error">{errors.index.message}</Label>
           )}
         </div>
-        <div>
-          <Input placeholder="Handicap" type="number" />
+        <div className="space-y-2">
+          <Label> Handicap </Label>
+          <Controller
+            name="handicap"
+            control={control}
+            render={({ field }) => (
+              <Input type="number" inputMode="numeric" {...field} />
+            )}
+          />
           {errors.handicap?.message && (
             <Label variant="error">{errors.handicap.message}</Label>
           )}
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="space-y-2  lg:col-span-2">
+          <Label> Select your course preferences </Label>
+
           {formData.preferences?.length && (
             <MultiSelect
               placeholder="Select your course preferences"
@@ -56,10 +73,12 @@ export function MembershipInfo({ errors }: StepProps) {
           )}
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="space-y-2 lg:col-span-2">
+          <Label> Select at least 3 of the services category </Label>
+
           {formData.premiumServices?.length && (
             <MultiSelect
-              placeholder="Select at least 3 the services category"
+              placeholder="Select at least 3  of the services category"
               selected={selectedPremiumServices}
               setSelected={setSelectedPremiumServices}
               options={formData.premiumServices.map((c) => ({
@@ -72,7 +91,9 @@ export function MembershipInfo({ errors }: StepProps) {
             <Label variant="error">{errors.premiumServices.message}</Label>
           )}
         </div>
-        <div className="lg:col-span-2">
+        <div className="space-y-2 lg:col-span-2">
+          <Label> Select pr type preferred Play Day </Label>
+
           {formData.premiumServices?.length && (
             <MultiSelect
               placeholder="Select or type preferred Play Day "

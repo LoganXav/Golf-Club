@@ -31,6 +31,12 @@ export function StandardForm() {
       province: 'Lagos Island',
       address: '3353, International Village court',
       // Other fields with default values
+      index: 20,
+      handicap: 12,
+      contactName: 'Segun',
+      relationship: 'Friendship',
+      contactNo: 9052916792,
+      contactEmail: 'contact@example.com',
     },
     resolver: zodResolver(FormDataSchema),
   });

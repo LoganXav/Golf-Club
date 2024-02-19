@@ -15,24 +15,24 @@ export const FormDataSchema = z.object({
   address: z.string().optional(),
 
   // // Membership Details
-  // index: z
-  //   .string()
-  //   .min(0)
-  //   .max(36, { message: 'Golf Handicap index must be less than 37' }),
-  // handicap: z
-  //   .string()
-  //   .min(0)
-  //   .max(36, { message: 'Golf Handicap must be less than 37' }),
+  index: z
+    .number()
+    .min(0)
+    .max(36, { message: 'Golf Handicap index must be less than 37' }),
+  handicap: z
+    .number()
+    .min(0)
+    .max(36, { message: 'Golf Handicap must be less than 37' }),
   // // preferences: z.string().min(1, { message: 'Select at least 3' }).optional(),
   // // premiumServices: z
   // //   .string()
   // //   .min(1, { message: 'Select at least 3' })
   // //   .optional(),
   // // golfDays: z.string().min(3, { message: 'Select at least 3' }).optional(),
-  // contactName: z.string().min(1, { message: 'Contact name is required' }),
-  // relationship: z.string().min(1, { message: 'Relationship type is required' }),
-  // contactNo: z.number(),
-  // contactEmail: z.string().email({ message: 'Email is required' }),
+  contactName: z.string().min(1, { message: 'Contact name is required' }),
+  relationship: z.string().min(1, { message: 'Relationship type is required' }),
+  contactNo: z.number(),
+  contactEmail: z.string().email({ message: 'Email is required' }),
 });
 
 export type FormDTO = z.infer<typeof FormDataSchema>;
