@@ -64,7 +64,10 @@ export function PhotoUpload() {
           <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border border-dashed bg-input lg:h-32 lg:w-32">
             {file.length && !rejected.length ? (
               <Image
-                src={file[0]?.preview}
+                src={
+                  file[0]?.preview ||
+                  'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='
+                }
                 alt={file[0]?.name || 'Profile picture'}
                 fill={true}
                 style={{ objectFit: 'cover' }}

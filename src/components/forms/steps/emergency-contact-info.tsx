@@ -38,14 +38,14 @@ export function EmergencyContactInfo({ errors, control }: StepProps) {
       <div className="space-y-2">
         <Label>Mobile Number</Label>
         <Controller
-          name="contactNo"
+          name="contactNumber"
           control={control}
           render={({ field }) => (
             <Input type="number" inputMode="numeric" {...field} />
           )}
         />
-        {errors.contactNo?.message && (
-          <Label variant="error">{errors.contactNo.message}</Label>
+        {errors.contactNumber?.message && (
+          <Label variant="error">{errors.contactNumber.message}</Label>
         )}
       </div>
       <div className="space-y-2">

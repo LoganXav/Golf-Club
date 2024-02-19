@@ -49,14 +49,10 @@ export function DatePicker({
           selected={value}
           defaultMonth={value}
           onSelect={(date) => {
-            // Format the selected date here before passing it to onChange
-            const formattedDate = date && format(date, 'yyyy-MM-dd');
-            onChange(formattedDate);
+            onChange(date);
           }}
           initialFocus={false}
-          disabled={
-            dateOfBirth ? (date) => date > new Date('2006-02-16') : false
-          }
+          disabled={dateOfBirth ? (date) => date > new Date() : false}
           {...props}
         />
       </PopoverContent>

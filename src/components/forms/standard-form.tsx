@@ -18,24 +18,44 @@ export function StandardForm() {
   const [isPending, startTransition] = React.useTransition();
 
   const form = useForm<FormDTO>({
+    // Personal Info
     defaultValues: {
       firstName: 'Ayomikun',
       lastName: 'Balogun',
-      phoneNumber: 9052916792,
+      phoneNumber: '09052916792',
       email: 'example@email.com',
       dateOfBirth: new Date('2006-02-16'),
-      gender: 'Male',
+      gender: 'male',
       occupation: 'Engineer',
-      nin: 26738491561,
+      nin: '26738491561',
       zip: 33052,
       province: 'Lagos Island',
       address: '3353, International Village court',
-      // Other fields with default values
-      index: 20,
-      handicap: 12,
+
+      // Membership Info
+      index: 14,
+      handicap: 34,
+      premiumServices: [
+        { label: 'Access to Free Parking', value: 'Access to Free Parking' },
+        {
+          label: 'Access to Special Events & Tournaments',
+          value: 'Access to Special Events & Tournaments',
+        },
+        { label: 'Access to VIP Lounge', value: 'Access to VIP Lounge' },
+      ],
+      golfDays: [
+        { label: 'Weekdays 12-4pm', value: 'Weekdays 12-4pm' },
+        {
+          label: 'Fridays-Sundays 12-4pm',
+          value: 'Fridays-Sundays 12-4pm',
+        },
+        { label: 'Sundays only 12-7pm', value: 'Sundays only 12-7pm' },
+      ],
+
+      // Emergency Contact Info
       contactName: 'Segun',
-      relationship: 'Friendship',
-      contactNo: 9052916792,
+      relationship: 'Friend',
+      contactNumber: '09052916792',
       contactEmail: 'contact@example.com',
     },
     resolver: zodResolver(FormDataSchema),
@@ -48,11 +68,15 @@ export function StandardForm() {
 
   const processForm: SubmitHandler<FormDTO> = (data) => {
     startTransition(async () => {
-      console.log('data', data);
+      console.info('@request', data);
       const response = await addStandardMemberAction(data);
-      response.type !== 'Error'
-        ? toast.success('Form submitted successfully')
-        : toast.error('Form submission failed');
+      if (response.type !== 'Error') {
+        toast.success('Form submitted successfully');
+        console.info('@response', response);
+      } else {
+        toast.error('Form submission failed');
+        console.error('error', response);
+      }
     });
   };
 
@@ -99,8 +123,13 @@ export function StandardForm() {
   const isFirstStep = stepper.step === 0;
   const isLastStep = stepper.step === steps.length - 1;
 
+  const [stepCompleted, setStepCompleted] = React.useState(
+    Array(steps.length).fill(false)
+  );
+
   const next = async () => {
     const fields = steps?.[stepper.step]?.fields;
+
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
     if (!output) return;
 
@@ -108,6 +137,12 @@ export function StandardForm() {
       await handleSubmit(processForm)();
     } else {
       stepper.next();
+      const currentStepIndex = stepper.step;
+      setStepCompleted((prev) => {
+        const updatedSteps = [...prev];
+        updatedSteps[currentStepIndex] = true;
+        return updatedSteps;
+      });
     }
   };
 
@@ -126,7 +161,7 @@ export function StandardForm() {
               <StepperButton
                 stepper={stepper}
                 // completed={true}
-                completed={step.label === 'Personal Details' && true}
+                completed={stepCompleted[i]}
                 selected={stepper.step === i}
                 step={i + 1}
                 i={i}

@@ -36,7 +36,7 @@ export function SelectField({
   return (
     <Select onValueChange={onChange} defaultValue={value}>
       <SelectTrigger className="text-muted-foreground">
-        <SelectValue placeholder={placeholder} />
+        <SelectValue placeholder={placeholder}>{value}</SelectValue>
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
@@ -54,7 +54,7 @@ export function SelectField({
             : options
               ? options?.map((item, idx) => (
                   <SelectItem key={idx} value={item.value}>
-                    {item.name}
+                    {item.name.toLowerCase()}
                   </SelectItem>
                 ))
               : null}
