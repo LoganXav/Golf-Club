@@ -50,7 +50,7 @@ As the operator of the Club, Management retains the right to decide all issues r
 
 18.Each player is required to have their own set of golf clubs, and no two players will play out of the same set of clubs or bag.
 
-19.The golf course may not be used for the purpose other than playing golf. Jogging, running, walking, fishing, driving, or riding bicycles on Zuma Rock Golf Club property is not allowed at any time. Parents shall be responsible for educating their children about the rules of behavior on the course.
+19.The golf course will not be used for the purpose other than playing golf. Jogging, running, walking, fishing, driving, or riding bicycles on Zuma Rock Golf Club property is not allowed at any time. Parents shall be responsible for educating their children about the rules of behavior on the course.
 
 (where applicable) For insurance and safety reasons, only persons holding a valid driver’s license are permitted to operate golf carts at any time. No more than two (2) persons (including children) will be permitted to ride on or in a golf cart at one time, and no more than two (2) golf bags shall be carried on a golf cart at one time.
 
