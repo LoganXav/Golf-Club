@@ -18,8 +18,9 @@ export function StandardForm() {
   const [isPending, startTransition] = React.useTransition();
 
   const form = useForm<FormDTO>({
-    // Personal Info
     defaultValues: {
+      category: 'standard',
+      // Personal Info
       firstName: 'Ayomikun',
       lastName: 'Balogun',
       phoneNumber: '09052916792',
@@ -68,14 +69,14 @@ export function StandardForm() {
 
   const processForm: SubmitHandler<FormDTO> = (data) => {
     startTransition(async () => {
-      console.info('@request', data);
+      console.info('@Request', data);
       const response = await addStandardMemberAction(data);
       if (response.type !== 'Error') {
-        toast.success('Form submitted successfully');
-        console.info('@response', response);
+        toast.success(response.message);
+        console.info('@Response_data', response);
       } else {
-        toast.error('Form submission failed');
-        console.error('error', response);
+        toast.error(response.message);
+        console.error('@Response_error', response);
       }
     });
   };

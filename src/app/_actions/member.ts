@@ -1,27 +1,41 @@
 'use server';
 import { supabase } from '@/lib/db';
-import { FormDTO } from '@/lib/schema';
+import { FormDTO, FormDataSchema } from '@/lib/schema';
 
 export async function addPremiumMemberAction() {
   return 'Premium member';
 }
-export async function addStandardMemberAction(person: FormDTO) {
-  // Validate person object properties here
+export async function addStandardMemberAction(rawInput: FormDTO) {
+  const input = FormDataSchema.parse(rawInput);
+  const uniqueIdentifier = input.nin;
 
   try {
-    const { data, error } = await supabase
+    // Check if a user with the same unique identifier (e.g., email) already exists
+    const { data } = await supabase
       .from('members')
-      .insert({ person })
+      .select('*')
+      .filter('nin', '=', uniqueIdentifier)
       .single();
 
-    if (error) {
-      // Handle specific errors as needed
-      throw new Error(error.message);
+    if (!data) {
+      return {
+        type: 'Error',
+        message: 'A member with  this nin already exists',
+      };
     }
 
-    return { type: 'Standard member added', data };
+    // If user doesn't exist, proceed with insertion
+    const { data: insertData, error: insertError } = await supabase
+      .from('members')
+      .insert(input);
+
+    if (insertError) {
+      throw new Error(insertError.message);
+    }
+
+    return { type: 'Success', message: 'Registration Successful', insertData };
   } catch (error: any) {
-    return { type: 'Error', data: error.message };
+    return { type: 'Error', message: error.message };
   }
 }
 export async function getMembersAction() {

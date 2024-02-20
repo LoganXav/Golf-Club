@@ -45,19 +45,18 @@ export default function RootLayout({
           <main className="container relative pt-14">
             {children}
             <div className="flex w-full justify-between py-8">
-              {/* <div className="flex-1" /> */}
-              <p className="    text-sm">
+              <p className="text-sm">
                 <Link href={'/terms'} className=" underline">
                   Terms and Conditions
                 </Link>{' '}
               </p>
               <ThemeToggle />
-              <Toaster />
             </div>
           </main>
 
           <TailwindIndicator />
         </ThemeProvider>
+        <Toaster position="top-center" />
       </body>
     </html>
   );

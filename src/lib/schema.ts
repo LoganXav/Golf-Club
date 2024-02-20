@@ -1,6 +1,7 @@
 import * as z from 'zod';
 
 export const FormDataSchema = z.object({
+  category: z.enum(['standard', 'premium']),
   // Personal Info Step
   firstName: z.string().min(1, { message: 'First name is required' }),
   lastName: z.string().min(1, { message: 'Last name is required' }),
