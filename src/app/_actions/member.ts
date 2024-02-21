@@ -10,14 +10,13 @@ export async function addStandardMemberAction(rawInput: FormDTO) {
   const uniqueIdentifier = input.nin;
 
   try {
-    // Check if a user with the same unique identifier (e.g., email) already exists
     const { data } = await supabase
       .from('members')
       .select('*')
       .filter('nin', '=', uniqueIdentifier)
       .single();
 
-    if (!data) {
+    if (data) {
       return {
         type: 'Error',
         message: 'A member with  this nin already exists',

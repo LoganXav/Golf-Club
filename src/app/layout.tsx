@@ -44,12 +44,13 @@ export default function RootLayout({
         >
           <main className="container relative pt-14">
             {children}
-            <div className="flex w-full justify-between py-8">
-              <p className="text-sm">
-                <Link href={'/terms'} className=" underline">
+            <div className="flex w-full flex-col items-center justify-between gap-4 py-8 lg:flex-row">
+              <div className="text-sm text-muted">
+                Golf Membership. Make sure to read our
+                <Link href={'/terms'} className="ml-1 underline">
                   Terms and Conditions
-                </Link>{' '}
-              </p>
+                </Link>
+              </div>
               <ThemeToggle />
             </div>
           </main>

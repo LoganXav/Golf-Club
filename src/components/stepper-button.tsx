@@ -40,7 +40,7 @@ export default function StepperButton({
             'flex h-6 w-6 items-center justify-center rounded-full p-1 text-xs',
             completed
               ? 'bg-success text-success-foreground'
-              : 'bg-primary-foreground text-white'
+              : 'bg-primary text-white'
             // selected
             //   ? 'text-white bg-primary'
             //   : 'text-white bg-primary-foreground'
