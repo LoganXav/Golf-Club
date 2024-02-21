@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/headers';
@@ -9,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { MembersTable } from '@/components/tables';
 
 function Directory() {
   return (
@@ -50,8 +52,8 @@ function Directory() {
             placeholder="Find a member..."
           />
           <Select>
-            <SelectTrigger className="text-muted-foreground w-full rounded-none border-none bg-primary-background outline-none lg:w-1/6">
-              <SelectValue placeholder="Sort by"></SelectValue>
+            <SelectTrigger className="w-full rounded-none border-none bg-primary-background outline-none lg:w-1/6">
+              <SelectValue placeholder="Filter by"></SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="Most Popular">Most Popular</SelectItem>
@@ -60,19 +62,15 @@ function Directory() {
         </div>
 
         <>
-          <TabsContent value="premium">
-            <div className="mt-8 flex h-[20rem] w-full items-center justify-center rounded-md border-primary bg-success">
-              Premium List
-            </div>
-          </TabsContent>
-          <TabsContent value="standard">
-            <div className="mt-8 flex h-[20rem] w-full items-center justify-center rounded-md border-primary bg-destructive">
-              Standard List
-            </div>
-          </TabsContent>
+          {['premium', 'standard'].map((category) => (
+            <TabsContent value={category} key={category}>
+              <MembersTable />
+            </TabsContent>
+          ))}
         </>
       </Tabs>
     </>
   );
 }
+
 export default Directory;
