@@ -12,10 +12,12 @@ import { type FormDTO, FormDataSchema, FieldName } from '@/lib/schema';
 import { addStandardMemberAction } from '@/app/_actions/member';
 import { Icons } from '../icons';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 export function StandardForm() {
   const stepper = useStepper();
   const [isPending, startTransition] = React.useTransition();
+  const router = useRouter();
 
   const form = useForm<FormDTO>({
     defaultValues: {
@@ -74,6 +76,7 @@ export function StandardForm() {
       if (response.type !== 'Error') {
         toast.success(response.message);
         console.info('@Response_data', response);
+        router.push('/directory');
       } else {
         toast.error(response.message);
         console.error('@Response_error', response);

@@ -8,7 +8,7 @@ export default function IndexPage() {
     <>
       <main className="mx-auto flex flex-col items-center space-y-16">
         <Header
-          title="Golf Membership "
+          title="Golf Membership"
           category="Your one stop registration portal"
           src="/golf-course.svg"
           desc="Discover the world of joining a community filled with golf lovers, With services that suits your needs."
