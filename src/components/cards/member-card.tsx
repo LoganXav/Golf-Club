@@ -24,6 +24,7 @@ export function MemberCard({ data, key }: Props) {
         {data.firstName} {data.lastName}
       </CardContent>
       <CardDescription>Province: {data.province}</CardDescription>
+      <CardDescription>Occupation: {data.occupation}</CardDescription>
     </Paper>
   );
 }

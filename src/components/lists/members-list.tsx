@@ -14,16 +14,80 @@ import { type ColumnDef } from '@tanstack/react-table';
 import { CuratedMembersInfo } from '@/types';
 import { MemberCard } from '../cards';
 
-interface Props<TData, TValue> {
-  data: CuratedMembersInfo[];
-  columns: ColumnDef<TData, TValue>[];
+import { DataTableColumnHeader } from '@/components/tables';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Icons } from '@/components/icons';
+import { FormDTO } from '@/lib/schema';
+import { format } from 'date-fns';
+
+interface Props {
+  data: FormDTO[];
 }
-export function MembersList<TData, TValue>({
-  data,
-  columns,
-}: Props<TData, TValue>) {
+export function MembersList({ data }: Props) {
+  // Memoize the columns so they don't re-render on every render
+  const columns = React.useMemo<ColumnDef<CuratedMembersInfo, unknown>[]>(
+    () => [
+      {
+        accessorKey: 'firstName',
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Name" />
+        ),
+        cell: ({ row }) => {
+          return (
+            <div className="flex items-center space-x-4">
+              <Avatar>
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback className="p-2">
+                  {<Icons.person />}
+                </AvatarFallback>
+              </Avatar>
+              <span>
+                {row.original.firstName} {row.original.lastName}
+              </span>
+            </div>
+          );
+        },
+      },
+      {
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Province" />
+        ),
+        accessorKey: 'province',
+      },
+      {
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Occupation" />
+        ),
+        accessorKey: 'occupation',
+      },
+      {
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Gender" />
+        ),
+        accessorKey: 'gender',
+      },
+      {
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Joined date" />
+        ),
+        accessorKey: 'createdAt',
+        cell: ({ row }) => {
+          const date = new Date(row.original.created_at);
+          const formattedDate = format(date, 'MMMM do, yyyy');
+          return formattedDate;
+        },
+      },
+    ],
+    []
+  );
+
+  // TODO: use an object with 2 propertis for each table's data
   const [filteredData, setFilteredData] = React.useState(data);
   const [searchTerm, setSearchTerm] = React.useState('');
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value.toLowerCase();
     setSearchTerm(searchTerm);
@@ -64,17 +128,18 @@ export function MembersList<TData, TValue>({
               <DataTable data={filteredData} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
-              {filteredData.map((member, idx) => (
+              {filteredData?.map((member, idx) => (
                 <MemberCard data={member} key={idx} />
               ))}
             </div>
           </TabsContent>
+
           <TabsContent value="standard">
             <div className="mt-8 hidden lg:flex">
               <DataTable data={filteredData} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
-              {filteredData.map((member, idx) => (
+              {filteredData?.map((member, idx) => (
                 <MemberCard data={member} key={idx} />
               ))}
             </div>

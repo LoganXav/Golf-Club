@@ -28,7 +28,7 @@ export function StandardForm() {
       phoneNumber: '09052916792',
       email: 'example@email.com',
       dateOfBirth: new Date('2006-02-16'),
-      gender: 'female',
+      gender: 'Female',
       occupation: 'Engineer',
       nin: '26738491561',
       zip: 33052,

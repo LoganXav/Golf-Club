@@ -24,4 +24,6 @@ export interface Stepper {
 export type CuratedMembersInfo = Pick<
   FormDTO,
   'firstName' | 'lastName' | 'province' | 'occupation' | 'gender'
->;
+> & {
+  created_at: string;
+};
