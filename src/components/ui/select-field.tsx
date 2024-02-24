@@ -33,10 +33,14 @@ export function SelectField({
   value,
   onChange,
 }: SelectFieldProps) {
+  const selected = options?.find((item) => item?.value === value);
+
   return (
     <Select onValueChange={onChange} defaultValue={value}>
       <SelectTrigger className="text-muted-foreground">
-        <SelectValue placeholder={placeholder}>{value}</SelectValue>
+        <SelectValue placeholder={placeholder}>
+          {selected?.name || value}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
@@ -54,7 +58,7 @@ export function SelectField({
             : options
               ? options?.map((item, idx) => (
                   <SelectItem key={idx} value={item.value}>
-                    {item.name.toLowerCase()}
+                    {item.name}
                   </SelectItem>
                 ))
               : null}
