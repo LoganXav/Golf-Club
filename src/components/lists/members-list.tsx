@@ -11,18 +11,20 @@ import {
 
 import { DataTable } from '@/components/tables';
 import { type ColumnDef } from '@tanstack/react-table';
-import { CuratedMembersInfo } from '@/types';
+import { CuratedMembersInfo, MembersListType } from '@/types';
 import { MemberCard } from '../cards';
 
 import { DataTableColumnHeader } from '@/components/tables';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Icons } from '@/components/icons';
-import { FormDTO } from '@/lib/schema';
 import { format } from 'date-fns';
 
 interface Props {
-  data: FormDTO[];
+  data?: MembersListType[];
 }
+
+type FilterProperty = 'firstName' | 'province';
+
 export function MembersList({ data }: Props) {
   // Memoize the columns so they don't re-render on every render
   const columns = React.useMemo<ColumnDef<CuratedMembersInfo, unknown>[]>(
@@ -84,19 +86,37 @@ export function MembersList({ data }: Props) {
     []
   );
 
-  // TODO: use an object with 2 propertis for each table's data
-  const [filteredData, setFilteredData] = React.useState(data);
+  const standardMembers = data?.filter(
+    (member) => member.category === 'standard'
+  );
+  const premiumMembers = data?.filter(
+    (member) => member?.category === 'premium'
+  );
+
+  const [filteredStandard, setFilteredStandard] =
+    React.useState(standardMembers);
+  const [filteredPremium, setFilteredPremium] = React.useState(premiumMembers);
   const [searchTerm, setSearchTerm] = React.useState('');
+  const [filterBy, setFilterBy] = React.useState('');
+
+  const handleFilter = (e: FilterProperty) => {
+    const filterTerm = e;
+    setFilterBy(filterTerm);
+  };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value.toLowerCase();
     setSearchTerm(searchTerm);
 
-    const filteredResults = data.filter((item) =>
-      item.firstName.toLowerCase().includes(searchTerm)
+    const filteredStandardResults = standardMembers?.filter((item) =>
+      (item as any)[filterBy].toLowerCase().includes(searchTerm)
+    );
+    const filteredPremiumResults = premiumMembers?.filter((item) =>
+      (item as any)[filterBy].toLowerCase().includes(searchTerm)
     );
 
-    setFilteredData(filteredResults);
+    setFilteredStandard(filteredStandardResults);
+    setFilteredPremium(filteredPremiumResults);
   };
 
   return (
@@ -111,13 +131,13 @@ export function MembersList({ data }: Props) {
             onChange={handleSearch}
           />
 
-          <Select>
+          <Select onValueChange={handleFilter}>
             <SelectTrigger className="w-full rounded-none border-none bg-primary-background outline-none lg:w-1/6">
               <SelectValue placeholder="Filter by"></SelectValue>
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Name">Name</SelectItem>
-              <SelectItem value="Province">Province</SelectItem>
+              <SelectItem value="firstName">Name</SelectItem>
+              <SelectItem value="province">Province</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -125,10 +145,10 @@ export function MembersList({ data }: Props) {
         <>
           <TabsContent value="premium">
             <div className="mt-8 hidden lg:flex">
-              <DataTable data={filteredData} columns={columns} />
+              <DataTable data={filteredPremium} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
-              {filteredData?.map((member, idx) => (
+              {filteredPremium?.map((member, idx) => (
                 <MemberCard data={member} key={idx} />
               ))}
             </div>
@@ -136,10 +156,10 @@ export function MembersList({ data }: Props) {
 
           <TabsContent value="standard">
             <div className="mt-8 hidden lg:flex">
-              <DataTable data={filteredData} columns={columns} />
+              <DataTable data={filteredStandard} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
-              {filteredData?.map((member, idx) => (
+              {filteredStandard?.map((member, idx) => (
                 <MemberCard data={member} key={idx} />
               ))}
             </div>

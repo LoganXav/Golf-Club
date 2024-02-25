@@ -27,3 +27,8 @@ export type CuratedMembersInfo = Pick<
 > & {
   created_at: string;
 };
+
+export type MembersListType = FormDTO & {
+  created_at: string;
+  category: string;
+};

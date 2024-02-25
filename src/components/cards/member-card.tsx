@@ -13,7 +13,7 @@ export function MemberCard({ data, key }: Props) {
   return (
     <Paper
       key={key}
-      variant={data.gender === 'male' ? 'success' : 'destructive'}
+      variant={data.gender === 'Male' ? 'success' : 'destructive'}
       className="flex min-h-[150px] w-full transform flex-col justify-center p-6 text-start"
     >
       <Avatar>
