@@ -10,8 +10,8 @@ export const NEXT_PUBLIC_SUPABASE_ANON_KEY =
 
 export const formData = {
   genders: [
-    { name: 'Male', value: 'male' },
-    { name: 'Female', value: 'female' },
+    { name: 'Male', value: 'Male' },
+    { name: 'Female', value: 'Female' },
   ],
 
   branch: [

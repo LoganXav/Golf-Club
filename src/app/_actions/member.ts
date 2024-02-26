@@ -1,6 +1,8 @@
 'use server';
 import { supabase } from '@/lib/db';
 import { FormDTO, FormDataSchema } from '@/lib/schema';
+import { MembersListType } from '@/types';
+import { revalidatePath } from 'next/cache';
 
 export async function addPremiumMemberAction() {
   return 'Premium member';
@@ -37,6 +39,20 @@ export async function addStandardMemberAction(rawInput: FormDTO) {
     return { type: 'Error', message: error.message };
   }
 }
-export async function getMembersAction() {
-  return 'All members';
+export async function getMembersAction(): Promise<{
+  data?: MembersListType[];
+  type: string;
+  message?: string;
+} | null> {
+  try {
+    const { data } = await supabase.from('members').select('*');
+    // .order('createdAt', { ascending: false });
+    await revalidatePath('/directory');
+    if (data) {
+      return { type: 'Success', data };
+    }
+    return null;
+  } catch (error: any) {
+    return { type: 'Error', message: error.message };
+  }
 }

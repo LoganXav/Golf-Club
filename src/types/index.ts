@@ -1,4 +1,5 @@
-import React from 'react';
+import { FormDTO } from '@/lib/schema';
+import * as React from 'react';
 
 export interface Option {
   label: string;
@@ -19,3 +20,15 @@ export interface Stepper {
   errored: number[];
   history: number[];
 }
+
+export type CuratedMembersInfo = Pick<
+  FormDTO,
+  'firstName' | 'lastName' | 'province' | 'occupation' | 'gender'
+> & {
+  created_at: string;
+};
+
+export type MembersListType = FormDTO & {
+  created_at: string;
+  category: string;
+};

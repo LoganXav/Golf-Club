@@ -1,7 +1,7 @@
 'use client';
-
+import * as React from 'react';
 import {
-  Table,
+  TableRoot,
   TableBody,
   TableCell,
   TableHead,
@@ -31,7 +31,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <Table>
+    <TableRoot>
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
@@ -72,6 +72,6 @@ export function DataTable<TData, TValue>({
           </TableRow>
         )}
       </TableBody>
-    </Table>
+    </TableRoot>
   );
 }
