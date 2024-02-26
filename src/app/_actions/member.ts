@@ -15,7 +15,7 @@ export async function addStandardMemberAction(rawInput: FormDTO) {
     const { data } = await supabase
       .from('members')
       .select('*')
-      .filter('nin', '=', uniqueIdentifier)
+      .eq('nin', uniqueIdentifier)
       .single();
 
     if (data) {

@@ -18,6 +18,7 @@ import { DataTableColumnHeader } from '@/components/tables';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Icons } from '@/components/icons';
 import { format } from 'date-fns';
+import { useDebounce } from '@/hooks/use-debounce';
 
 interface Props {
   data?: MembersListType[];
@@ -97,7 +98,8 @@ export function MembersList({ data }: Props) {
     React.useState(standardMembers);
   const [filteredPremium, setFilteredPremium] = React.useState(premiumMembers);
   const [searchTerm, setSearchTerm] = React.useState('');
-  const [filterBy, setFilterBy] = React.useState('');
+  const debouncedValue = useDebounce(searchTerm, 1000);
+  const [filterBy, setFilterBy] = React.useState('firstName');
 
   const handleFilter = (e: FilterProperty) => {
     const filterTerm = e;
@@ -105,19 +107,22 @@ export function MembersList({ data }: Props) {
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = e.target.value.toLowerCase();
-    setSearchTerm(searchTerm);
+    setSearchTerm(e.target.value.toLowerCase());
+  };
 
+  React.useEffect(() => {
+    // Filtering logic using debouncedValue...
     const filteredStandardResults = standardMembers?.filter((item) =>
-      (item as any)[filterBy].toLowerCase().includes(searchTerm)
+      (item as any)[filterBy]?.toLowerCase().includes(debouncedValue)
     );
     const filteredPremiumResults = premiumMembers?.filter((item) =>
-      (item as any)[filterBy].toLowerCase().includes(searchTerm)
+      (item as any)[filterBy]?.toLowerCase().includes(debouncedValue)
     );
 
     setFilteredStandard(filteredStandardResults);
     setFilteredPremium(filteredPremiumResults);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedValue]);
 
   return (
     <>
@@ -133,7 +138,7 @@ export function MembersList({ data }: Props) {
 
           <Select onValueChange={handleFilter}>
             <SelectTrigger className="w-full rounded-none border-none bg-primary-background outline-none lg:w-1/6">
-              <SelectValue placeholder="Filter by"></SelectValue>
+              <SelectValue placeholder="Filter by:"></SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="firstName">Name</SelectItem>
