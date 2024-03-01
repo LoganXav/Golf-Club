@@ -12,7 +12,7 @@ interface StepProps {
   errors: FieldErrors<FormDTO>;
   control: Control;
 }
-export function MembershipInfo({ errors, control }: StepProps) {
+export function PremiumMembershipInfo({ errors, control }: StepProps) {
   return (
     <div className="grid gap-4 lg:grid-cols-2">
       <div className="space-y-2">
@@ -43,17 +43,17 @@ export function MembershipInfo({ errors, control }: StepProps) {
       </div>
 
       <div className="space-y-2 lg:col-span-2">
-        <Label>Course Preferences</Label>
+        <Label>Premium services</Label>
 
-        {formData.preferences?.length && (
+        {formData.services?.length && (
           <Controller
-            name="preferences"
+            name="services"
             control={control}
             render={({ field }) => (
               <MultiSelect
                 selected={field.value || null}
                 setSelected={field.onChange}
-                options={formData.preferences.map((c) => ({
+                options={formData.services.map((c) => ({
                   label: toTitleCase(c),
                   value: c,
                 }))}
@@ -61,22 +61,22 @@ export function MembershipInfo({ errors, control }: StepProps) {
             )}
           />
         )}
-        {errors.preferences?.message && (
-          <Label variant="error">{errors.preferences.message}</Label>
+        {errors.services?.message && (
+          <Label variant="error">{errors.services.message}</Label>
         )}
       </div>
       <div className="space-y-2 lg:col-span-2">
-        <Label>Premium Services</Label>
+        <Label>Premium merchandise</Label>
 
-        {formData.premiumServices?.length && (
+        {formData.merchandise?.length && (
           <Controller
-            name="premiumServices"
+            name="merchandise"
             control={control}
             render={({ field }) => (
               <MultiSelect
                 selected={field.value || null}
                 setSelected={field.onChange}
-                options={formData.premiumServices.map((c) => ({
+                options={formData.merchandise.map((c) => ({
                   label: toTitleCase(c),
                   value: c,
                 }))}
@@ -84,8 +84,8 @@ export function MembershipInfo({ errors, control }: StepProps) {
             )}
           />
         )}
-        {errors.premiumServices?.message && (
-          <Label variant="error">{errors.premiumServices.message}</Label>
+        {errors.merchandise?.message && (
+          <Label variant="error">{errors.merchandise.message}</Label>
         )}
       </div>
       <div className="space-y-2 lg:col-span-2">

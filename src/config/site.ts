@@ -33,13 +33,29 @@ export const formData = {
       ],
     },
   ],
-  preferences: [
+  standardService: [
+    { name: 'Access to Free Parking', value: 'Access to Free Parking' },
+    {
+      name: 'Access to Special Events & Tournaments',
+      value: 'Access to Special Events & Tournaments',
+    },
+    { name: 'Access to general Lounge', value: 'Access to general Lounge' },
+  ],
+  standardMerchandise: [
+    { name: 'Golf carts', value: 'Golf carts' },
+    { name: 'Standard Locker', value: 'Standard Locker' },
+    {
+      name: 'A pair of branded Golf wear',
+      value: 'A pair of branded Golf wear',
+    },
+  ],
+  services: [
     'Access to Free Parking',
     'Access to Special Events & Tournaments',
     'Access to VIP Lounge',
     'Unlimited access to bar and restaurant',
   ],
-  premiumServices: [
+  merchandise: [
     'Personalized Golf carts',
     'Gold Plated Lockers',
     '2 pairs of Golf wears monthly',
