@@ -1,27 +1,27 @@
 'use client';
+import * as React from 'react';
 import useStepper from '@/hooks/use-stepper';
-import { FormDTO, FormDataSchema } from '@/lib/schema';
+import { FieldName, FormDTO, FormDataSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '../ui/button';
 import { Icons } from '../icons';
 import StepperButton from '../stepper-button';
-import { EmergencyContactInfo, MembershipInfo, PersonalInfo } from './steps';
+import { EmergencyContactInfo, PersonalInfo } from './steps';
 import { PremiumMembershipInfo } from './steps/premium-membership-info';
 import PremiumPaymentInfo from './steps/premium-payment-info';
-import { addStandardMemberAction } from '@/app/_actions/member';
+import { addMemberAction } from '@/app/_actions/member';
 import { toast } from 'sonner';
 
-function PremiumForm() {
+export function PremiumForm() {
   const stepper = useStepper();
   const router = useRouter();
   const [isPending, startTransition] = React.useTransition();
 
   const form = useForm<FormDTO>({
     defaultValues: {
-      category: 'standard',
+      category: 'premium',
       // Personal Info
       firstName: 'John',
       lastName: 'Doe',
@@ -30,7 +30,7 @@ function PremiumForm() {
       dateOfBirth: new Date('2006-02-16'),
       gender: 'Female',
       occupation: 'Engineer',
-      nin: '26738491561',
+      nin: '26733491561',
       zip: 33052,
       province: 'Lagos Island',
       address: '3353, International Village court',
@@ -82,7 +82,7 @@ function PremiumForm() {
   const processForm: SubmitHandler<FormDTO> = (data) => {
     startTransition(async () => {
       console.info('@Request', data);
-      const response = await addStandardMemberAction(data);
+      const response = await addMemberAction(data);
       if (response.type !== 'Error') {
         toast.success(response.message);
         console.info('@Response_data', response);
@@ -168,7 +168,6 @@ function PremiumForm() {
             <div key={i}>
               <StepperButton
                 stepper={stepper}
-                // completed={true}
                 completed={stepCompleted[i]}
                 selected={stepper.step === i}
                 step={i + 1}
@@ -206,5 +205,3 @@ function PremiumForm() {
     </>
   );
 }
-
-export default PremiumForm;

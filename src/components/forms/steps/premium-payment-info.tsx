@@ -1,11 +1,7 @@
-import { Card } from '@/components/cards/card';
-import { Icons } from '@/components/icons';
 import Paystack from '../../../assets/images/paystack.svg';
 import Flutterwave from '../../../assets/images/flutterwave.svg';
 import Image from 'next/image';
 import React from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 
 export default function PremiumPaymentInfo() {
   return (

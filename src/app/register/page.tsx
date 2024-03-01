@@ -1,13 +1,11 @@
 'use client';
-import { StandardForm } from '@/components/forms';
-import Premium from '@/components/forms/premium-form';
-import { Header } from '@/components/headers';
-import { useRouter } from 'next/navigation';
 
+import { StandardForm } from '@/components/forms';
+import { PremiumForm } from '@/components/forms';
+import { Header } from '@/components/headers';
 import { useSearchParams } from 'next/navigation';
 
 export default function Register() {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const formType = searchParams.get('formType');
@@ -24,7 +22,7 @@ export default function Register() {
       {formType === 'standard' ? (
         <StandardForm />
       ) : formType === 'premium' ? (
-        <Premium />
+        <PremiumForm />
       ) : (
         <p></p>
       )}

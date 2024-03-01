@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { PersonalInfo, StandardMembershipInfo } from './steps';
 import { EmergencyContactInfo } from './steps';
-import { MembershipInfo } from './steps';
 import StepperButton from '../stepper-button';
 import useStepper from '@/hooks/use-stepper';
 import { Button } from '../ui/button';
