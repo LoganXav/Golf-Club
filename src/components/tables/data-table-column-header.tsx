@@ -2,6 +2,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { CaretSortIcon } from '@radix-ui/react-icons';
 import { Column } from '@tanstack/react-table';
+import { Button } from '../ui/button';
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,16 +11,21 @@ interface DataTableColumnHeaderProps<TData, TValue>
 }
 
 export function DataTableColumnHeader<TData, TValue>({
-  // column,
+  column,
   className,
   title,
 }: DataTableColumnHeaderProps<TData, TValue>) {
   return (
     <div className={cn('flex items-center space-x-2', className)}>
-      <div className="text-md flex items-center space-x-1 font-medium text-primary">
-        <CaretSortIcon className=" h-4 w-4" aria-hidden="true" />
+      <Button
+        variant="ghost"
+        size="page"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        className="flex items-center space-x-1 p-0 text-[17px] text-primary"
+      >
         <span>{title}</span>
-      </div>
+        <CaretSortIcon className="h-4 w-4" aria-hidden="true" />
+      </Button>
     </div>
   );
 }

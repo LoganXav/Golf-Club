@@ -4,10 +4,7 @@ import { FormDTO, FormDataSchema } from '@/lib/schema';
 import { MembersListType } from '@/types';
 import { revalidatePath } from 'next/cache';
 
-export async function addPremiumMemberAction() {
-  return 'Premium member';
-}
-export async function addStandardMemberAction(rawInput: FormDTO) {
+export async function addMemberAction(rawInput: FormDTO) {
   const input = FormDataSchema.parse(rawInput);
   const uniqueIdentifier = input.nin;
 

@@ -32,6 +32,10 @@
     --info-foreground: 252, 31%, 54%;
 
     --muted: 0, 0%, 80%;
+    /* hsla(36, 22%, 91%, .5) */
+    --pager-foreground: 36, 22%, 91%, 0.5;
+    /* hsla(38, 17%, 87%, .5) */
+    --pager-background: 38, 17%, 87%, 0.5;
 
     --input: 0 0% 100%;
     --input-invert: 0, 0, 0%;

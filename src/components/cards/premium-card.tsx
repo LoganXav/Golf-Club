@@ -1,7 +1,6 @@
 import { cn } from '@/lib/utils';
 import { CardContent, CardDescription, CardTitle } from '../ui/card';
 import { Paper } from '../ui/paper';
-
 import { Icons } from '../icons';
 import Link from 'next/link';
 import Image from 'next/image';

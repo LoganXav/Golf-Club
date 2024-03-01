@@ -48,6 +48,11 @@ const config: Config = {
           foreground: 'hsla(var(--info-foreground))',
         },
         input: 'hsl(var(--input))',
+        pager: {
+          DEFAULT: 'hsla(var(--pager))',
+          foreground: 'hsla(var(--pager-foreground))',
+          background: 'hsla(var(--pager-background))',
+        },
         muted: 'hsl(var(--muted))',
         ring: 'hsl(var(--ring))',
         input_invert: 'hsl(var(--input-invert))',

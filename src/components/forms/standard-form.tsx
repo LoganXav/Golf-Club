@@ -9,7 +9,7 @@ import { Button } from '../ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { type FormDTO, FormDataSchema, FieldName } from '@/lib/schema';
-import { addStandardMemberAction } from '@/app/_actions/member';
+import { addMemberAction } from '@/app/_actions/member';
 import { Icons } from '../icons';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
@@ -72,7 +72,7 @@ export function StandardForm() {
   const processForm: SubmitHandler<FormDTO> = (data) => {
     startTransition(async () => {
       console.info('@Request', data);
-      const response = await addStandardMemberAction(data);
+      const response = await addMemberAction(data);
       if (response.type !== 'Error') {
         toast.success(response.message);
         console.info('@Response_data', response);

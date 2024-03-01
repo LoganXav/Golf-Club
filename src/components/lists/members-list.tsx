@@ -137,7 +137,7 @@ export function MembersList({ data }: Props) {
           />
 
           <Select onValueChange={handleFilter}>
-            <SelectTrigger className="w-full rounded-none border-none bg-primary-background outline-none lg:w-1/6">
+            <SelectTrigger className="w-full rounded-none border-none bg-primary-background text-primary outline-none lg:w-1/6">
               <SelectValue placeholder="Filter by:"></SelectValue>
             </SelectTrigger>
             <SelectContent>
@@ -149,7 +149,7 @@ export function MembersList({ data }: Props) {
 
         <>
           <TabsContent value="premium">
-            <div className="mt-8 hidden lg:flex">
+            <div className="mt-8 hidden lg:grid">
               <DataTable data={filteredPremium} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
@@ -160,7 +160,7 @@ export function MembersList({ data }: Props) {
           </TabsContent>
 
           <TabsContent value="standard">
-            <div className="mt-8 hidden lg:flex">
+            <div className="mt-8 hidden lg:grid">
               <DataTable data={filteredStandard} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
