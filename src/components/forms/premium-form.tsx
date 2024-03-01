@@ -1,31 +1,31 @@
 'use client';
-import * as React from 'react';
-import { PersonalInfo, StandardMembershipInfo } from './steps';
-import { EmergencyContactInfo } from './steps';
-import { MembershipInfo } from './steps';
-import StepperButton from '../stepper-button';
 import useStepper from '@/hooks/use-stepper';
-import { Button } from '../ui/button';
+import { FormDTO, FormDataSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { type FormDTO, FormDataSchema, FieldName } from '@/lib/schema';
-import { addMemberAction } from '@/app/_actions/member';
-import { Icons } from '../icons';
-import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Button } from '../ui/button';
+import { Icons } from '../icons';
+import StepperButton from '../stepper-button';
+import { EmergencyContactInfo, MembershipInfo, PersonalInfo } from './steps';
+import { PremiumMembershipInfo } from './steps/premium-membership-info';
+import PremiumPaymentInfo from './steps/premium-payment-info';
+import { addStandardMemberAction } from '@/app/_actions/member';
+import { toast } from 'sonner';
 
-export function StandardForm() {
+function PremiumForm() {
   const stepper = useStepper();
-  const [isPending, startTransition] = React.useTransition();
   const router = useRouter();
+  const [isPending, startTransition] = React.useTransition();
 
   const form = useForm<FormDTO>({
     defaultValues: {
       category: 'standard',
       // Personal Info
-      firstName: 'Ayomikun',
-      lastName: 'Balogun',
-      phoneNumber: '09052916792',
+      firstName: 'John',
+      lastName: 'Doe',
+      phoneNumber: '08052916792',
       email: 'example@email.com',
       dateOfBirth: new Date('2006-02-16'),
       gender: 'Female',
@@ -38,8 +38,24 @@ export function StandardForm() {
       // Membership Info
       index: 14,
       handicap: 34,
-      standardMerchandise: 'A pair of branded Golf wear',
-      standardService: 'Access to Free Parking',
+
+      services: [
+        { label: 'Access to Free Parking', value: 'Access to Free Parking' },
+        {
+          label: 'Access to Special Events & Tournaments',
+          value: 'Access to Special Events & Tournaments',
+        },
+        { label: 'Access to VIP Lounge', value: 'Access to VIP Lounge' },
+      ],
+      merchandise: [
+        { label: 'Personalized Golf carts', value: 'Personalized Golf Carts' },
+        {
+          label: '2 pairs of Golf wears monthly',
+          value: '2 pairs of Golf wears monthly',
+        },
+        { label: 'Golf shoes spikes ', value: 'Golf shoes spikes ' },
+      ],
+
       golfDays: [
         { label: 'Weekdays 12-4pm', value: 'Weekdays 12-4pm' },
         {
@@ -59,14 +75,14 @@ export function StandardForm() {
   });
 
   const control = form.control;
-  const trigger = form.trigger;
   const errors = form.formState.errors;
   const handleSubmit = form.handleSubmit;
+  const trigger = form.trigger;
 
   const processForm: SubmitHandler<FormDTO> = (data) => {
     startTransition(async () => {
       console.info('@Request', data);
-      const response = await addMemberAction(data);
+      const response = await addStandardMemberAction(data);
       if (response.type !== 'Error') {
         toast.success(response.message);
         console.info('@Response_data', response);
@@ -77,7 +93,6 @@ export function StandardForm() {
       }
     });
   };
-
   const stepProps = {
     control,
     errors,
@@ -103,28 +118,25 @@ export function StandardForm() {
     },
     {
       label: 'Membership Details',
-      content: <StandardMembershipInfo {...stepProps} />,
-      fields: [
-        'index',
-        'handicap',
-        'preferences',
-        'premiumServices',
-        'golfDays',
-      ],
+      content: <PremiumMembershipInfo {...stepProps} />,
+      fields: ['index', 'handicap', 'services', 'merchandise', 'golfDays'],
     },
     {
       label: 'Emergency Contact',
       content: <EmergencyContactInfo {...stepProps} />,
       fields: ['contactName', 'relationship', 'contactNo', 'contactEmail'],
     },
+    {
+      label: 'Payment Info',
+      content: <PremiumPaymentInfo {...stepProps} />,
+      fields: [''],
+    },
   ];
   const isFirstStep = stepper.step === 0;
   const isLastStep = stepper.step === steps.length - 1;
-
   const [stepCompleted, setStepCompleted] = React.useState(
     Array(steps.length).fill(false)
   );
-
   const next = async () => {
     const fields = steps?.[stepper.step]?.fields;
 
@@ -143,13 +155,11 @@ export function StandardForm() {
       });
     }
   };
-
   const previous = () => {
     if (!isFirstStep) {
       stepper.previous();
     }
   };
-
   return (
     <>
       <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-start">
@@ -196,3 +206,5 @@ export function StandardForm() {
     </>
   );
 }
+
+export default PremiumForm;

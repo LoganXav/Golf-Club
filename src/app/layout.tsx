@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/components/providers';
 import { ThemeToggle } from '@/components/theme';
 import { Toaster } from '@/components/toast-layout';
 import Link from 'next/link';
+// import { useNavigation } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -25,6 +26,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const navigation = useNavigation();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
