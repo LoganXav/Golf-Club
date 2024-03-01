@@ -69,7 +69,7 @@ export function DataTablePagination<TData>({
           >
             Next
             <span className="sr-only">Go to next page</span>
-            <ArrowRightIcon className="ml-1 h-3 w-3" />
+            <ArrowRightIcon className="ml-2 h-3 w-3" />
           </Button>
           <Button
             variant="ghost"

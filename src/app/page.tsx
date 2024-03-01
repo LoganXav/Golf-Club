@@ -10,7 +10,7 @@ export default function IndexPage() {
         <Header
           title="Golf Membership"
           category="Your one stop registration portal"
-          src="/golf-course.svg"
+          src="/book.svg"
           desc="Discover the world of joining a community filled with golf lovers, With services that suits your needs."
         />
         <div className="grid w-full gap-4 lg:grid-cols-2">

@@ -39,13 +39,20 @@ export function Header({
               <div className="text-md">{desc}</div>
             </div>
             <div className="rounded-full p-4">
-              <div className="flex h-28 w-28 items-center justify-center lg:h-48 lg:w-48">
-                {icon ? (
-                  icon
-                ) : (
-                  <Image src={src} width={400} height={400} alt="Header Icon" />
-                )}
-              </div>
+              <Link href="/directory">
+                <div className="flex h-28 w-28 items-center justify-center lg:h-48 lg:w-48">
+                  {icon ? (
+                    icon
+                  ) : (
+                    <Image
+                      src={src}
+                      width={400}
+                      height={400}
+                      alt="Header Icon"
+                    />
+                  )}
+                </div>
+              </Link>
             </div>
           </div>
 
@@ -83,12 +90,14 @@ export function TableHeader() {
           </div>
           <div className="rounded-full p-4">
             <div className="flex h-28 w-28 items-center justify-center lg:h-48 lg:w-48">
-              <Image
-                src="/golf-course.svg"
-                width={400}
-                height={400}
-                alt="Header Icon"
-              />
+              <Link href="/">
+                <Image
+                  src="/golf-course.svg"
+                  width={400}
+                  height={400}
+                  alt="Header Icon"
+                />
+              </Link>
             </div>
           </div>
         </div>

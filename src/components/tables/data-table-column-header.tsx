@@ -21,7 +21,7 @@ export function DataTableColumnHeader<TData, TValue>({
         variant="ghost"
         size="page"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        className="flex items-center space-x-1 p-0 text-[17px] text-primary"
+        className="flex items-center space-x-1 p-0 text-primary"
       >
         <span>{title}</span>
         <CaretSortIcon className="h-4 w-4" aria-hidden="true" />
