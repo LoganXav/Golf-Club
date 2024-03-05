@@ -8,7 +8,7 @@ export default function PremiumPaymentInfo() {
     <div className="">
       <h2 className="p-4">Select your preferred payment platform</h2>
       <div className=" flex flex-col gap-8 p-4  md:flex-row ">
-        <div className=" h-full rounded-md  bg-destructive bg-white  p-4 py-20 md:w-1/2  ">
+        <div className=" h-full rounded-md border-2  border-info-foreground bg-input  p-4 py-20  md:w-1/2  ">
           <Image
             src={Paystack}
             alt="paystack"
@@ -16,10 +16,9 @@ export default function PremiumPaymentInfo() {
             width={300}
             height={300}
           ></Image>
-          {/* <Button>Proceed to Pay</Button> */}
         </div>
 
-        <div className=" h-full w-full  rounded-md bg-destructive  bg-white p-4 py-20 md:w-1/2 ">
+        <div className=" h-full w-full  rounded-md border-2  border-info-foreground bg-input  p-4 py-20 md:w-1/2 ">
           <Image
             src={Flutterwave}
             alt="flutterwave"
@@ -27,7 +26,6 @@ export default function PremiumPaymentInfo() {
             width={300}
             height={300}
           ></Image>
-          {/* <Button>Proceed to Pay</Button> */}
         </div>
       </div>
     </div>
