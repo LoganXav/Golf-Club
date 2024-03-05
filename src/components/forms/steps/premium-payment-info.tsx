@@ -1,32 +1,25 @@
-import Paystack from '../../../assets/images/paystack.svg';
-import Flutterwave from '../../../assets/images/flutterwave.svg';
-import Image from 'next/image';
-import React from 'react';
+import { Label } from '@/components/ui/label';
+import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 
 export default function PremiumPaymentInfo() {
   return (
-    <div className="">
-      <h2 className="p-4">Select your preferred payment platform</h2>
-      <div className=" flex flex-col gap-8 p-4  md:flex-row ">
-        <div className=" h-full rounded-md border-2  border-info-foreground bg-input  p-4 py-20  md:w-1/2  ">
-          <Image
-            src={Paystack}
-            alt="paystack"
-            className="  "
-            width={300}
-            height={300}
-          ></Image>
-        </div>
+    <div className="space-y-4">
+      <Label>Select a payment option</Label>
+      <div className="grid gap-4 lg:grid-cols-2">
+        <Button
+          type="button"
+          className="flex min-w-[10rem] cursor-pointer items-center justify-center rounded-md border bg-input py-8 shadow-none hover:border-primary"
+        >
+          <Icons.paystack className="w-44" />
+        </Button>
 
-        <div className=" h-full w-full  rounded-md border-2  border-info-foreground bg-input  p-4 py-20 md:w-1/2 ">
-          <Image
-            src={Flutterwave}
-            alt="flutterwave"
-            className=" md:ml-10"
-            width={300}
-            height={300}
-          ></Image>
-        </div>
+        <Button
+          type="button"
+          className="flex min-w-[10rem] cursor-pointer items-center justify-center rounded-md border bg-input py-8 shadow-none hover:border-primary"
+        >
+          <Icons.flutterwave className="w-44" />
+        </Button>
       </div>
     </div>
   );
