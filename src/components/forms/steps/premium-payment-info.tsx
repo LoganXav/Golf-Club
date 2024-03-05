@@ -9,16 +9,16 @@ export default function PremiumPaymentInfo() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Button
           type="button"
-          className="flex min-w-[10rem] cursor-pointer items-center justify-center rounded-md border bg-input py-8 shadow-none hover:border-primary"
+          className="flex min-w-[10rem] items-center justify-center rounded-md border bg-input py-8 shadow-none hover:border-primary"
         >
-          <Icons.paystack className="w-44" />
+          <Icons.paystack className="w-36 lg:w-44" />
         </Button>
 
         <Button
           type="button"
-          className="flex min-w-[10rem] cursor-pointer items-center justify-center rounded-md border bg-input py-8 shadow-none hover:border-primary"
+          className="flex min-w-[10rem] items-center justify-center rounded-md border bg-input py-8 shadow-none hover:border-primary"
         >
-          <Icons.flutterwave className="w-44" />
+          <Icons.flutterwave className="w-36 lg:w-44" />
         </Button>
       </div>
     </div>
