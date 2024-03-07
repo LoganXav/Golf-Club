@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function addMemberAction(rawInput: FormDTO) {
   const input = FormDataSchema.parse(rawInput);
+
   const uniqueIdentifier = input.nin;
 
   try {
@@ -18,7 +19,7 @@ export async function addMemberAction(rawInput: FormDTO) {
     if (data) {
       return {
         type: 'Error',
-        message: 'A member with  this nin already exists',
+        message: 'A member with this nin already exists',
       };
     }
 
@@ -36,6 +37,7 @@ export async function addMemberAction(rawInput: FormDTO) {
     return { type: 'Error', message: error.message };
   }
 }
+
 export async function getMembersAction(): Promise<{
   data?: MembersListType[];
   type: string;

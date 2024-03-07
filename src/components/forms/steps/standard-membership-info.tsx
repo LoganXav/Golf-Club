@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { MultiSelect } from '@/components/ui/multi-select';
 import { toTitleCase } from '@/lib/utils';
-import { formData } from '@/config/site';
+import { formData } from '@/config/site-data';
 import { Input } from '@/components/ui/input';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { FormDTO } from '@/lib/schema';
@@ -11,7 +11,7 @@ import { SelectField } from '@/components/ui/select-field';
 
 interface StepProps {
   errors: FieldErrors<FormDTO>;
-  control: Control;
+  control: Control<FormDTO>;
 }
 export function StandardMembershipInfo({ errors, control }: StepProps) {
   return (

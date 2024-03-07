@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { MultiSelect } from '@/components/ui/multi-select';
 import { toTitleCase } from '@/lib/utils';
-import { formData } from '@/config/site';
+import { formData } from '@/config/site-data';
 import { Input } from '@/components/ui/input';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { FormDTO } from '@/lib/schema';
@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 
 interface StepProps {
   errors: FieldErrors<FormDTO>;
-  control: Control;
+  control: Control<FormDTO>;
 }
 export function PremiumMembershipInfo({ errors, control }: StepProps) {
   return (
@@ -47,7 +47,7 @@ export function PremiumMembershipInfo({ errors, control }: StepProps) {
 
         {formData.services?.length && (
           <Controller
-            name="services"
+            name="premiumService"
             control={control}
             render={({ field }) => (
               <MultiSelect
@@ -61,8 +61,8 @@ export function PremiumMembershipInfo({ errors, control }: StepProps) {
             )}
           />
         )}
-        {errors.services?.message && (
-          <Label variant="error">{errors.services.message}</Label>
+        {errors.premiumService?.message && (
+          <Label variant="error">{errors.premiumService.message}</Label>
         )}
       </div>
       <div className="space-y-2 lg:col-span-2">
@@ -70,7 +70,7 @@ export function PremiumMembershipInfo({ errors, control }: StepProps) {
 
         {formData.merchandise?.length && (
           <Controller
-            name="merchandise"
+            name="premiumMerchandise"
             control={control}
             render={({ field }) => (
               <MultiSelect
@@ -84,8 +84,8 @@ export function PremiumMembershipInfo({ errors, control }: StepProps) {
             )}
           />
         )}
-        {errors.merchandise?.message && (
-          <Label variant="error">{errors.merchandise.message}</Label>
+        {errors.premiumMerchandise?.message && (
+          <Label variant="error">{errors.premiumMerchandise.message}</Label>
         )}
       </div>
       <div className="space-y-2 lg:col-span-2">

@@ -4,9 +4,10 @@ import { Input } from '@/components/ui/input';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { FormDTO } from '@/lib/schema';
 import { Label } from '@/components/ui/label';
+
 interface StepProps {
   errors: FieldErrors<FormDTO>;
-  control: Control;
+  control: Control<FormDTO>;
 }
 
 export function EmergencyContactInfo({ errors, control }: StepProps) {

@@ -10,11 +10,11 @@ import { FormDTO } from '@/lib/schema';
 import { Label } from '@/components/ui/label';
 import { PhotoUpload } from '@/components/upload';
 import { DatePicker } from '@/components/date-picker';
-import { formData } from '@/config/site';
+import { formData } from '@/config/site-data';
 
 interface StepProps {
   errors: FieldErrors<FormDTO>;
-  control: Control;
+  control: Control<FormDTO>;
 }
 
 export function PersonalInfo({ errors, control }: StepProps) {

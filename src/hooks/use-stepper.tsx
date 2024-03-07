@@ -15,7 +15,7 @@ interface StepperState {
 
 interface ActionTypes {
   type: string;
-  payload: { step: number; initialStep?: number };
+  payload: { step?: number; initialStep?: number };
 }
 
 function useStepper(options?: StepperOptions) {
@@ -37,11 +37,11 @@ function useStepper(options?: StepperOptions) {
     }
   }
 
-  function next(step: number) {
+  function next(step: number | undefined) {
     dispatch({ type: 'NEXT', payload: { step } });
   }
 
-  function previous(step: number) {
+  function previous(step: number | undefined) {
     dispatch({ type: 'PREVIOUS', payload: { step } });
   }
 
@@ -64,7 +64,9 @@ function reducer(
         return state;
       }
       const step =
-        !isNaN(payload?.step) && Number(payload?.step) >= state.step
+        payload.step &&
+        !isNaN(payload?.step) &&
+        Number(payload?.step) >= state.step
           ? Number(payload.step)
           : state.step + 1;
 
@@ -96,6 +98,7 @@ function reducer(
       };
 
       const step =
+        payload.step &&
         !isNaN(payload?.step) &&
         Number(payload?.step) <= state.step &&
         Number(payload?.step) >= 0

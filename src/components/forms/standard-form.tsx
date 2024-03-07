@@ -175,7 +175,7 @@ export function StandardForm() {
             <Button
               type="button"
               variant="destructive"
-              disabled={isFirstStep && true}
+              disabled={isPending || isFirstStep}
               onClick={previous}
             >
               Previous

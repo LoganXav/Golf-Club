@@ -31,7 +31,7 @@ export const FormDataSchema = z.object({
     .number()
     .lt(37, { message: 'Handicap must me less than 37' })
     .optional(),
-  services: z
+  premiumService: z
     .array(
       z.object({
         label: z.string(),
@@ -39,7 +39,7 @@ export const FormDataSchema = z.object({
       })
     )
     .optional(),
-  merchandise: z
+  premiumMerchandise: z
     .array(
       z.object({
         label: z.string(),
@@ -47,8 +47,8 @@ export const FormDataSchema = z.object({
       })
     )
     .optional(),
-  standardService: z.string(),
-  standardMerchandise: z.string(),
+  standardService: z.string().optional(),
+  standardMerchandise: z.string().optional(),
 
   golfDays: z
     .array(

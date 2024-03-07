@@ -3,21 +3,21 @@ import * as React from 'react';
 import useStepper from '@/hooks/use-stepper';
 import { FieldName, FormDTO, FormDataSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { Button } from '../ui/button';
 import { Icons } from '../icons';
 import StepperButton from '../stepper-button';
 import { EmergencyContactInfo, PersonalInfo } from './steps';
 import { PremiumMembershipInfo } from './steps/premium-membership-info';
 import PremiumPaymentInfo from './steps/premium-payment-info';
-import { addMemberAction } from '@/app/_actions/member';
+import { usePaymentMutation } from '@/api/core-api-payment';
 import { toast } from 'sonner';
 
 export function PremiumForm() {
   const stepper = useStepper();
-  const router = useRouter();
-  const [isPending, startTransition] = React.useTransition();
+
+  const { initializePayment, isLoading, error } = usePaymentMutation();
+  const [paymentMethod, setPaymentMethod] = React.useState('paystack');
 
   const form = useForm<FormDTO>({
     defaultValues: {
@@ -39,7 +39,7 @@ export function PremiumForm() {
       index: 14,
       handicap: 34,
 
-      services: [
+      premiumService: [
         { label: 'Access to Free Parking', value: 'Access to Free Parking' },
         {
           label: 'Access to Special Events & Tournaments',
@@ -47,7 +47,7 @@ export function PremiumForm() {
         },
         { label: 'Access to VIP Lounge', value: 'Access to VIP Lounge' },
       ],
-      merchandise: [
+      premiumMerchandise: [
         { label: 'Personalized Golf carts', value: 'Personalized Golf Carts' },
         {
           label: '2 pairs of Golf wears monthly',
@@ -76,26 +76,29 @@ export function PremiumForm() {
 
   const control = form.control;
   const errors = form.formState.errors;
-  const handleSubmit = form.handleSubmit;
   const trigger = form.trigger;
 
-  const processForm: SubmitHandler<FormDTO> = (data) => {
-    startTransition(async () => {
-      console.info('@Request', data);
-      const response = await addMemberAction(data);
-      if (response.type !== 'Error') {
-        toast.success(response.message);
-        console.info('@Response_data', response);
-        router.push('/directory');
-      } else {
-        toast.error(response.message);
-        console.error('@Response_error', response);
-      }
-    });
+  const processForm = (data: FieldValues) => {
+    const payload = {
+      name: data.firstName,
+      email: data.email,
+      metadata: { data },
+    };
+
+    console.info('@Request', data);
+    toast.info('Processing Payment');
+    initializePayment({ payload, paymentMethod });
+
+    if (error) {
+      toast.error(String(error) || 'Could not process your payment');
+      console.error('@Response_error', error);
+    }
   };
+
   const stepProps = {
     control,
     errors,
+    setPaymentMethod,
   };
 
   const steps = [
@@ -119,7 +122,13 @@ export function PremiumForm() {
     {
       label: 'Membership Details',
       content: <PremiumMembershipInfo {...stepProps} />,
-      fields: ['index', 'handicap', 'services', 'merchandise', 'golfDays'],
+      fields: [
+        'index',
+        'handicap',
+        'premiumService',
+        'premiumMerchandise',
+        'golfDays',
+      ],
     },
     {
       label: 'Emergency Contact',
@@ -137,6 +146,7 @@ export function PremiumForm() {
   const [stepCompleted, setStepCompleted] = React.useState(
     Array(steps.length).fill(false)
   );
+
   const next = async () => {
     const fields = steps?.[stepper.step]?.fields;
 
@@ -144,9 +154,9 @@ export function PremiumForm() {
     if (!output) return;
 
     if (isLastStep) {
-      await handleSubmit(processForm)();
+      processForm(form.control._formValues);
     } else {
-      stepper.next();
+      stepper.next(undefined);
       const currentStepIndex = stepper.step;
       setStepCompleted((prev) => {
         const updatedSteps = [...prev];
@@ -155,11 +165,13 @@ export function PremiumForm() {
       });
     }
   };
+
   const previous = () => {
     if (!isFirstStep) {
-      stepper.previous();
+      stepper.previous(undefined);
     }
   };
+
   return (
     <>
       <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-start">
@@ -185,19 +197,19 @@ export function PremiumForm() {
             <Button
               type="button"
               variant="destructive"
-              disabled={isFirstStep && true}
+              disabled={isLoading || isFirstStep}
               onClick={previous}
             >
               Previous
             </Button>
-            <Button disabled={isPending} type="button" onClick={next}>
-              {isPending && (
+            <Button disabled={isLoading} type="button" onClick={next}>
+              {isLoading && (
                 <Icons.spinner
                   className="mr-2 h-4 w-4 animate-spin"
                   aria-hidden="true"
                 />
               )}
-              {isLastStep ? 'Submit' : 'Next'}
+              {isLastStep ? 'Proceed' : 'Next'}
             </Button>
           </div>
         </form>

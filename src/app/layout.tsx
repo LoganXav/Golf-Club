@@ -1,7 +1,8 @@
 import * as React from 'react';
+
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/site-data';
 import { fontMono, fontRoboto, fontRoobert, fontReckless } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
@@ -9,7 +10,6 @@ import { ThemeProvider } from '@/components/providers';
 import { ThemeToggle } from '@/components/theme';
 import { Toaster } from '@/components/toast-layout';
 import Link from 'next/link';
-// import { useNavigation } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -26,8 +26,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const navigation = useNavigation();
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body

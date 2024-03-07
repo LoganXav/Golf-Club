@@ -1,6 +1,6 @@
 import { Header } from '@/components/headers';
 import { Card } from '@/components/ui/card';
-import { markdownContent } from '@/config/site';
+import { markdownContent } from '@/config/site-data';
 import * as React from 'react';
 
 import ReactMarkdown from 'react-markdown';
