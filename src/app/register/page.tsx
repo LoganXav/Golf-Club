@@ -1,5 +1,6 @@
 import { RegistrationForm } from '@/components/forms/registration-form';
 import { Header } from '@/components/headers';
+import { Suspense } from 'react';
 
 export default function Register() {
   return (
@@ -11,7 +12,9 @@ export default function Register() {
         desc="Discover the world of joining a community filled with golf lovers, With services that suits your needs."
         navigate={true}
       />
-      <RegistrationForm />
+      <Suspense>
+        <RegistrationForm />
+      </Suspense>
     </section>
   );
 }
