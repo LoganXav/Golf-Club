@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'Golf Club App',
+  name: 'Golf Club Registration App',
   description: '',
 };
 
