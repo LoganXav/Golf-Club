@@ -1,9 +1,8 @@
 import { supabase } from '@/lib/db';
 import axios from 'axios';
-import { NextApiRequest } from 'next';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
   if (req.method === 'POST') {
     const params = await req.json();
 
@@ -17,7 +16,6 @@ export async function POST(req: NextApiRequest) {
       .single();
 
     if (data) {
-      console.log(data, 'dtataaaaaaaaaaaaaaaa');
       return NextResponse.json({
         error: 'A user with this nin already exists',
         status: 409,

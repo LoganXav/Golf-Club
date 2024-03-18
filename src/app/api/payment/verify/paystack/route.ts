@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { NextApiRequest } from 'next';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { addMemberAction } from '@/app/_actions/member';
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;
     const reference = searchParams.get('reference');
