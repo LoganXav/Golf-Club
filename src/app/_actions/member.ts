@@ -2,7 +2,7 @@
 import { supabase } from '@/lib/db';
 import { FormDTO, FormDataSchema } from '@/lib/schema';
 import { MembersListType } from '@/types';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
 
 export async function addMemberAction(rawInput: FormDTO) {
   const input = FormDataSchema.parse(rawInput);
@@ -46,7 +46,7 @@ export async function getMembersAction(): Promise<{
   try {
     const { data } = await supabase.from('members').select('*');
     // .order('createdAt', { ascending: false });
-    await revalidatePath('/directory');
+    // await revalidatePath('/directory');
     if (data) {
       return { type: 'Success', data };
     }
