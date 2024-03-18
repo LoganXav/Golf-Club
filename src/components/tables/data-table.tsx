@@ -20,7 +20,7 @@ import {
 import { DataTablePagination } from './data-table-pagination';
 
 interface TableProps<TData, TValue> {
-  data: TData[];
+  data: any;
   columns: ColumnDef<TData, TValue>[];
 }
 
