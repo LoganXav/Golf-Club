@@ -133,7 +133,7 @@ export function StandardForm() {
     if (isLastStep) {
       await handleSubmit(processForm)();
     } else {
-      stepper.next();
+      stepper.next(undefined);
       const currentStepIndex = stepper.step;
       setStepCompleted((prev) => {
         const updatedSteps = [...prev];
@@ -145,7 +145,7 @@ export function StandardForm() {
 
   const previous = () => {
     if (!isFirstStep) {
-      stepper.previous();
+      stepper.previous(undefined);
     }
   };
 
@@ -157,7 +157,6 @@ export function StandardForm() {
             <div key={i}>
               <StepperButton
                 stepper={stepper}
-                // completed={true}
                 completed={stepCompleted[i]}
                 selected={stepper.step === i}
                 step={i + 1}
