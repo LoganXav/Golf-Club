@@ -11,7 +11,7 @@ import {
 
 import { DataTable } from '@/components/tables';
 import { type ColumnDef } from '@tanstack/react-table';
-import { CuratedMembersInfo, MembersListType } from '@/types';
+import { CuratedMembersInfo } from '@/types';
 import { MemberCard } from '../cards';
 
 import { DataTableColumnHeader } from '@/components/tables';
@@ -19,14 +19,20 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Icons } from '@/components/icons';
 import { format } from 'date-fns';
 import { useDebounce } from '@/hooks/use-debounce';
-
-interface Props {
-  data?: MembersListType[];
-}
+import { getMembersAction } from '@/app/_actions/member';
+import { toast } from 'sonner';
 
 type FilterProperty = 'firstName' | 'province';
 
-export function MembersList({ data }: Props) {
+export async function MembersList() {
+  const response = await getMembersAction();
+  if (response && response?.type === 'Error') {
+    toast.error(response.message);
+    console.error('@Response_error', response);
+  }
+
+  const data = response?.data;
+
   // Memoize the columns so they don't re-render on every render
   const columns = React.useMemo<ColumnDef<CuratedMembersInfo, unknown>[]>(
     () => [
