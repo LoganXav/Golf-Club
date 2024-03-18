@@ -7,16 +7,16 @@ export async function GET(req: NextApiRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;
     const reference = searchParams.get('reference');
-    const paystackUrl = `https://api.paystack.co/transaction/verify/${reference}`;
-    const paystackResponse = await axios.get(paystackUrl, {
+    const flutterwaveUrl = `https://api.flutterwave.com/v3/payments${reference}`;
+    const flutterwaveResponse = await axios.get(flutterwaveUrl, {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY}`,
+        Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`,
       },
     });
 
     // After the payment has been confirmed, add member to db
 
-    const { metadata } = paystackResponse.data.data;
+    const { metadata } = flutterwaveResponse.data.data;
 
     const rawDate = metadata.data.dateOfBirth;
 

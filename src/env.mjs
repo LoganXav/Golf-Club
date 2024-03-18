@@ -10,6 +10,8 @@ export const env = createEnv({
     DATABASE_URL: z.string(),
     NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY: z.string(),
     NEXT_PUBLIC_PAYSTACK_SECRET_KEY: z.string(),
+    FLW_PUBLIC_KEY: z.string(),
+    FLW_SECRET_KEY: z.string(),
     DATABASE_ANON_KEY: z.string(),
     NODE_ENV: z.enum(['development', 'test', 'production']),
   },
@@ -33,6 +35,8 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
     NEXT_PUBLIC_PAYSTACK_SECRET_KEY:
       process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY,
+    FLW_PUBLIC_KEY: process.env.FLW_PUBLIC_KEY,
+    FLW_SECRET_KEY: process.env.FLW_SECRET_KEY,
     DATABASE_ANON_KEY: process.env.DATABASE_ANON_KEY,
   },
 });
