@@ -22,7 +22,7 @@ interface SelectFieldProps {
     value: string;
   }[];
   placeholder?: string;
-  value: string;
+  value: string | undefined;
   onChange: () => void;
 }
 
