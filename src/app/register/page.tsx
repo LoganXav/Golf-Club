@@ -1,14 +1,7 @@
-'use client';
-
-import { StandardForm } from '@/components/forms';
-import { PremiumForm } from '@/components/forms';
+import { RegistrationForm } from '@/components/forms/registration-form';
 import { Header } from '@/components/headers';
-import { useSearchParams } from 'next/navigation';
 
 export default function Register() {
-  const searchParams = useSearchParams();
-
-  const formType = searchParams.get('formType');
   return (
     <section className="space-y-16">
       <Header
@@ -18,14 +11,7 @@ export default function Register() {
         desc="Discover the world of joining a community filled with golf lovers, With services that suits your needs."
         navigate={true}
       />
-
-      {formType === 'standard' ? (
-        <StandardForm />
-      ) : formType === 'premium' ? (
-        <PremiumForm />
-      ) : (
-        <p></p>
-      )}
+      <RegistrationForm />
     </section>
   );
 }
