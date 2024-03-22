@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { FileRejection } from 'react-dropzone';
 import { type AcceptedFile } from './photo-upload';

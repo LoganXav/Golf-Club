@@ -5,7 +5,6 @@ import * as SwitchPrimitives from '@radix-ui/react-switch';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 
 import { cn } from '@/lib/utils';
-import { Button } from '../ui/button';
 
 interface Props {
   theme: string | undefined;
@@ -27,7 +26,7 @@ const ThemeToggler = ({ theme, setTheme }: Props) => (
         'pointer-events-none flex h-8 w-8  items-center justify-center  rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-24 data-[state=unchecked]:translate-x-0  data-[state=checked]:bg-tertiary data-[state=unchecked]:bg-black'
       )}
     >
-      <Button variant="ghost" size="icon">
+      <span className="inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium">
         <SunIcon
           className="h-4 w-4 rotate-0 scale-0 text-black transition-all dark:-rotate-90 dark:scale-100"
           aria-hidden="true"
@@ -36,7 +35,7 @@ const ThemeToggler = ({ theme, setTheme }: Props) => (
           className="absolute h-4 w-4 rotate-90 scale-100 text-white transition-all dark:rotate-0 dark:scale-0"
           aria-hidden="true"
         />
-      </Button>
+      </span>
     </SwitchPrimitives.Thumb>
     <span className="ml-2 scale-100 text-sm text-input_invert dark:scale-0">
       Dark Mode

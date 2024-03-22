@@ -1,3 +1,4 @@
+'use client';
 import { RegistrationForm } from '@/components/forms/registration-form';
 import { Header } from '@/components/headers';
 import { Suspense } from 'react';

@@ -120,7 +120,7 @@ export function PhotoUpload() {
           {file.length && !rejected.length ? (
             <Button onClick={() => setFile([])}>Remove Photo</Button>
           ) : (
-            <DialogTrigger>
+            <DialogTrigger asChild>
               <Button>Add Photo</Button>
             </DialogTrigger>
           )}
