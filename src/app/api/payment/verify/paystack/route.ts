@@ -14,7 +14,6 @@ export async function GET(req: NextRequest) {
     });
 
     // After the payment has been confirmed, add member to db
-
     const { metadata } = paystackResponse.data.data;
 
     const rawDate = metadata.data.dateOfBirth;
@@ -33,7 +32,7 @@ export async function GET(req: NextRequest) {
 
     let redirectURL;
     if (process.env.NODE_ENV === 'production') {
-      redirectURL = process.env.NEXT_PUBLIC_APP_URL;
+      redirectURL = `https://${process.env.NEXT_PUBLIC_APP_URL}`;
     } else {
       redirectURL = 'http://localhost:3001';
     }

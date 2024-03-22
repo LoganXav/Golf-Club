@@ -84,6 +84,7 @@ export function WebcamCapture({
       videoRef.current?.pause();
     }
   };
+
   const captureSelected = () => {
     if (screenshot) {
       const newFile: AcceptedFile = {
