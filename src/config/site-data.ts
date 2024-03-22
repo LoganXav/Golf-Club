@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: 'Golf Club Registration App',
-  description: '',
+  description: 'A golf club registration app',
 };
 
 // export const NEXT_PUBLIC_SUPABASE_URL =
