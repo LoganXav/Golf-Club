@@ -5,7 +5,7 @@ export default function IndexPage() {
   const options = [
     {
       title: 'Premium',
-      price: 'N20 000',
+      price: '$20',
       header: 'Exclusive golf experience',
       content:
         'Unlock premium features and privileges with our premium membership.',
@@ -15,7 +15,7 @@ export default function IndexPage() {
     },
     {
       title: 'Standard',
-      price: 'N0',
+      price: '$0',
       header: 'Explore the world of golf',
       content:
         'For this package, you can register your details and get standard golf.',
