@@ -27,20 +27,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem={true}
-        disableTransitionOnChange
+      <body
+        className={cn(
+          'min-h-screen bg-secondary font-roobert font-medium antialiased',
+          fontRoboto.variable,
+          fontMono.variable,
+          fontRoobert.variable,
+          fontReckless.variable
+        )}
       >
-        <body
-          className={cn(
-            'min-h-screen bg-secondary font-roobert font-medium antialiased',
-            fontRoboto.variable,
-            fontMono.variable,
-            fontRoobert.variable,
-            fontReckless.variable
-          )}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem={true}
+          disableTransitionOnChange
         >
           <main className="container relative pt-14">
             {children}
@@ -57,8 +57,8 @@ export default function RootLayout({
 
           <TailwindIndicator />
           <Toaster position="top-center" />
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

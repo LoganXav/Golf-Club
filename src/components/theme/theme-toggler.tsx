@@ -13,7 +13,9 @@ interface Props {
 }
 const ThemeToggler = ({ theme, setTheme }: Props) => (
   <SwitchPrimitives.Root
-    onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+    onClick={() => {
+      setTheme(theme === 'light' ? 'dark' : 'light');
+    }}
     className={cn(
       'peer relative inline-flex w-[145px] shrink-0 cursor-pointer items-center rounded-full border-2 border-ring p-[5px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-transparent data-[state=unchecked]:bg-transparent'
     )}
@@ -23,16 +25,20 @@ const ThemeToggler = ({ theme, setTheme }: Props) => (
     </span>
     <SwitchPrimitives.Thumb
       className={cn(
-        'pointer-events-none flex h-8 w-8  items-center justify-center  rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-24 data-[state=unchecked]:translate-x-0  data-[state=checked]:bg-tertiary data-[state=unchecked]:bg-black'
+        'pointer-events-none flex h-8 w-8  translate-x-0 items-center justify-center rounded-full bg-black shadow-lg ring-0 transition-all duration-200 ease-in-out dark:translate-x-24 dark:bg-white'
       )}
     >
       <span className="inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium">
         <SunIcon
-          className="h-4 w-4 rotate-0 scale-0 text-black transition-all dark:-rotate-90 dark:scale-100"
+          className={cn(
+            'invisible h-4 w-4 text-black transition-all duration-200 ease-in-out dark:visible'
+          )}
           aria-hidden="true"
         />
         <MoonIcon
-          className="absolute h-4 w-4 rotate-90 scale-100 text-white transition-all dark:rotate-0 dark:scale-0"
+          className={cn(
+            'visible absolute h-4 w-4 text-white transition-all duration-200 ease-in-out dark:invisible'
+          )}
           aria-hidden="true"
         />
       </span>
