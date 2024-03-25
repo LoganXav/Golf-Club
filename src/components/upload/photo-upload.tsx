@@ -124,7 +124,7 @@ export function PhotoUpload() {
               <Button>Add Photo</Button>
             </DialogTrigger>
           )}
-          <DialogContent className="absolute">
+          <DialogContent className="">
             <DialogTitle className="pb-8 font-reckless text-3xl">
               Add a Photo
             </DialogTitle>
