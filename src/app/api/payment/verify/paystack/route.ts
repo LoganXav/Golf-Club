@@ -31,10 +31,11 @@ export async function GET(req: NextRequest) {
     }
 
     let redirectURL;
+
     if (process.env.NODE_ENV === 'production') {
-      redirectURL = `https://${process.env.NEXT_PUBLIC_APP_URL}`;
+      redirectURL = `${process.env.NEXT_PUBLIC_APP_URL}`;
     } else {
-      redirectURL = 'http://localhost:3001';
+      redirectURL = 'http://localhost:3000';
     }
 
     return NextResponse.redirect(new URL(`/directory`, redirectURL));
