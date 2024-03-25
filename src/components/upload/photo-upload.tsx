@@ -81,7 +81,7 @@ export function PhotoUpload() {
           </div>
         </DialogTrigger>
 
-        <DialogContent className="absolute">
+        <DialogContent className="">
           <DialogTitle className="pb-8 font-reckless text-2xl">
             {file.length && !rejected.length ? 'Preview' : 'Take a photo'}
           </DialogTitle>
