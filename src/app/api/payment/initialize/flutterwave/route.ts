@@ -2,10 +2,6 @@
 // import { NextApiRequest } from 'next';
 // import { NextResponse } from 'next/server';
 
-import { supabase } from '@/lib/db';
-import { NextApiRequest } from 'next';
-import { NextResponse } from 'next/server';
-
 // export async function POST(req: NextApiRequest) {
 //   const params = await req.json();
 //   if (req.method === 'POST') {
@@ -80,73 +76,74 @@ import { NextResponse } from 'next/server';
 //     throw error; // Re-throw for handling in your component
 //   }
 // }
-// import { supabase } from '@/lib/db';
-// import axios from 'axios';
-// import { NextApiRequest } from 'next';
-// import { NextResponse } from 'next/server';
-// export async function POST(req: NextApiRequest) {
-//   if (req.method === 'POST') {
-//     const params = await req.json();
 
-//     // First check if the user already exists
-//     const uniqueIdentifier = params.metadata.data.nin;
+import { supabase } from '@/lib/db';
+import axios from 'axios';
+import { NextApiRequest } from 'next';
+import { NextResponse } from 'next/server';
+export async function POST(req: NextApiRequest) {
+  if (req.method === 'POST') {
+    const params = await req.json();
 
-//     const { data } = await supabase
-//       .from('members')
-//       .select('*')
-//       .eq('nin', uniqueIdentifier)
-//       .single();
+    // First check if the user already exists
+    const uniqueIdentifier = params.metadata.data.nin;
 
-//     if (data) {
-//       return NextResponse.json({
-//         error: 'A user with this nin already exists',
-//         status: 409,
-//       });
-//     }
-//     const searchParams = req.nextUrl.searchParams;
+    const { data } = await supabase
+      .from('members')
+      .select('*')
+      .eq('nin', uniqueIdentifier)
+      .single();
 
-//     const reference = searchParams.get('reference');
+    if (data) {
+      return NextResponse.json({
+        error: 'A user with this nin already exists',
+        status: 409,
+      });
+    }
+    const searchParams = req.nextUrl.searchParams;
 
-//     const flutterwaveUrl = `https://api.flutterwave.com/v3/payments${reference}`;
+    const reference = searchParams.get('reference');
 
-//     const baseURL =
-//       process.env.NODE_ENV === 'production'
-//         ? process.env.NEXT_PUBLIC_APP_URL
-//         : 'http://localhost:3007';
+    const flutterwaveUrl = `https://api.flutterwave.com/v3/payments${reference}`;
 
-//     try {
-//       const response = await axios.post(
-//         flutterwaveUrl,
-//         {
-//           ...params,
-//           amount: 20000 * 100,
-//           callback_url:
-//             'https://api.flutterwave.com/v3/hosted/pay/f524c1196ffda5556341',
-//         },
-//         {
-//           headers: {
-//             Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`,
-//             'Content-Type': 'application/json',
-//           },
-//         }
-//       );
+    const baseURL =
+      process.env.NODE_ENV === 'production'
+        ? process.env.NEXT_PUBLIC_APP_URL
+        : 'http://localhost:3007';
 
-//       const responseData = response.data;
-//       return NextResponse.json({
-//         data: { link: responseData?.data?.authorization_url },
-//         status: response.status || 500,
-//       });
-//     } catch (error) {
-//       console.error(error);
-//       return NextResponse.json({
-//         error: 'An error occurred while making the request.',
-//         status: 500,
-//       });
-//     }
-//   } else {
-//     return NextResponse.json({ error: 'Method not allowed' });
-//   }
-// }
+    try {
+      const response = await axios.post(
+        flutterwaveUrl,
+        {
+          ...params,
+          amount: 20000 * 100,
+          callback_url:
+            'https://api.flutterwave.com/v3/hosted/pay/f524c1196ffda5556341',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const responseData = response.data;
+      return NextResponse.json({
+        data: { link: responseData?.data?.authorization_url },
+        status: response.status || 500,
+      });
+    } catch (error) {
+      console.error(error);
+      return NextResponse.json({
+        error: 'An error occurred while making the request.',
+        status: 500,
+      });
+    }
+  } else {
+    return NextResponse.json({ error: 'Method not allowed' });
+  }
+}
 
 // interface FlutterwavePaymentDetails {
 //   tx_ref: any;
@@ -235,51 +232,3 @@ import { NextResponse } from 'next/server';
 // flutterwaveIntegration.ts
 
 // import got from 'got';
-
-export const createPayment = async () => {
-  try {
-    const response = await got
-      .post('https://api.flutterwave.com/v3/payments', {
-        headers: {
-          Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`,
-        },
-        json: {
-          tx_ref: 'hooli-tx-1920bbtytty',
-          amount: '100',
-          currency: 'NGN',
-          redirect_url:
-            'https://webhook.site/9d0b00ba-9a69-44fa-a43d-a82c33c36fdc',
-          meta: {
-            consumer_id: 23,
-            consumer_mac: '92a3-912ba-1192a',
-          },
-          customer: {
-            email: 'user@gmail.com',
-            phonenumber: '080****4528',
-            name: 'Yemi Desola',
-          },
-          customizations: {
-            title: 'Pied Piper Payments',
-            logo: 'http://www.piedpiper.com/app/themes/joystick-v27/images/logo.png',
-          },
-        },
-      })
-      .json();
-
-    return response.data.link;
-  } catch (err) {
-    console.error(err.code);
-    console.error(err.response.body);
-    throw err;
-  }
-};
-
-export const handlePaymentCallback = async (req: any, res: any) => {
-  if (req.query.status === 'successful') {
-    // Handle successful payment callback
-    // Verify the transaction and confirm the customer's payment
-  } else {
-    // Handle unsuccessful payment callback
-    // Inform the customer their payment was unsuccessful
-  }
-};
