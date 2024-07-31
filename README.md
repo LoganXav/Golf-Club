@@ -11,6 +11,7 @@ Welcome to the **Golfnco**. This repository hosts an a mini forms application bu
 - Paystack: Payments
 - SupabaseDB: Database
 - Zod: Validation
+- Husky: Pre-commit Hook
 
 ## Getting Started
 
