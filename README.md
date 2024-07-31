@@ -1,6 +1,6 @@
 # Golfnco
 
-Welcome to the **Golfnco**. This repository hosts an ecommerce application built with nextjs.
+Welcome to the **Golfnco**. This repository hosts an a mini forms application built with nextjs.
 
 ## Technologies used
 
