@@ -1,9 +1,44 @@
+'use client';
+import { Combobox } from '@/components/combo';
 import clsx from 'clsx';
+import React, { SetStateAction } from 'react';
 
 export default function IndexPage() {
+  function handleCreateOptions(arg: any) {
+    return alert(arg);
+  }
+
+  const [option, setOption] = React.useState<SetStateAction<undefined>>();
+
+  const yourOptions = [
+    {
+      id: 1,
+      name: 'Shopping',
+    },
+    {
+      id: 2,
+      name: 'Dancing',
+    },
+    {
+      id: 3,
+      name: 'Drinking',
+    },
+  ];
   return (
     <main className="container mx-auto flex flex-col items-center space-y-4 px-4 pt-24">
-      <div className="max-w-3xl">
+      <Combobox
+        mode="single" //single or multiple
+        options={yourOptions}
+        placeholder="Select option..."
+        selected={option} // string or array
+        onChange={(value) => setOption(value)}
+        onCreate={(value) => {
+          handleCreateOptions(value);
+        }}
+        className="w-72"
+      />
+
+      {/* <div className="max-w-3xl">
         {[
           {
             title: 'Sign Up On Salary PayDay',
@@ -62,7 +97,7 @@ export default function IndexPage() {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </main>
   );
 }
