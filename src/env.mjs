@@ -7,7 +7,7 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z.string(),
+    // DATABASE_URL: z.string(),
     NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY: z.string(),
     NEXT_PUBLIC_PAYSTACK_SECRET_KEY: z.string(),
     DATABASE_ANON_KEY: z.string(),
@@ -28,7 +28,7 @@ export const env = createEnv({
   runtimeEnv: {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NODE_ENV: process.env.NODE_ENV,
-    DATABASE_URL: process.env.DATABASE_URL,
+    // DATABASE_URL: process.env.DATABASE_URL,
     NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY:
       process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
     NEXT_PUBLIC_PAYSTACK_SECRET_KEY:

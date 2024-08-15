@@ -1,11 +1,10 @@
 import { MembersList } from '@/components/lists';
 import { getMembersAction } from '../_actions/member';
-import { env } from '@/env.mjs';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Directory() {
-  if (!env.DATABASE_URL) {
+  if (!process.env.DATABASE_URL) {
     return (
       <MembersList
         response={{
