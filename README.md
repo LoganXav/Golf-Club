@@ -7,7 +7,7 @@ Welcome to the **Golfnco**. This repository hosts an a mini forms application bu
 - Nextjs: Fullstack Framework
 - Typescript: Static Typing
 - Tailwind: Styling
-- Shadcn: Component Library
+- Shadcn: Components
 - Paystack: Payments
 - SupabaseDB: Database
 - Zod: Validation
