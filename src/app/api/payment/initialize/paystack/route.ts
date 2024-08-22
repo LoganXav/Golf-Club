@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/db';
+// import { supabase } from '@/lib/db';
 import axios from 'axios';
 import { NextResponse, NextRequest } from 'next/server';
 
@@ -7,20 +7,20 @@ export async function POST(req: NextRequest) {
     const params = await req.json();
 
     // First check if the user already exists
-    const uniqueIdentifier = params.metadata.data.nin;
+    // const uniqueIdentifier = params.metadata.data.nin;
 
-    const { data } = await supabase
-      .from('members')
-      .select('*')
-      .eq('nin', uniqueIdentifier)
-      .single();
+    // const { data } = await supabase
+    //   .from('members')
+    //   .select('*')
+    //   .eq('nin', uniqueIdentifier)
+    //   .single();
 
-    if (data) {
-      return NextResponse.json({
-        error: 'A user with this nin already exists',
-        status: 409,
-      });
-    }
+    // if (data) {
+    //   return NextResponse.json({
+    //     error: 'A user with this nin already exists',
+    //     status: 409,
+    //   });
+    // }
 
     const paystackUrl = 'https://api.paystack.co/transaction/initialize';
 

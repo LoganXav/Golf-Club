@@ -24,7 +24,7 @@ export default function PremiumPaymentInfo({ setPaymentMethod }: Props) {
             <Icons.paystack className="w-36 lg:w-44" />
           </Label>
         </Button>
-        <Button
+        {/* <Button
           type="button"
           onClick={() => setPaymentMethod('flutterwave')}
           className="flex min-w-[10rem] items-center justify-center gap-4 overflow-hidden rounded-md border bg-input py-8 shadow-none focus:border-primary"
@@ -37,7 +37,7 @@ export default function PremiumPaymentInfo({ setPaymentMethod }: Props) {
           <Label className="cursor-pointer" htmlFor="flutterwave">
             <Icons.flutterwave className="w-36 lg:w-44" />
           </Label>
-        </Button>
+        </Button> */}
       </RadioGroup>
     </div>
   );
