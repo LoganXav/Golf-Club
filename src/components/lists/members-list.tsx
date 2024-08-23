@@ -165,9 +165,15 @@ export function MembersList({ response }: Props) {
               <DataTable data={filteredPremium} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
-              {filteredPremium?.map((member, idx) => (
-                <MemberCard data={member} key={idx} />
-              ))}
+              {!process.env.DATABASE_URL ? (
+                'Sorry the database connection was lost. Kindly check back later... 🔌'
+              ) : (
+                <>
+                  {filteredPremium?.map((member, idx) => (
+                    <MemberCard data={member} key={idx} />
+                  ))}
+                </>
+              )}
             </div>
           </TabsContent>
 
@@ -176,9 +182,15 @@ export function MembersList({ response }: Props) {
               <DataTable data={filteredStandard} columns={columns} />
             </div>
             <div className="mt-8 flex flex-col gap-4 lg:hidden">
-              {filteredStandard?.map((member, idx) => (
-                <MemberCard data={member} key={idx} />
-              ))}
+              {!process.env.DATABASE_URL ? (
+                'Sorry the database connection was lost. Kindly check back later... 🔌'
+              ) : (
+                <>
+                  {filteredStandard?.map((member, idx) => (
+                    <MemberCard data={member} key={idx} />
+                  ))}
+                </>
+              )}
             </div>
           </TabsContent>
         </>
